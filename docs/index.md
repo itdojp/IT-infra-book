@@ -37,9 +37,8 @@
 
 ### 付録
 
-- [付録A: 補足資料](appendices/appendix01/)
+- [付録A: 用語集](appendices/appendix01/)
 - [付録B: トラブルシューティングガイド](appendices/appendix02/)
-- [用語集](appendices/glossary/)
 
 - [あとがき](afterword/)
 

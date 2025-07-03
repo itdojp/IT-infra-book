@@ -37,7 +37,7 @@
 
 ### 付録
 
-- [付録A：実装リファレンス](appendices/appendix01/)
+- [付録A：用語集](appendices/appendix01/)
 - [付録B：トラブルシューティングガイド](appendices/appendix02/)
 
 - [あとがき](afterword/)

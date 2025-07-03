@@ -32,12 +32,10 @@ chapters:
     path: "/chapters/chapter13/"
 
 appendices:
-  - title: "付録A: 補足資料"
+  - title: "付録A: 用語集"
     path: "/appendices/appendix01/"
   - title: "付録B: トラブルシューティングガイド"
     path: "/appendices/appendix02/"
-  - title: "用語集"
-    path: "/appendices/glossary/"
 
 afterword:
   - title: "あとがき"

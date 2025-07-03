@@ -1,131 +1,61 @@
-# Book Publishing Template ドキュメント
+# ITインフラストラクチャ技術ガイド
 
-このテンプレートを使用して効率的に書籍を作成・公開するための包括的なガイド集です。
+ネットワークとサーバーシステムの設計と実装
 
-## 📚 ドキュメント一覧
+## 概要
 
-### 🚀 開始ガイド
-- **[セットアップガイド](../setup-guide.md)** - 初期設定と環境構築
-- **[クイックスタート](quick-start.md)** - 5分で始める書籍作成
-- **[基本概念](concepts.md)** - テンプレートの構造と仕組み
+本書は、ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書です。ネットワークプロトコルの階層構造からクラウドアーキテクチャまで、ITインフラの全体像を実装レベルで解説します。
 
-### 📝 執筆ガイド
-- **[コンテンツ作成](writing-guide.md)** - Markdownでの執筆方法
-- **[構造化ガイド](content-structure.md)** - 章立てとファイル構成
-- **[スタイルガイド](style-guide.md)** - 一貫した書式と表現
+## 目次
 
-### 🔧 設定とカスタマイズ
-- **[設定リファレンス](configuration.md)** - book-config.jsonの詳細設定
-- **[テーマカスタマイズ](theming.md)** - 見た目とレイアウトの変更
-- **[プラグイン開発](plugins.md)** - 機能拡張の方法
+- [はじめに](introduction/)
 
-### 📤 出力と公開
-- **[複数フォーマット対応](output-formats.md)** - Web, PDF, EPUB出力
-- **[GitHub Pages デプロイ](deployment.md)** - 自動公開の設定
-- **[CI/CD設定](ci-cd.md)** - 継続的な統合とデプロイ
+### 第I部：ネットワークアーキテクチャと実装
 
-### 🛠️ 開発とメンテナンス
-- **[ベストプラクティス](best-practices.md)** - 効率的な開発手法
-- **[トラブルシューティング](../TROUBLESHOOTING.md)** - 問題解決ガイド
-- **[FAQ](faq.md)** - よくある質問と回答
+- [第1章：プロトコルスタックの設計思想](chapters/chapter01/)
+- [第2章：L2ネットワークの設計と実装](chapters/chapter02/)
+- [第3章：L3ネットワークの設計原理](chapters/chapter03/)
+- [第4章：名前解決とサービス発見](chapters/chapter04/)
+- [第5章：トランスポート層以上の実装技術](chapters/chapter05/)
 
-### 🎯 高度な活用
-- **[自動化](automation.md)** - ワークフローの自動化
-- **[チーム開発](collaboration.md)** - 複数人での執筆管理
-- **[パフォーマンス最適化](performance.md)** - ビルド時間とファイルサイズの最適化
+### 第II部：サーバーシステムの設計と実装
 
-## 📋 チュートリアル
+- [第6章：オペレーティングシステムの内部構造](chapters/chapter06/)
+- [第7章：ストレージアーキテクチャ](chapters/chapter07/)
+- [第8章：仮想化技術の実装原理](chapters/chapter08/)
+- [第9章：システム運用の自動化](chapters/chapter09/)
 
-### 初心者向け
-1. **[はじめての書籍作成](tutorials/first-book.md)**
-2. **[GitHub Pagesでの公開](tutorials/github-pages.md)**
-3. **[基本的なカスタマイズ](tutorials/basic-customization.md)**
+### 第III部：信頼性とセキュリティの実装
 
-### 中級者向け
-1. **[複数フォーマット出力](tutorials/multi-format.md)**
-2. **[自動化ワークフロー](tutorials/automation.md)**
-3. **[SEO最適化](tutorials/seo-optimization.md)**
+- [第10章：セキュリティアーキテクチャ](chapters/chapter10/)
+- [第11章：高可用性システムの設計](chapters/chapter11/)
 
-### 上級者向け
-1. **[カスタムテーマ開発](tutorials/custom-theme.md)**
-2. **[プラグイン作成](tutorials/plugin-development.md)**
-3. **[大規模プロジェクト管理](tutorials/large-projects.md)**
+### 第IV部：統合アーキテクチャ
 
-## 🔗 外部リソース
+- [第12章：エンドツーエンドシステム設計](chapters/chapter12/)
+- [第13章：技術選択のフレームワーク](chapters/chapter13/)
 
-### 公式リンク
-- **[GitHub Repository](https://github.com/itdojp/book-publishing-template)**
-- **[Issues & Bug Reports](https://github.com/itdojp/book-publishing-template/issues)**
-- **[Discussions](https://github.com/itdojp/book-publishing-template/discussions)**
+### 付録
 
-### 関連技術
-- **[Markdown記法](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)**
-- **[GitHub Pages Documentation](https://docs.github.com/pages)**
-- **[Pandoc User's Guide](https://pandoc.org/MANUAL.html)**
-- **[Jekyll Documentation](https://jekyllrb.com/docs/)**
+- [付録A: 補足資料](appendices/appendix01/)
+- [付録B: プログラミング言語比較](appendices/appendix02/)
 
-### コミュニティ
-- **[ユーザーコミュニティ](#)** - 情報交換と質問
-- **[事例集](#)** - 実際の使用例
-- **[貢献ガイド](../CONTRIBUTING.md)** - プロジェクトへの貢献方法
+- [あとがき](afterword/)
 
-## 📊 ステータス
+## 著者について
 
-| 機能 | 状態 | ドキュメント |
-|------|------|-------------|
-| 基本ビルド | ✅ 完成 | [セットアップガイド](../setup-guide.md) |
-| Web出力 | ✅ 完成 | [出力フォーマット](output-formats.md) |
-| PDF出力 | ✅ 完成 | [出力フォーマット](output-formats.md) |
-| EPUB出力 | ✅ 完成 | [出力フォーマット](output-formats.md) |
-| 自動デプロイ | ✅ 完成 | [デプロイ](deployment.md) |
-| 国際化 | 🚧 開発中 | [多言語対応](i18n.md) |
+**太田和彦（株式会社アイティードゥ）**
 
-## 💡 使い方のヒント
+- Email: [knowledge@itdo.jp](mailto:knowledge@itdo.jp)
+- GitHub: [@itdojp](https://github.com/itdojp)
+- Website: [https://www.itdo.jp](https://www.itdo.jp)
 
-### 効率的な学習順序
-1. **[セットアップガイド](../setup-guide.md)** で環境を構築
-2. **[クイックスタート](quick-start.md)** でサンプル書籍を作成
-3. **[コンテンツ作成](writing-guide.md)** で執筆方法を学習
-4. **[設定リファレンス](configuration.md)** でカスタマイズ
-5. **[出力フォーマット](output-formats.md)** で公開形式を選択
+## ライセンス
 
-### よく使うコマンド
-```bash
-# 開発サーバー起動
-npm run preview
+MIT License
 
-# 全フォーマットビルド
-npm run build:all
-
-# デプロイ
-npm run deploy
-
-# クリーンビルド
-npm run clean && npm run build
-```
-
-### トラブル時の対処
-1. **[トラブルシューティング](../TROUBLESHOOTING.md)** で一般的な問題を確認
-2. **[FAQ](faq.md)** でよくある質問をチェック
-3. **[Issues](https://github.com/itdojp/book-publishing-template/issues)** で既知の問題を検索
-4. 解決しない場合は新しいIssueを作成
-
-## 🤝 サポート
-
-### 質問・相談
-- **GitHub Discussions**: 一般的な質問や使用法の相談
-- **GitHub Issues**: バグ報告や機能要望
-- **Email**: knowledge@itdo.jp（緊急時のみ）
-
-### コントリビューション
-このプロジェクトはオープンソースです。改善提案やバグ修正など、あらゆる貢献を歓迎します。
-
-- **[貢献ガイド](../CONTRIBUTING.md)** - 貢献方法の詳細
-- **[開発環境構築](development.md)** - 開発者向けセットアップ
-- **[コーディング規約](coding-standards.md)** - コード品質の基準
+© 2025 ITDO Inc. All rights reserved.
 
 ---
 
-**📅 最終更新:** 2024年6月16日  
-**📧 メンテナー:** ITDO Inc. <knowledge@itdo.jp>  
-**📄 ライセンス:** MIT License
+Built with [Book Publishing Template v3.0](https://github.com/itdojp/book-publishing-template2)

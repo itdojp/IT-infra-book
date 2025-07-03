@@ -1,527 +1,460 @@
 ---
-title: "付録B: プログラミング言語比較"
+title: "付録B: トラブルシューティングガイド"
 ---
 
-# 付録B: プログラミング言語比較
+# 付録B: トラブルシューティングガイド
 
-この付録では、主要なプログラミング言語の特徴、用途、パフォーマンスを比較します。
+## B.1 ネットワーク関連のトラブルシューティング
 
-## B.1 言語分類と特徴
+### B.1.1 接続性の問題
 
-### B.1.1 コンパイル型 vs インタープリター型
+**症状**: サーバーにアクセスできない
 
-| 言語 | 種類 | 実行速度 | 開発速度 | 主な用途 |
-|------|------|----------|----------|----------|
-| C/C++ | コンパイル型 | ⭐⭐⭐⭐⭐ | ⭐⭐ | システム開発、ゲーム |
-| Rust | コンパイル型 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | システム開発、Web |
-| Go | コンパイル型 | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | サーバーサイド、CLI |
-| Python | インタープリター | ⭐⭐ | ⭐⭐⭐⭐⭐ | データ分析、AI/ML |
-| JavaScript | インタープリター | ⭐⭐⭐ | ⭐⭐⭐⭐ | Web開発、フロントエンド |
-| Java | 中間コード | ⭐⭐⭐⭐ | ⭐⭐⭐ | エンタープライズ |
-
-### B.1.2 パラダイム別分類
-
-```mermaid
-graph TD
-    A[プログラミングパラダイム] --> B[手続き型]
-    A --> C[オブジェクト指向]
-    A --> D[関数型]
-    A --> E[論理型]
-    
-    B --> B1[C]
-    B --> B2[Pascal]
-    B --> B3[COBOL]
-    
-    C --> C1[Java]
-    C --> C2[C++]
-    C --> C3[Python]
-    C --> C4[C#]
-    
-    D --> D1[Haskell]
-    D --> D2[Lisp]
-    D --> D3[F#]
-    D --> D4[Clojure]
-    
-    E --> E1[Prolog]
-    E --> E2[Mercury]
-```
-
-## B.2 詳細比較
-
-### B.2.1 Python
-
-**特徴:**
-- 読みやすい構文
-- 豊富なライブラリエコシステム
-- 動的型付け
-- インタープリター言語
-
-**使用例:**
-
-```python
-# データ分析の例
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# CSVファイルの読み込み
-data = pd.read_csv('sales_data.csv')
-
-# 基本統計
-print(data.describe())
-
-# 可視化
-plt.figure(figsize=(10, 6))
-plt.plot(data['date'], data['sales'])
-plt.title('Sales Trend')
-plt.xlabel('Date')
-plt.ylabel('Sales')
-plt.show()
-
-# 機械学習の例
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-
-X = data[['advertising', 'price']]
-y = data['sales']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-model = LinearRegression()
-model.fit(X_train, y_train)
-
-print(f"R² Score: {model.score(X_test, y_test):.3f}")
-```
-
-**パフォーマンス:** ⭐⭐  
-**学習コスト:** ⭐⭐⭐⭐⭐  
-**ライブラリ:** ⭐⭐⭐⭐⭐  
-
-### B.2.2 JavaScript
-
-**特徴:**
-- ブラウザ標準言語
-- 非同期プログラミング
-- プロトタイプベースOOP
-- 動的型付け
-
-**使用例:**
-
-```javascript
-// フロントエンド（React）
-import React, { useState, useEffect } from 'react';
-
-const UserDashboard = () => {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
-    const fetchUsers = async () => {
-        try {
-            const response = await fetch('/api/users');
-            const userData = await response.json();
-            setUsers(userData);
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div>
-            <h1>User Dashboard</h1>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <ul>
-                    {users.map(user => (
-                        <li key={user.id}>{user.name}</li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
-};
-
-// バックエンド（Node.js）
-const express = require('express');
-const app = express();
-
-app.get('/api/users', async (req, res) => {
-    try {
-        const users = await User.findAll();
-        res.json(users);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
-});
-```
-
-**パフォーマンス:** ⭐⭐⭐  
-**学習コスト:** ⭐⭐⭐⭐  
-**エコシステム:** ⭐⭐⭐⭐⭐  
-
-### B.2.3 Java
-
-**特徴:**
-- "Write Once, Run Anywhere"
-- 強い型システム
-- 自動メモリ管理
-- オブジェクト指向
-
-**使用例:**
-
-```java
-// Spring Bootでのウェブアプリケーション
-@SpringBootApplication
-public class UserApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
-    }
-}
-
-@RestController
-@RequestMapping("/api/users")
-public class UserController {
-    
-    @Autowired
-    private UserService userService;
-    
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.findAll();
-        return ResponseEntity.ok(users);
-    }
-    
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody @Valid User user) {
-        User savedUser = userService.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
-    }
-}
-
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(nullable = false)
-    private String name;
-    
-    @Column(unique = true)
-    private String email;
-    
-    // コンストラクタ、ゲッター、セッター
-    public User() {}
-    
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-    
-    // ゲッター・セッター省略
-}
-```
-
-**パフォーマンス:** ⭐⭐⭐⭐  
-**学習コスト:** ⭐⭐⭐  
-**エンタープライズ適用:** ⭐⭐⭐⭐⭐  
-
-### B.2.4 Rust
-
-**特徴:**
-- メモリ安全性
-- ゼロコスト抽象化
-- 所有権システム
-- 高パフォーマンス
-
-**使用例:**
-
-```rust
-// ウェブサーバー（Actix-web）
-use actix_web::{web, App, HttpResponse, HttpServer, Result};
-use serde::{Deserialize, Serialize};
-
-#[derive(Serialize, Deserialize)]
-struct User {
-    id: u32,
-    name: String,
-    email: String,
-}
-
-async fn get_users() -> Result<HttpResponse> {
-    let users = vec![
-        User {
-            id: 1,
-            name: "Alice".to_string(),
-            email: "alice@example.com".to_string(),
-        },
-        User {
-            id: 2,
-            name: "Bob".to_string(),
-            email: "bob@example.com".to_string(),
-        },
-    ];
-    
-    Ok(HttpResponse::Ok().json(users))
-}
-
-async fn create_user(user: web::Json<User>) -> Result<HttpResponse> {
-    println!("Creating user: {:?}", user);
-    Ok(HttpResponse::Created().json(&*user))
-}
-
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| {
-        App::new()
-            .route("/api/users", web::get().to(get_users))
-            .route("/api/users", web::post().to(create_user))
-    })
-    .bind("127.0.0.1:8080")?
-    .run()
-    .await
-}
-
-// システムプログラミング例
-use std::fs::File;
-use std::io::{BufRead, BufReader, Result};
-
-fn count_lines(filename: &str) -> Result<usize> {
-    let file = File::open(filename)?;
-    let reader = BufReader::new(file);
-    Ok(reader.lines().count())
-}
-
-fn main() -> Result<()> {
-    match count_lines("example.txt") {
-        Ok(lines) => println!("ファイルの行数: {}", lines),
-        Err(e) => eprintln!("エラー: {}", e),
-    }
-    Ok(())
-}
-```
-
-**パフォーマンス:** ⭐⭐⭐⭐⭐  
-**学習コスト:** ⭐⭐  
-**メモリ安全性:** ⭐⭐⭐⭐⭐  
-
-## B.3 パフォーマンス比較
-
-### B.3.1 ベンチマーク結果
-
-```python
-# ベンチマーク: フィボナッチ数列（n=40）
-# 実行時間の比較
-
-languages = ['C', 'Rust', 'Go', 'Java', 'JavaScript', 'Python']
-execution_times = [0.5, 0.6, 1.2, 2.1, 3.8, 45.2]  # 秒
-
-import matplotlib.pyplot as plt
-
-plt.figure(figsize=(12, 6))
-bars = plt.bar(languages, execution_times, color=['#ff6b6b', '#4ecdc4', '#45b7d1', '#f39c12', '#f1c40f', '#9b59b6'])
-plt.ylabel('実行時間（秒）')
-plt.title('フィボナッチ数列（n=40）の実行時間比較')
-plt.yscale('log')  # 対数スケール
-
-# 各バーに値を表示
-for bar, time in zip(bars, execution_times):
-    plt.text(bar.get_x() + bar.get_width()/2, bar.get_height(),
-             f'{time}s', ha='center', va='bottom')
-
-plt.show()
-```
-
-### B.3.2 メモリ使用量
-
-| 言語 | 基本使用量 | 大規模アプリ | 特徴 |
-|------|-----------|-------------|------|
-| C | 最小限 | 完全制御 | 手動管理 |
-| Rust | 低い | 予測可能 | 所有権システム |
-| Go | 低い | 効率的GC | ガベージコレクション |
-| Java | 中程度 | JVMヒープ | 自動メモリ管理 |
-| JavaScript | 中程度 | V8最適化 | 動的最適化 |
-| Python | 高い | オブジェクト豊富 | 参照カウント+GC |
-
-## B.4 エコシステムと学習リソース
-
-### B.4.1 パッケージ管理
-
+**診断手順**:
 ```bash
-# Python - pip
-pip install requests numpy pandas
-pip freeze > requirements.txt
-pip install -r requirements.txt
+# 1. ローカルネットワーク設定確認
+ip addr show
+ip route show
 
-# JavaScript - npm
-npm install express react axios
-npm init
-npm install --save-dev jest
+# 2. DNS解決確認
+nslookup example.com
+dig example.com
 
-# Java - Maven
-# pom.xml
-<dependencies>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <version>2.7.0</version>
-    </dependency>
-</dependencies>
+# 3. 接続性確認
+ping -c 4 example.com
+traceroute example.com
 
-# Rust - Cargo
-cargo new my_project
-cargo add serde tokio
-cargo build
-cargo run
-
-# Go - go mod
-go mod init myproject
-go get github.com/gorilla/mux
-go run main.go
+# 4. ポート確認
+telnet example.com 80
+nmap -p 22,80,443 example.com
 ```
 
-### B.4.2 開発環境
+**対処法**:
+- IPアドレス、サブネットマスク、ゲートウェイの確認
+- DNSサーバー設定の確認
+- ファイアウォール設定の確認
+- ネットワーク機器の状態確認
 
-| 言語 | 推奨IDE/エディタ | デバッガー | テストフレームワーク |
-|------|-----------------|-----------|---------------------|
-| Python | PyCharm, VSCode | pdb, debugpy | pytest, unittest |
-| JavaScript | VSCode, WebStorm | Chrome DevTools | Jest, Mocha |
-| Java | IntelliJ IDEA, Eclipse | jdb, IDE統合 | JUnit, TestNG |
-| Rust | VSCode, RustRover | rust-gdb | 組み込み、cargo test |
-| Go | VSCode, GoLand | dlv | 組み込み、go test |
+### B.1.2 パフォーマンスの問題
 
-## B.5 言語選択の指針
+**症状**: ネットワークが遅い
 
-### B.5.1 用途別推奨言語
+**診断手順**:
+```bash
+# 帯域幅測定
+iperf3 -c server_ip
 
-```mermaid
-graph TD
-    A[プロジェクトの種類] --> B[Web開発]
-    A --> C[データサイエンス]
-    A --> D[システム開発]
-    A --> E[モバイル開発]
-    A --> F[ゲーム開発]
-    
-    B --> B1[JavaScript/TypeScript]
-    B --> B2[Python Django/Flask]
-    B --> B3[Java Spring]
-    B --> B4[Go]
-    
-    C --> C1[Python]
-    C --> C2[R]
-    C --> C3[Julia]
-    
-    D --> D1[C/C++]
-    D --> D2[Rust]
-    D --> D3[Go]
-    
-    E --> E1[Swift iOS]
-    E --> E2[Kotlin Android]
-    E --> E3[React Native]
-    E --> E4[Flutter Dart]
-    
-    F --> F1[C++]
-    F --> F2[C#]
-    F --> F3[Rust]
+# パケット損失確認
+ping -c 100 gateway_ip | grep loss
+
+# ネットワーク利用状況確認
+netstat -i
+ss -tuln
+
+# トラフィック監視
+tcpdump -i eth0 -n
 ```
 
-### B.5.2 決定要因
+## B.2 サーバー関連のトラブルシューティング
 
-**パフォーマンス重視:**
-1. C/C++
-2. Rust
-3. Go
-4. Java
+### B.2.1 CPU使用率の問題
 
-**開発速度重視:**
-1. Python
-2. JavaScript
-3. Go
-4. Ruby
+**症状**: CPUが100%になる
 
-**学習コスト低:**
-1. Python
-2. JavaScript
-3. Go
-4. Java
+**診断手順**:
+```bash
+# CPU使用状況確認
+top
+htop
+vmstat 1
 
-**コミュニティサイズ:**
-1. JavaScript
-2. Python
-3. Java
-4. C++
+# プロセス詳細確認
+ps aux --sort=-%cpu | head -10
 
-## B.6 将来性と動向
+# CPU使用履歴確認
+sar -u 1 10
+```
 
-### B.6.1 技術トレンド
+**対処法**:
+- 高CPU使用プロセスの特定と最適化
+- プロセス数の制限
+- スケーリング（スケールアップ/アウト）の検討
 
-**上昇中:**
-- **Rust**: システムプログラミング、WebAssembly
-- **Go**: クラウドネイティブ、マイクロサービス
-- **TypeScript**: 大規模JavaScript開発
-- **Swift**: iOS開発の主流
-- **Kotlin**: Android開発、マルチプラットフォーム
+### B.2.2 メモリ不足の問題
 
-**安定期:**
-- **Python**: AI/ML分野で不動の地位
-- **JavaScript**: Web開発の中心
-- **Java**: エンタープライズ分野で安定
+**症状**: Out of Memory (OOM) エラー
 
-**Legacy化:**
-- **Perl**: 新規プロジェクトでは稀
-- **PHP**: 既存システムの保守が中心
-- **Visual Basic**: Microsoft内でも推奨されない
+**診断手順**:
+```bash
+# メモリ使用状況確認
+free -h
+cat /proc/meminfo
 
-### B.6.2 学習推奨順序
+# プロセス別メモリ使用量
+ps aux --sort=-%mem | head -10
 
-**初心者向け:**
-1. **Python** - プログラミング基礎習得
-2. **JavaScript** - Web開発入門
-3. **Java/Go** - 型システム理解
+# スワップ使用状況
+swapon -s
 
-**経験者向け:**
-1. **Rust** - システムプログラミング、パフォーマンス
-2. **TypeScript** - 大規模フロントエンド開発
-3. **関数型言語** (Haskell, F#) - パラダイム拡張
+# OOMキラーのログ確認
+dmesg | grep -i "killed process"
+journalctl -u kernel | grep -i oom
+```
 
-## まとめ
+## B.3 ストレージ関連のトラブルシューティング
 
-プログラミング言語の選択は、プロジェクトの要件、チームのスキル、将来性を総合的に判断して決定する必要があります。
+### B.3.1 ディスク容量不足
 
-**重要な考慮点:**
-- プロジェクトの性質と要件
-- チームの経験とスキル
-- パフォーマンス要件
-- 開発・保守コスト
-- エコシステムの豊富さ
-- 将来性と発展性
+**症状**: No space left on device
 
-最適な言語は状況によって異なりますが、複数の言語を習得することで、それぞれの特徴を活かした開発が可能になります。
+**診断手順**:
+```bash
+# ディスク使用量確認
+df -h
+
+# ディレクトリ別使用量
+du -sh /* | sort -hr
+
+# inode使用状況確認
+df -i
+
+# 大きなファイルの検索
+find /var -type f -size +100M -exec ls -lh {} \;
+```
+
+**対処法**:
+- 不要ファイルの削除
+- ログローテーションの設定
+- ディスク容量の拡張
+- ファイルシステムの最適化
+
+### B.3.2 ディスクI/O性能問題
+
+**症状**: ディスクアクセスが遅い
+
+**診断手順**:
+```bash
+# I/O統計確認
+iostat -x 1
+
+# ディスク使用率確認
+iotop
+
+# ファイルシステム確認
+lsblk
+mount | grep ^/dev
+
+# SMART情報確認
+smartctl -a /dev/sda
+```
+
+## B.4 セキュリティ関連のトラブルシューティング
+
+### B.4.1 不正アクセスの検出
+
+**症状**: 異常なログイン試行
+
+**診断手順**:
+```bash
+# 認証ログ確認
+tail -f /var/log/auth.log
+journalctl -u ssh -f
+
+# 失敗したログイン試行確認
+grep "Failed password" /var/log/auth.log | tail -20
+
+# 接続中のセッション確認
+who
+w
+ss -tuln | grep :22
+```
+
+**対処法**:
+- 強力なパスワードポリシーの実装
+- SSH鍵認証の設定
+- fail2banの設定
+- ファイアウォールルールの強化
+
+### B.4.2 証明書の問題
+
+**症状**: SSL/TLS証明書エラー
+
+**診断手順**:
+```bash
+# 証明書確認
+openssl x509 -in certificate.crt -text -noout
+
+# 証明書の有効期限確認
+openssl x509 -enddate -noout -in certificate.crt
+
+# 証明書チェーンの確認
+openssl s_client -connect example.com:443 -showcerts
+
+# 証明書の検証
+openssl verify -CAfile ca-bundle.crt certificate.crt
+```
+
+## B.5 サービス関連のトラブルシューティング
+
+### B.5.1 サービス起動失敗
+
+**症状**: systemdサービスが起動しない
+
+**診断手順**:
+```bash
+# サービス状態確認
+systemctl status service-name
+
+# サービスログ確認
+journalctl -u service-name -f
+
+# 設定ファイル確認
+systemctl show service-name
+systemctl cat service-name
+
+# 依存関係確認
+systemctl list-dependencies service-name
+```
+
+### B.5.2 Webサーバーの問題
+
+**症状**: Webサイトにアクセスできない
+
+**診断手順**:
+```bash
+# Webサーバー状態確認
+systemctl status nginx
+systemctl status apache2
+
+# ポート確認
+ss -tuln | grep :80
+ss -tuln | grep :443
+
+# エラーログ確認
+tail -f /var/log/nginx/error.log
+tail -f /var/log/apache2/error.log
+
+# 設定ファイル構文確認
+nginx -t
+apache2ctl configtest
+```
+
+## B.6 データベース関連のトラブルシューティング
+
+### B.6.1 MySQL/MariaDBの問題
+
+**症状**: データベース接続エラー
+
+**診断手順**:
+```bash
+# データベース状態確認
+systemctl status mysql
+systemctl status mariadb
+
+# プロセス確認
+ps aux | grep mysql
+
+# 接続テスト
+mysql -u root -p -e "SHOW DATABASES;"
+
+# エラーログ確認
+tail -f /var/log/mysql/error.log
+
+# 設定確認
+mysql -u root -p -e "SHOW VARIABLES LIKE 'max_connections';"
+```
+
+### B.6.2 PostgreSQLの問題
+
+**症状**: PostgreSQL接続エラー
+
+**診断手順**:
+```bash
+# サービス状態確認
+systemctl status postgresql
+
+# ログ確認
+tail -f /var/log/postgresql/postgresql-*.log
+
+# 接続設定確認
+cat /etc/postgresql/*/main/pg_hba.conf
+cat /etc/postgresql/*/main/postgresql.conf
+
+# 接続テスト
+sudo -u postgres psql -c "\l"
+```
+
+## B.7 仮想化関連のトラブルシューティング
+
+### B.7.1 Dockerの問題
+
+**症状**: コンテナが起動しない
+
+**診断手順**:
+```bash
+# Docker状態確認
+systemctl status docker
+
+# コンテナ状態確認
+docker ps -a
+
+# ログ確認
+docker logs container-name
+
+# イメージ確認
+docker images
+
+# リソース使用状況確認
+docker stats
+```
+
+### B.7.2 仮想マシンの問題
+
+**症状**: VM起動失敗
+
+**診断手順**:
+```bash
+# KVM確認
+lsmod | grep kvm
+cat /proc/cpuinfo | grep vmx
+
+# libvirt状態確認
+systemctl status libvirtd
+
+# VM状態確認
+virsh list --all
+
+# VM設定確認
+virsh dumpxml vm-name
+
+# ログ確認
+journalctl -u libvirtd
+```
+
+## B.8 監視とパフォーマンス
+
+### B.8.1 システム全体の健康状態チェック
+
+**診断スクリプト例**:
+```bash
+#!/bin/bash
+# system_health_check.sh
+
+echo "=== システム健康状態チェック ==="
+echo "実行時刻: $(date)"
+echo
+
+echo "=== CPU使用率 ==="
+top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1
+
+echo "=== メモリ使用率 ==="
+free | grep Mem | awk '{printf "%.1f%%\n", $3/$2 * 100.0}'
+
+echo "=== ディスク使用率 ==="
+df -h | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{print $5 " " $1}' | while read output;
+do
+  usage=$(echo $output | awk '{print $1}' | cut -d'%' -f1)
+  partition=$(echo $output | awk '{print $2}')
+  if [ $usage -ge 90 ]; then
+    echo "警告: パーティション \"$partition\" の使用率が $usage% です"
+  fi
+done
+
+echo "=== ネットワーク接続 ==="
+ping -c 1 8.8.8.8 >/dev/null 2>&1 && echo "インターネット接続: OK" || echo "インターネット接続: NG"
+
+echo "=== 重要サービス状態 ==="
+for service in sshd nginx mysql; do
+    if systemctl is-active --quiet $service; then
+        echo "$service: 稼働中"
+    else
+        echo "$service: 停止中"
+    fi
+done
+```
+
+### B.8.2 ログ監視の自動化
+
+**logwatchスクリプト例**:
+```bash
+#!/bin/bash
+# log_monitor.sh
+
+# エラーキーワード
+ERROR_KEYWORDS="error|fail|exception|critical|alert"
+
+# 監視対象ログファイル
+LOG_FILES="/var/log/syslog /var/log/auth.log /var/log/nginx/error.log"
+
+for log_file in $LOG_FILES; do
+    if [ -f "$log_file" ]; then
+        echo "=== $log_file の監視 ==="
+        tail -n 100 "$log_file" | grep -iE "$ERROR_KEYWORDS" | tail -10
+        echo
+    fi
+done
+```
+
+## B.9 予防保守
+
+### B.9.1 定期的なヘルスチェック
+
+**月次チェックリスト**:
+- [ ] システムアップデート確認
+- [ ] ディスク容量確認
+- [ ] ログローテーション確認
+- [ ] バックアップ動作確認
+- [ ] セキュリティパッチ適用
+- [ ] パフォーマンス監視データ確認
+
+### B.9.2 自動化スクリプト
+
+**自動メンテナンススクリプト**:
+```bash
+#!/bin/bash
+# auto_maintenance.sh
+
+# ログクリーンアップ
+find /var/log -name "*.log.*" -mtime +30 -delete
+
+# 一時ファイルクリーンアップ
+find /tmp -type f -mtime +7 -delete
+
+# パッケージキャッシュクリーンアップ
+apt clean
+
+# システム再起動が必要かチェック
+if [ -f /var/run/reboot-required ]; then
+    echo "システム再起動が必要です"
+fi
+```
+
+## B.10 緊急時対応
+
+### B.10.1 サーバーダウン時の対応手順
+
+1. **初期確認**
+   - サービス状態確認
+   - リソース使用状況確認
+   - ログ確認
+
+2. **応急処置**
+   - サービス再起動
+   - リソース不足の解消
+   - 一時的な回避策
+
+3. **根本対策**
+   - 原因調査
+   - 設定変更
+   - インフラ改善
+
+### B.10.2 データ損失時の対応
+
+1. **被害状況確認**
+2. **バックアップからの復旧**
+3. **整合性チェック**
+4. **再発防止策の実装**
 
 ---
 
-**📚 参考リンク**
-
-- [Stack Overflow Developer Survey](https://survey.stackoverflow.co/)
-- [GitHub Language Statistics](https://github.com/search)
-- [TIOBE Programming Community Index](https://www.tiobe.com/tiobe-index/)
-- [RedMonk Programming Language Rankings](https://redmonk.com/sogrady/category/programming-languages/)
-
-**🎯 選択フローチャート**
-
-言語選択で迷った場合は、以下の質問に答えて最適な言語を見つけてください。
-
-1. **何を作りたいか** (Web、アプリ、システム、分析)
-2. **パフォーマンスはどの程度重要か**
-3. **開発期間はどの程度か**
-4. **チームのスキルレベルはどの程度か**
-5. **将来の拡張性は必要か**
+このトラブルシューティングガイドは、ITインフラの運用で遭遇する一般的な問題と解決方法をまとめたものです。定期的に更新し、組織固有の問題や解決方法を追加することをお勧めします。

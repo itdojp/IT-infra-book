@@ -38,7 +38,7 @@
 ### 付録
 
 - [付録A: 補足資料](appendices/appendix01/)
-- [付録B: プログラミング言語比較](appendices/appendix02/)
+- [付録B: トラブルシューティングガイド](appendices/appendix02/)
 
 - [あとがき](afterword/)
 

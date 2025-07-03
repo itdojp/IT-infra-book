@@ -1,21 +1,34 @@
-title: "Book Publishing Template v3.0 Preview"
-description: "モダンデザインシステムのプレビュー"
-baseurl: "/book-publishing-template2"
+title: "ITインフラストラクチャ技術ガイド"
+description: "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書"
+author: "太田和彦（株式会社アイティードゥ）"
+baseurl: "/IT-infra-book"
 url: "https://itdojp.github.io"
 
-# GitHub Pages設定
-theme: minima
-plugins:
-  - jekyll-feed
-
-# Markdown設定
+# v3.0 Design System Configuration
 markdown: kramdown
 highlighter: rouge
 
-# 除外ファイル
+# Use custom book layout as default
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "book"
+
+# plugins:
+#   - jekyll-feed
+
+# Repository information for edit links
+repository:
+  github: "itdojp/IT-infra-book"
+
 exclude:
   - node_modules/
   - scripts/
   - templates/
   - src/
-  - "*.json"
+  - package*.json
+  - README.md
+  - "*.tmp"
+  - Gemfile*

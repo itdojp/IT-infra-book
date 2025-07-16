@@ -165,6 +165,32 @@ SYSCALL_DEFINE3(write, unsigned int, fd, const char __user *, buf, size_t, count
    io_uring_submit(&ring);  // 複数操作をまとめて投入
    ```
 
+### セキュアブートとカーネル完全性の検証
+
+現代のシステムでは、起動時からカーネルの完全性を保証することが重要である。
+
+```bash
+# Secure Bootの設定確認
+mokutil --sb-state
+
+# カーネルモジュールの署名確認
+modinfo -F signer <module_name>
+
+# IMA（Integrity Measurement Architecture）ポリシーの設定
+cat > /etc/ima/ima-policy << EOF
+# 実行ファイルの測定
+measure func=BPRM_CHECK
+measure func=FILE_MMAP mask=MAY_EXEC
+
+# モジュールの測定
+measure func=MODULE_CHECK
+
+# ファイルの検証
+appraise func=BPRM_CHECK appraise_type=imasig
+appraise func=MODULE_CHECK appraise_type=imasig
+EOF
+```
+
 ## 6.2 プロセススケジューリングの実装
 
 ### CFSの設計思想と限界

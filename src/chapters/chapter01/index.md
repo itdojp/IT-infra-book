@@ -8,6 +8,7 @@
 - プロトコル設計における階層化の必然性を説明できる
 - 各層間の相互作用とそのオーバーヘッドを評価できる
 - パフォーマンス要件に応じた最適化手法を選択できる
+- 各層におけるセキュリティ脅威と対策を理解できる
 
 ## 1.1 階層化アーキテクチャの必然性
 
@@ -279,6 +280,80 @@ graph LR
 - ファイアウォール：複数層にまたがるルール適用
 - QoS：アプリケーション認識型の帯域制御
 
+### 各層のセキュリティ考慮事項
+
+プロトコルスタックの各層には固有のセキュリティ脅威が存在し、層ごとに適切な対策が必要である。
+
+**物理層のセキュリティ**
+```
+脅威：
+- 盗聴（光ファイバータッピング）
+- 電磁波漏洩
+- ケーブルの物理的切断
+
+対策：
+- 暗号化された光伝送
+- シールドケーブルの使用
+- 物理的アクセス制御
+```
+
+**データリンク層のセキュリティ**
+```
+脅威：
+- MACアドレススプーフィング
+- ARPスプーフィング
+- VLANホッピング
+
+対策：
+# ポートセキュリティの設定例
+interface GigabitEthernet0/1
+  switchport port-security
+  switchport port-security maximum 2
+  switchport port-security mac-address sticky
+  switchport port-security violation restrict
+
+# Dynamic ARP Inspectionの有効化
+ip arp inspection vlan 100
+ip arp inspection validate src-mac dst-mac ip
+```
+
+**ネットワーク層のセキュリティ**
+```
+脅威：
+- IPスプーフィング
+- ルーティング攻撃
+- フラグメンテーション攻撃
+
+対策：
+# uRPF（Unicast Reverse Path Forwarding）の設定
+interface GigabitEthernet0/1
+  ip verify unicast source reachable-via rx
+
+# IPSecによる暗号化
+crypto ipsec transform-set ESP-AES-SHA esp-aes 256 esp-sha-hmac
+crypto map IPSEC-MAP 10 ipsec-isakmp
+  set peer 192.168.1.1
+  set transform-set ESP-AES-SHA
+  match address VPN-TRAFFIC
+```
+
+**トランスポート層のセキュリティ**
+```
+脅威：
+- SYNフラッド攻撃
+- セッションハイジャック
+- ポートスキャン
+
+対策：
+# SYN Cookiesの有効化（Linux）
+echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+
+# TCP接続の制限
+iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 100 -j REJECT
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --set
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --update --seconds 60 --hitcount 10 -j DROP
+```
+
 **運用のための破れ**
 - ICMP：ネットワーク層からの診断情報
 - パスMTU探索：層をまたいだサイズ調整
@@ -398,6 +473,41 @@ bpftrace -e 'kprobe:ip_rcv { @start[tid] = nsecs; }
 
 # CPU使用率の詳細分析
 mpstat -P ALL 1
+```
+
+### セキュアなプロトコルスタック実装の原則
+
+**Defense in Depth（多層防御）**
+```
+各層での防御実装：
+1. 物理層：暗号化光伝送
+2. データリンク層：802.1X認証
+3. ネットワーク層：IPSec
+4. トランスポート層：TLS/SSL
+5. アプリケーション層：アプリケーション固有の認証・暗号化
+
+効果：
+- 単一層の突破があっても他層で防御
+- 攻撃の早期検出
+- 被害の最小化
+```
+
+**Zero Trust Architecture の実装**
+```
+原則：
+- すべての通信を検証
+- 最小権限の原則
+- 継続的な監視
+
+実装例：
+# マイクロセグメンテーション
+iptables -N MICROSEG_WEB
+iptables -N MICROSEG_APP
+iptables -N MICROSEG_DB
+
+# 各セグメント間の厳密な制御
+iptables -A MICROSEG_WEB -s 10.1.1.0/24 -d 10.1.2.0/24 -p tcp --dport 8080 -j ACCEPT
+iptables -A MICROSEG_WEB -j DROP
 ```
 
 ## まとめ

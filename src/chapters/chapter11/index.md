@@ -1128,7 +1128,7 @@ metadata:
 spec:
   containers:
   - name: etcd
-    image: k8s.gcr.io/etcd:3.5.3-0
+    image: registry.k8s.io/etcd:3.5.9
     command:
     - etcd
     - --name=etcd-0

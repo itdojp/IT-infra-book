@@ -349,9 +349,9 @@ crypto map IPSEC-MAP 10 ipsec-isakmp
 echo 1 > /proc/sys/net/ipv4/tcp_syncookies
 
 # TCP接続の制限
-iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 100 -j REJECT
-iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --set
-iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --update --seconds 60 --hitcount 10 -j DROP
+iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 100 -m comment --comment "接続数100を超える場合は拒否" -j REJECT
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --set -m comment --comment "新規接続を追跡"
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --update --seconds 60 --hitcount 10 -m comment --comment "60秒間に10回を超える接続試行をドロップ" -j DROP
 ```
 
 **運用のための破れ**

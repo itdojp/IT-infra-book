@@ -1465,7 +1465,18 @@ echo -e "\n=== ログ分析 ==="
     dmesg -T | grep -E 'error|fail|warn' | tail -50
     
     echo -e "\n## 認証ログ"
-    grep -E 'Failed|Invalid|error' /var/log/auth.log | tail -50
+    AUTH_LOG=""
+    for LOG_PATH in /var/log/auth.log /var/log/secure; do
+        if [ -f "$LOG_PATH" ]; then
+            AUTH_LOG="$LOG_PATH"
+            break
+        fi
+    done
+    if [ -n "$AUTH_LOG" ]; then
+        grep -E 'Failed|Invalid|error' "$AUTH_LOG" | tail -50
+    else
+        echo "認証ログファイルが見つかりませんでした。"
+    fi
 } > "${REPORT_DIR}/log_analysis.log"
 
 # 5. セキュリティチェック
@@ -1554,7 +1565,10 @@ check_disk_space() {
         
         # Dockerの不要なイメージとコンテナを削除
         if command -v docker &>/dev/null; then
-            docker system prune -af --volumes
+            # 未使用のコンテナ、ネットワーク、イメージを削除（ボリュームは除外）
+            docker system prune -af
+            # 未使用のボリュームは個別に確認（本番環境では慎重に）
+            docker volume prune -f
         fi
         
         # journalログのローテーション

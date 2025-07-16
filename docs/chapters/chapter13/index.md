@@ -874,7 +874,7 @@ variables:
   DOCKER_TLS_CERTDIR: "/certs"
 
 before_script:
-  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
 
 # ビルドステージ
 build:

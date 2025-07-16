@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a book project titled "ITインフラストラクチャ技術ガイド - ネットワークとサーバーシステムの設計と実装" (IT Infrastructure Technology Guide - Network and Server System Design and Implementation). It's a Japanese technical book about IT infrastructure, written in Markdown format using the Book Publishing Template v3.0.
+This is a book project titled "ITインフラストラクチャ技術ガイド - ネットワークとサーバーシステムの設計と実装" (IT Infrastructure Technology Guide - Network and Server System Design and Implementation). It's a Japanese technical book about IT infrastructure, written in Markdown format.
+
+## テンプレートシステム
+
+**重要**: このプロジェクトはbook-formatterを使用するように移行されました（2025-07-16）。book-publishing-template2は廃止されています。
 
 ## Repository Structure
 

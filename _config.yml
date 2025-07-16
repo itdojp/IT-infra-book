@@ -1,34 +1,36 @@
 title: "ITインフラストラクチャ技術ガイド"
 description: "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書"
 author: "太田和彦（株式会社アイティードゥ）"
-baseurl: "/IT-infra-book"
-url: "https://itdojp.github.io"
+version: "1.0.0"
+lang: "ja"
 
-# v3.0 Design System Configuration
+# Jekyll設定
 markdown: kramdown
 highlighter: rouge
+theme: minima
 
-# Use custom book layout as default
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "book"
+# プラグイン
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
-# plugins:
-#   - jekyll-feed
-
-# Repository information for edit links
-repository:
-  github: "itdojp/IT-infra-book"
-
+# 除外ファイル
 exclude:
   - node_modules/
+  - package.json
+  - package-lock.json
   - scripts/
-  - templates/
-  - src/
-  - package*.json
-  - README.md
-  - "*.tmp"
-  - Gemfile*
+  - tests/
+  - "*.md"
+  - "README.md"
+
+# 日本語対応
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  
+# GitHub Pages設定
+
+repository: "itdojp/IT-infra-book"
+

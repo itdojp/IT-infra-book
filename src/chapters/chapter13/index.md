@@ -848,7 +848,85 @@ class TechnicalDebtDashboard:
         return report
 ```
 
-## 13.4 新技術導入の判断プロセス
+## 13.4 CI/CDパイプラインの実装と運用
+
+### モダンなCI/CDパイプラインの設計
+
+継続的インテグレーション/継続的デリバリー（CI/CD）は、現代のソフトウェア開発における必須要素である。適切に設計されたパイプラインは、品質を維持しながら開発速度を向上させる。
+
+#### GitLab CI/CDの実装例
+
+```yaml
+# .gitlab-ci.yml
+stages:
+  - build
+  - test
+  - security
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+
+before_script:
+  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+
+# ビルドステージ
+build:
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  only:
+    - main
+    - develop
+    - /^release\/.*$/
+
+# テストステージ
+test:unit:
+  stage: test
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  script:
+    - npm install
+    - npm run test:unit
+  coverage: '/Coverage: \d+\.\d+%/'
+  artifacts:
+    reports:
+      junit: test-results/unit/*.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+
+# セキュリティスキャン
+security:sast:
+  stage: security
+  image: returntocorp/semgrep
+  script:
+    - semgrep --config=auto --json --output=sast-report.json
+  artifacts:
+    reports:
+      sast: sast-report.json
+
+# デプロイステージ
+deploy:production:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    - kubectl config use-context $KUBE_CONTEXT_PROD
+    - kubectl set image deployment/app app=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -n production
+    - kubectl rollout status deployment/app -n production
+  environment:
+    name: production
+    url: https://www.example.com
+  when: manual
+  only:
+    - main
+```
+
+## 13.5 新技術導入の判断プロセス
 
 ### パイロットプロジェクトの設計
 

@@ -1116,6 +1116,213 @@ web_server_recovery = [
 ]
 ```
 
+## 11.5 クラウドネイティブ環境での高可用性
+
+### Kubernetesにおける高可用性設計
+
+Kubernetesは、コンテナオーケストレーションプラットフォームとして、高可用性を実現するための多くの機能を提供している。
+
+#### コントロールプレーンの高可用性
+
+```yaml
+# etcdクラスタの構成（3ノード以上推奨）
+apiVersion: v1
+kind: Pod
+metadata:
+  name: etcd
+spec:
+  containers:
+  - name: etcd
+    image: k8s.gcr.io/etcd:3.5.3-0
+    command:
+    - etcd
+    - --name=etcd-0
+    - --initial-advertise-peer-urls=https://10.0.1.10:2380
+    - --listen-peer-urls=https://0.0.0.0:2380
+    - --advertise-client-urls=https://10.0.1.10:2379
+    - --listen-client-urls=https://0.0.0.0:2379
+    - --initial-cluster=etcd-0=https://10.0.1.10:2380,etcd-1=https://10.0.1.11:2380,etcd-2=https://10.0.1.12:2380
+    - --initial-cluster-state=new
+    - --cert-file=/etc/kubernetes/pki/etcd/server.crt
+    - --key-file=/etc/kubernetes/pki/etcd/server.key
+    - --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt
+    - --peer-key-file=/etc/kubernetes/pki/etcd/peer.key
+    - --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+    - --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+```
+
+#### Podの高可用性パターン
+
+**ReplicaSetによる冗長化**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      # Pod Anti-Affinityで異なるノードに配置
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - web-app
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - name: web
+        image: nginx:1.21
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+```
+
+**StatefulSetによるステートフルアプリケーションの高可用性**
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-cluster
+spec:
+  serviceName: postgres-service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13
+        env:
+        - name: POSTGRES_REPLICATION_MODE
+          value: master
+        - name: POSTGRES_REPLICATION_USER
+          value: replicator
+        - name: POSTGRES_REPLICATION_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: replication-password
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: fast-ssd
+      resources:
+        requests:
+          storage: 10Gi
+```
+
+### サービスメッシュによる高可用性
+
+Istioなどのサービスメッシュを使用することで、アプリケーションレベルでの高可用性を実現できる。
+
+```yaml
+# Circuit Breakerの設定
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: productpage
+spec:
+  host: productpage
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 100
+      http:
+        http1MaxPendingRequests: 50
+        http2MaxRequests: 100
+        maxRequestsPerConnection: 2
+    outlierDetection:
+      consecutive5xxErrors: 5
+      interval: 30s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 50
+      minHealthPercent: 30
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+    trafficPolicy:
+      connectionPool:
+        tcp:
+          maxConnections: 50
+```
+
+### GitOpsによる構成管理の高可用性
+
+インフラストラクチャの定義をGitで管理し、継続的にデプロイすることで、構成の一貫性と復旧可能性を確保する。
+
+```yaml
+# ArgoCD Application定義
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: production-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/company/infra-config
+    targetRevision: HEAD
+    path: environments/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+```
+
 ## まとめ
 
 高可用性システムの設計は、技術的な実装だけでなく、運用面での考慮も重要である。本章で解説した内容を総括すると：

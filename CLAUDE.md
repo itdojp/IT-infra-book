@@ -4,38 +4,54 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a book project titled "ITインフラストラクチャ技術ガイド - ネットワークとサーバーシステムの設計と実装" (IT Infrastructure Technology Guide - Network and Server System Design and Implementation). It's a Japanese technical book about IT infrastructure, written in Markdown format.
-
-## テンプレートシステム
-
-**重要**: このプロジェクトはbook-formatterを使用するように移行されました（2025-07-16）。book-publishing-template2は廃止されています。
+This is a Japanese-language technical book project about "ITインフラストラクチャ技術ガイド" (IT Infrastructure Technology Guide). The book covers network and server system design and implementation from a vendor-neutral perspective, systematizing essential design principles and implementation methods for infrastructure technologies.
 
 ## Repository Structure
 
+This project uses the **book-formatter** system (migrated from book-publishing-template2):
+
 ```
 IT-infra-book/
-├── src/
-│   ├── introduction/    # はじめに
-│   ├── chapters/        # 13章構成
-│   ├── appendices/      # 付録A, B
-│   └── afterword/       # あとがき
-├── docs/               # Generated output (GitHub Pages)
-├── book-config.json    # Book configuration
-├── index.md           # Book homepage
-└── CLAUDE.md          # This file
+├── docs/                    # Generated output (GitHub Pages)
+├── src/                     # Source content
+│   ├── introduction/        # Introduction section
+│   ├── chapters/           # 13 chapters (chapter01-13)
+│   ├── appendices/         # Appendices A & B
+│   └── afterword/          # Afterword
+├── book-config.json        # Book configuration (book-formatter format)
+├── package.json           # Project dependencies and scripts
+└── CLAUDE.md             # This file
 ```
 
-## Writing Guidelines
+## Book Framework Migration
 
-1. **Language**: All content is written in Japanese
-2. **Format**: Markdown (CommonMark + extensions)
-3. **Encoding**: UTF-8
-4. **Line endings**: LF (Unix format)
-5. **Indentation**: 2 spaces
+**IMPORTANT**: This book has been migrated from Book Publishing Template v2 to **book-formatter**.
 
-## Book Structure
+- ✅ **Current**: Uses book-formatter system
+- ❌ **Deprecated**: book-publishing-template2 (no longer supported)
 
-- **4 Parts, 13 Chapters** covering network and server infrastructure
+## Key Commands and Workflows
+
+### Development
+```bash
+npm start                    # Start Jekyll development server
+npm run build               # Build the book for production
+npm run preview             # Local preview of built book
+npm run deploy              # Deploy to GitHub Pages
+```
+
+### Content Management
+```bash
+npm run lint                # Check markdown formatting
+npm run check-links         # Validate internal links
+npm test                    # Run all tests (lint + links)
+npm run clean               # Clean build artifacts
+```
+
+## Content Guidelines
+
+### Book Structure
+- **4 Parts, 13 Chapters** covering IT infrastructure technology
 - **Part I**: Network Architecture and Implementation (Chapters 1-5)
 - **Part II**: Server System Design and Implementation (Chapters 6-9)
 - **Part III**: Reliability and Security Implementation (Chapters 10-11)
@@ -47,45 +63,57 @@ IT-infra-book/
 - **Cross-layer optimization** and system integration
 - **Open source** based implementations
 
-## Common Commands
-
-```bash
-# Install dependencies
-npm install
-
-# Build the book
-npm run build
-
-# Preview locally
-npm run preview
-
-# Clean build artifacts
-npm run clean
-```
-
-## Content Guidelines
-
-### Technical Accuracy
-- Verify all technical details against vendor-neutral principles
-- Ensure code examples are working and tested
-- Use industry-standard terminology
-
 ### Writing Style
-- Clear, concise technical Japanese
-- Use appropriate technical katakana terms
-- Follow Japanese punctuation rules (。、)
-- Maintain formal technical writing style (です・ます調)
+- **Target Audience**: Infrastructure engineers, SREs, DevOps engineers
+- **Language**: Japanese (formal technical writing style - です・ます調)
+- **Approach**: Practical implementation with theoretical foundation
+- **Level**: Intermediate to advanced
 
-### Code Examples
-- Use syntax highlighting with appropriate language tags
-- Keep examples concise and focused
-- Include comments in Japanese where helpful
-- Test all code examples for accuracy
+### Technical Requirements
+- **Format**: Markdown (CommonMark + extensions)
+- **Encoding**: UTF-8
+- **Line endings**: LF (Unix format)
+- **Framework**: book-formatter (Jekyll-based)
 
 ## Important Notes
 
-1. This book uses the simplified Book Publishing Template v3.0
-2. GitHub Pages deployment is from the /docs folder
-3. The author is 太田和彦（株式会社アイティードゥ）
-4. All content should maintain vendor neutrality
-5. Focus on fundamental principles that transcend specific products
+1. **Migration Status**: Successfully migrated from book-publishing-template2 to book-formatter
+2. **GitHub Pages**: Deploys from `/docs` folder using Jekyll
+3. **Author**: 太田和彦（株式会社アイティードゥ）
+4. **Technical Focus**: Vendor neutrality and fundamental principles
+5. **Target**: Infrastructure professionals and system architects
+
+## Content Focus Areas
+
+### Core Topics
+- Infrastructure design principles
+- Network implementation technologies
+- Security architecture design
+- Server system optimization
+- Storage architecture
+- Load balancing and scaling
+- System operation automation
+- High availability design
+- Performance management
+- Technology selection frameworks
+
+### Practical Applications
+- Real-world configuration examples
+- Best practices and checklists
+- Troubleshooting guides
+- Implementation methodologies
+- Design decision frameworks
+
+## Quality Standards
+
+- **Vendor Neutrality**: Focus on fundamental principles that transcend specific products
+- **Technical Accuracy**: Verify all technical details against industry standards
+- **Practical Value**: Every concept includes implementation guidance
+- **Systematic Approach**: Logical progression from theory to practice
+
+## Contact Information
+
+**Author**: 太田和彦（株式会社アイティードゥ）  
+**Email**: knowledge@itdo.jp  
+**GitHub**: [@itdojp](https://github.com/itdojp)  
+**Organization**: 株式会社アイティードゥ

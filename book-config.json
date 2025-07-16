@@ -1,136 +1,101 @@
 {
-  "book": {
-    "title": "ITインフラストラクチャ技術ガイド",
-    "subtitle": "ネットワークとサーバーシステムの設計と実装",
-    "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
-    "author": {
-      "name": "太田和彦（株式会社アイティードゥ）",
-      "email": "knowledge@itdo.jp",
-      "github": "itdojp",
-      "organization": "株式会社アイティードゥ",
-      "website": "https://www.itdo.jp"
-    },
-    "license": "MIT License",
-    "repository": {
-      "url": "https://github.com/itdojp/IT-infra-book"
-    },
-    "version": "1.0.0",
-    "language": "ja"
+  "title": "ITインフラストラクチャ技術ガイド",
+  "subtitle": "ネットワークとサーバーシステムの設計と実装",
+  "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
+  "author": "太田和彦（株式会社アイティードゥ）",
+  "version": "1.0.0",
+  "language": "ja",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/itdojp/IT-infra-book.git",
+    "branch": "main"
   },
-  "deployment": {
-    "sourceFolder": "docs",
-    "siteUrl": "https://itdojp.github.io/IT-infra-book/"
+  "structure": {
+    "chapters": [
+      {
+        "id": "chapter01",
+        "title": "第1章：インフラストラクチャ設計の基本原理",
+        "description": "システム設計の根本原理と思考法"
+      },
+      {
+        "id": "chapter02",
+        "title": "第2章：ネットワーク技術の実装原理",
+        "description": "TCP/IPから現代ネットワークまでの実装技術"
+      },
+      {
+        "id": "chapter03",
+        "title": "第3章：セキュリティアーキテクチャの設計",
+        "description": "多層防御とゼロトラスト設計"
+      },
+      {
+        "id": "chapter04",
+        "title": "第4章：プロトコル最適化と高可用性",
+        "description": "性能とレジリエンスの実装"
+      },
+      {
+        "id": "chapter05",
+        "title": "第5章：現代的ネットワーク管理手法",
+        "description": "SDNとネットワーク自動化"
+      },
+      {
+        "id": "chapter06",
+        "title": "第6章：サーバーシステム設計原理",
+        "description": "コンピューティングリソースの最適化"
+      },
+      {
+        "id": "chapter07",
+        "title": "第7章：ストレージアーキテクチャ",
+        "description": "データ永続化とストレージ戦略"
+      },
+      {
+        "id": "chapter08",
+        "title": "第8章：負荷分散とスケーリング",
+        "description": "システムの拡張性設計"
+      },
+      {
+        "id": "chapter09",
+        "title": "第9章：システム運用の自動化",
+        "description": "運用効率化とDevOps実践"
+      },
+      {
+        "id": "chapter10",
+        "title": "第10章：セキュリティ実装の実際",
+        "description": "実践的セキュリティ対策"
+      },
+      {
+        "id": "chapter11",
+        "title": "第11章：高可用性システム設計",
+        "description": "災害対策と事業継続"
+      },
+      {
+        "id": "chapter12",
+        "title": "第12章：性能管理と最適化",
+        "description": "システム性能の監視と改善"
+      },
+      {
+        "id": "chapter13",
+        "title": "第13章：技術選択のフレームワーク",
+        "description": "技術評価と意思決定の方法論"
+      }
+    ],
+    "appendices": [
+      {
+        "id": "appendix-a",
+        "title": "付録A：設定例とベストプラクティス",
+        "description": "実際の設定例とチェックリスト"
+      },
+      {
+        "id": "appendix-b",
+        "title": "付録B：トラブルシューティングガイド",
+        "description": "一般的な問題と解決方法"
+      }
+    ]
   },
-  "contentSections": [
-    {
-      "name": "introduction",
-      "title": "はじめに",
-      "directory": "introduction",
-      "enabled": true,
-      "order": 1
-    },
-    {
-      "name": "chapters",
-      "title": "本章",
-      "directory": "chapters",
-      "enabled": true,
-      "order": 2,
-      "numbering": true
-    },
-    {
-      "name": "appendices",
-      "title": "付録",
-      "directory": "appendices",
-      "enabled": true,
-      "order": 3,
-      "numbering": true,
-      "numberingPrefix": "付録"
-    },
-    {
-      "name": "afterword",
-      "title": "あとがき",
-      "directory": "afterword",
-      "enabled": true,
-      "order": 4
-    }
-  ],
-  "tableOfContents": {
-    "enabled": true,
-    "outputFile": "table-of-contents.md",
-    "title": "目次",
-    "maxDepth": 3,
-    "includeNumbers": true,
-    "autoLink": true,
-    "autoNumberChapters": true,
-    "detectExistingNumbers": true
-  },
-  "excludePatterns": [
-    "draft.md",
-    "notes.md",
-    "solutions.md",
-    "instructor.md",
-    "private.md",
-    "confidential.md",
-    "secret.md",
-    "*.tmp",
-    "*.backup",
-    "*.bak",
-    ".private",
-    ".confidential",
-    ".DS_Store",
-    "Thumbs.db"
-  ],
-  "contentExcludePatterns": [
-    "<!-- TODO:",
-    "<!-- FIXME:",
-    "<!-- PRIVATE:",
-    "<!-- SECRET:",
-    "<!-- DRAFT:",
-    "<!-- CONFIDENTIAL:",
-    "<!-- INSTRUCTOR:",
-    "<!-- INTERNAL:",
-    "<!-- SENSITIVE:"
-  ],
-  "publicFiles": [
-    "index.md",
-    "README.md",
-    "setup-guide.md"
-  ],
   "build": {
     "outputDirectory": "docs",
-    "enableV3DesignSystem": true,
+    "framework": "book-formatter",
     "enableNavigation": true,
     "enableSyntaxHighlighting": true,
-    "enableSearchIndex": false,
-    "enablePWA": false,
-    "minifyCSS": false,
-    "minifyJS": false
-  },
-  "imageOptimization": {
-    "enabled": true,
-    "quality": 85,
-    "formats": ["webp", "original"],
-    "maxWidth": 1920,
-    "stripMetadata": true,
-    "lazyLoad": true
-  },
-  "pdf": {
-    "engine": "pandoc",
-    "paperSize": "A4",
-    "margin": "2cm",
-    "fontSize": "11pt",
-    "fontFamily": "Noto Sans CJK JP",
-    "includeTableOfContents": true,
-    "includeCoverPage": true,
-    "language": "ja"
-  },
-  "epub": {
-    "engine": "pandoc",
-    "coverImage": null,
-    "includeTableOfContents": true,
-    "chapterLevel": 1,
-    "language": "ja",
-    "publisher": "株式会社アイティードゥ",
-    "rights": "© 2025 ITDO Inc. All rights reserved."
+    "enableMobileOptimization": true
   }
 }

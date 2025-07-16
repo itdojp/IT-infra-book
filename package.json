@@ -1,50 +1,48 @@
 {
-  "name": "book-publishing-template-improved",
-  "version": "2.0.0",
-  "description": "Improved Book Publishing Template with Easy Setup",
-  "author": "Book Publishing Template Contributors",
+  "name": "it-infra-book",
+  "version": "1.0.0",
+  "description": "ITインフラストラクチャ技術ガイド - ネットワークとサーバーシステムの設計と実装",
+  "author": "太田和彦（株式会社アイティードゥ）",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "setup": "node easy-setup.js",
-    "build": "node scripts/build-simple.js",
-    "build:full": "node scripts/build.js",
-    "preview": "npm run build && npx http-server public -p 8080 --silent",
-    "deploy": "bash scripts/deploy.sh",
-    "clean": "rm -rf public output temp",
-    "configure:workflows": "node scripts/configure-workflows.js",
+    "start": "jekyll serve --livereload",
+    "build": "jekyll build",
+    "build:gh-pages": "bundle exec jekyll build",
+    "preview": "npm run build && npx http-server _site -p 8080 --silent",
+    "deploy": "gh-pages -d _site",
+    "clean": "rm -rf _site .jekyll-cache",
+    "test": "npm run lint && npm run check-links",
+    "lint": "markdownlint 'src/**/*.md' --ignore node_modules",
     "lint:light": "markdownlint 'src/**/*.md' --ignore node_modules",
-    "test:light": "npm run lint:light && npm run build",
-    "help": "echo 'Available commands:\n  npm run setup - Interactive setup\n  npm run build - Build the book\n  npm run preview - Local preview\n  npm run configure:workflows - Disable problematic workflows\n  npm run deploy - Deploy to GitHub Pages'"
+    "check-links": "markdown-link-check src/**/*.md",
+    "help": "echo 'Available commands:\n  npm start - Start development server\n  npm run build - Build the book\n  npm run preview - Local preview\n  npm run deploy - Deploy to GitHub Pages'"
   },
   "dependencies": {
-    "fs-extra": "^11.3.0",
-    "gray-matter": "^4.0.3"
+    "jekyll": "^4.0.0"
   },
   "devDependencies": {
-    "http-server": "^14.1.1",
-    "markdownlint-cli": "^0.33.0"
-  },
-  "optionalDependencies": {
-    "puppeteer": "^21.0.0",
-    "sharp": "^0.34.2"
+    "markdownlint-cli": "^0.37.0",
+    "markdown-link-check": "^3.11.2",
+    "gh-pages": "^6.0.0",
+    "http-server": "^14.1.1"
   },
   "keywords": [
     "book",
-    "publishing",
-    "markdown",
-    "github-pages",
-    "template",
-    "easy-setup"
+    "documentation",
+    "infrastructure",
+    "network",
+    "server",
+    "japanese"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/itdojp/book-publishing-template2.git"
+    "url": "git+https://github.com/itdojp/IT-infra-book.git"
   },
   "bugs": {
-    "url": "https://github.com/itdojp/book-publishing-template2/issues"
+    "url": "https://github.com/itdojp/IT-infra-book/issues"
   },
-  "homepage": "https://github.com/itdojp/book-publishing-template2#readme"
+  "homepage": "https://github.com/itdojp/IT-infra-book#readme"
 }

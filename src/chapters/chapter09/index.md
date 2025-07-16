@@ -1376,6 +1376,348 @@ kubectl get pods -o wide
 kubectl get events --field-selector reason=FailedScheduling
 ```
 
+## 9.4 障害対応とトラブルシューティングの自動化
+
+### インシデント検出と初期対応の自動化
+
+システム障害は避けられないが、その影響を最小限に抑えることは可能である。自動化された障害対応システムは、人間の介入を待たずに初期対応を実行できる。
+
+#### 包括的な診断スクリプト
+
+```bash
+#!/bin/bash
+# comprehensive_diagnostics.sh - システム状態の包括的診断
+
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+REPORT_DIR="/var/log/diagnostics/${TIMESTAMP}"
+mkdir -p "${REPORT_DIR}"
+
+# 診断レポートの開始
+exec > >(tee -a "${REPORT_DIR}/diagnostic_report.log")
+exec 2>&1
+
+echo "=== システム診断開始: ${TIMESTAMP} ==="
+
+# 1. ネットワーク診断
+echo -e "\n=== ネットワーク診断 ==="
+{
+    echo "## 接続性テスト"
+    ping -c 3 8.8.8.8 || echo "外部接続: 失敗"
+    ping -c 3 $(ip route | grep default | awk '{print $3}') || echo "ゲートウェイ接続: 失敗"
+    
+    echo -e "\n## リスニングポート"
+    ss -tlnp | grep -E ':80|:443|:22|:3306|:5432|:6379'
+    
+    echo -e "\n## ネットワーク統計"
+    netstat -s | grep -E 'retransmit|error|failed|timeout'
+    
+    echo -e "\n## DNS解決テスト"
+    for domain in google.com $(hostname -f); do
+        dig +short $domain || echo "DNS解決失敗: $domain"
+    done
+} > "${REPORT_DIR}/network_diagnostics.log"
+
+# 2. システムリソース診断
+echo -e "\n=== システムリソース診断 ==="
+{
+    echo "## CPU使用状況"
+    mpstat -P ALL 1 3
+    echo -e "\n## 高CPU使用プロセス"
+    ps aux --sort=-%cpu | head -20
+    
+    echo -e "\n## メモリ使用状況"
+    free -h
+    echo -e "\n## メモリ詳細"
+    cat /proc/meminfo | grep -E 'MemTotal|MemFree|MemAvailable|Buffers|Cached|SwapTotal|SwapFree'
+    
+    echo -e "\n## ディスク使用状況"
+    df -h
+    echo -e "\n## iノード使用状況"
+    df -i
+    
+    echo -e "\n## I/O統計"
+    iostat -x 1 3
+} > "${REPORT_DIR}/resource_diagnostics.log"
+
+# 3. サービス状態診断
+echo -e "\n=== サービス状態診断 ==="
+{
+    echo "## systemdサービス状態"
+    systemctl list-units --failed
+    
+    echo -e "\n## 重要サービスの詳細状態"
+    for service in nginx httpd mysql postgresql redis docker kubelet; do
+        if systemctl list-unit-files | grep -q "^${service}.service"; then
+            echo -e "\n### ${service}"
+            systemctl status ${service} --no-pager
+            journalctl -u ${service} --since "1 hour ago" --no-pager | tail -50
+        fi
+    done
+} > "${REPORT_DIR}/service_diagnostics.log"
+
+# 4. ログ分析
+echo -e "\n=== ログ分析 ==="
+{
+    echo "## システムログのエラー"
+    journalctl -p err --since "1 hour ago" --no-pager
+    
+    echo -e "\n## カーネルメッセージ"
+    dmesg -T | grep -E 'error|fail|warn' | tail -50
+    
+    echo -e "\n## 認証ログ"
+    grep -E 'Failed|Invalid|error' /var/log/auth.log | tail -50
+} > "${REPORT_DIR}/log_analysis.log"
+
+# 5. セキュリティチェック
+echo -e "\n=== セキュリティチェック ==="
+{
+    echo "## ログイン失敗"
+    lastb | head -20
+    
+    echo -e "\n## 現在の接続"
+    ss -tnp | grep ESTABLISHED
+    
+    echo -e "\n## ファイアウォール状態"
+    iptables -L -n -v
+} > "${REPORT_DIR}/security_check.log"
+
+# 診断結果の要約
+echo -e "\n=== 診断結果要約 ==="
+CRITICAL_ISSUES=0
+
+# クリティカルな問題の検出
+if ! ping -c 1 8.8.8.8 &>/dev/null; then
+    echo "⚠️  外部ネットワーク接続不可"
+    ((CRITICAL_ISSUES++))
+fi
+
+if [ $(df -h / | awk 'NR==2 {print int($5)}') -gt 90 ]; then
+    echo "⚠️  ルートファイルシステム使用率90%超過"
+    ((CRITICAL_ISSUES++))
+fi
+
+if [ $(free | awk '/^Mem:/ {print int($3/$2 * 100)}') -gt 90 ]; then
+    echo "⚠️  メモリ使用率90%超過"
+    ((CRITICAL_ISSUES++))
+fi
+
+if systemctl list-units --failed | grep -q failed; then
+    echo "⚠️  失敗したsystemdサービスあり"
+    ((CRITICAL_ISSUES++))
+fi
+
+echo -e "\nクリティカルな問題: ${CRITICAL_ISSUES}件"
+echo "詳細レポート: ${REPORT_DIR}"
+
+# アラート送信（必要に応じて）
+if [ ${CRITICAL_ISSUES} -gt 0 ]; then
+    # Slackへの通知
+    if [ -n "${SLACK_WEBHOOK_URL}" ]; then
+        curl -X POST ${SLACK_WEBHOOK_URL} \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\":\"⚠️ システム診断: ${CRITICAL_ISSUES}件のクリティカルな問題を検出\\nホスト: $(hostname)\\n詳細: ${REPORT_DIR}\"}"
+    fi
+fi
+```
+
+#### 自動修復スクリプト
+
+```bash
+#!/bin/bash
+# auto_remediation.sh - 一般的な問題の自動修復
+
+LOG_FILE="/var/log/auto_remediation.log"
+exec >> "${LOG_FILE}" 2>&1
+
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+}
+
+# 1. ディスク容量の自動クリーンアップ
+check_disk_space() {
+    local threshold=85
+    local usage=$(df -h / | awk 'NR==2 {print int($5)}')
+    
+    if [ ${usage} -gt ${threshold} ]; then
+        log "ディスク使用率 ${usage}% - クリーンアップ開始"
+        
+        # 古いログファイルの削除
+        find /var/log -type f -name "*.log" -mtime +30 -delete
+        find /var/log -type f -name "*.gz" -mtime +7 -delete
+        
+        # パッケージキャッシュのクリア
+        if command -v apt-get &>/dev/null; then
+            apt-get clean
+        elif command -v yum &>/dev/null; then
+            yum clean all
+        fi
+        
+        # Dockerの不要なイメージとコンテナを削除
+        if command -v docker &>/dev/null; then
+            docker system prune -af --volumes
+        fi
+        
+        # journalログのローテーション
+        journalctl --vacuum-time=7d
+        
+        log "クリーンアップ完了 - 新しい使用率: $(df -h / | awk 'NR==2 {print $5}')"
+    fi
+}
+
+# 2. メモリ不足への対応
+check_memory() {
+    local available=$(free -m | awk '/^Mem:/ {print $7}')
+    local total=$(free -m | awk '/^Mem:/ {print $2}')
+    local usage=$((100 - (available * 100 / total)))
+    
+    if [ ${usage} -gt 90 ]; then
+        log "メモリ使用率 ${usage}% - メモリ解放開始"
+        
+        # ページキャッシュのクリア
+        sync && echo 1 > /proc/sys/vm/drop_caches
+        
+        # 高メモリ使用プロセスの特定
+        ps aux --sort=-%mem | head -10 > /tmp/high_memory_processes.log
+        
+        log "メモリ解放完了"
+    fi
+}
+
+# 3. サービスの自動再起動
+check_services() {
+    local critical_services=("nginx" "mysql" "postgresql" "redis" "docker")
+    
+    for service in "${critical_services[@]}"; do
+        if systemctl list-unit-files | grep -q "^${service}.service"; then
+            if ! systemctl is-active ${service} &>/dev/null; then
+                log "サービス ${service} が停止 - 再起動試行"
+                systemctl restart ${service}
+                
+                sleep 5
+                if systemctl is-active ${service} &>/dev/null; then
+                    log "サービス ${service} の再起動成功"
+                else
+                    log "エラー: サービス ${service} の再起動失敗"
+                    # エスカレーション処理
+                    send_alert "Critical: ${service} service failed to restart on $(hostname)"
+                fi
+            fi
+        fi
+    done
+}
+
+# 4. ネットワーク接続の修復
+check_network() {
+    if ! ping -c 1 8.8.8.8 &>/dev/null; then
+        log "ネットワーク接続なし - 修復試行"
+        
+        # ネットワークサービスの再起動
+        systemctl restart NetworkManager || systemctl restart networking
+        
+        # DNSキャッシュのクリア
+        systemctl restart systemd-resolved || service nscd restart
+        
+        # デフォルトルートの確認と再設定
+        if ! ip route | grep -q default; then
+            # DHCPクライアントの再起動
+            dhclient -r && dhclient
+        fi
+        
+        sleep 5
+        if ping -c 1 8.8.8.8 &>/dev/null; then
+            log "ネットワーク接続の修復成功"
+        else
+            log "エラー: ネットワーク接続の修復失敗"
+        fi
+    fi
+}
+
+# アラート送信関数
+send_alert() {
+    local message="$1"
+    
+    # Slack通知
+    if [ -n "${SLACK_WEBHOOK_URL}" ]; then
+        curl -X POST ${SLACK_WEBHOOK_URL} \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\":\"${message}\"}"
+    fi
+    
+    # メール通知
+    if command -v mail &>/dev/null; then
+        echo "${message}" | mail -s "Auto Remediation Alert" admin@example.com
+    fi
+}
+
+# メイン処理
+main() {
+    log "自動修復スクリプト開始"
+    
+    check_disk_space
+    check_memory
+    check_services
+    check_network
+    
+    log "自動修復スクリプト完了"
+}
+
+# cronで定期実行される前提
+main
+```
+
+### 予防的監視とアラート
+
+```yaml
+# Prometheus アラートルール
+groups:
+  - name: infrastructure
+    interval: 30s
+    rules:
+      # ディスク容量予測
+      - alert: DiskWillFillIn4Hours
+        expr: |
+          predict_linear(
+            node_filesystem_avail_bytes{mountpoint="/"}[1h], 
+            4 * 3600
+          ) < 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "ディスクが4時間以内に満杯になる予測"
+          description: "{{ $labels.instance }}のディスク使用量が現在のペースで増加すると4時間以内に満杯になります"
+      
+      # メモリリーク検出
+      - alert: PossibleMemoryLeak
+        expr: |
+          (
+            rate(process_resident_memory_bytes[1h]) > 0
+          ) and (
+            process_resident_memory_bytes > 1e9
+          )
+        for: 30m
+        labels:
+          severity: warning
+        annotations:
+          summary: "メモリリークの可能性"
+          description: "{{ $labels.job }}のメモリ使用量が継続的に増加しています"
+      
+      # サービス劣化検出
+      - alert: ServiceDegradation
+        expr: |
+          (
+            rate(http_requests_total{status=~"5.."}[5m]) 
+            / 
+            rate(http_requests_total[5m])
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "サービス劣化検出"
+          description: "{{ $labels.job }}のエラー率が5%を超えています"
+```
+
 ## まとめ
 
 システム運用の自動化は、技術的進歩と運用規模の拡大に対応する必然的な進化である。init から systemd への移行、テキストログからバイナリログへの変換、そして Infrastructure as Code の普及は、いずれも複雑性の管理という共通課題への対処として理解できる。

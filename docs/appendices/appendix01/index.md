@@ -1,4 +1,5 @@
 ---
+layout: book
 title: "付録A: 用語集"
 ---
 

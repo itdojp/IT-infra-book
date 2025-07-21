@@ -1,7 +1,9 @@
 ---
+layout: book
 title: "ITインフラストラクチャ技術ガイド"
 description: "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書"
-author: "太田和彦（株式会社アイティードゥ）"
+author: "株式会社アイティードゥ"
+organization: "株式会社アイティードゥ"
 version: "1.0.0"
 ---
 
@@ -11,7 +13,7 @@ version: "1.0.0"
 
 ## 目次
 
-
+- [はじめに](introduction/index.md)
 
 - [第1章 プロトコルスタックの設計思想](chapters/chapter01/index.md)
 
@@ -44,14 +46,14 @@ version: "1.0.0"
 
 ## 付録
 
-- [付録1 リファレンスアーキテクチャ集](appendices/appendix01.md)
+- [付録A: 用語集](appendices/appendix01/index.md)
 
-- [付録2 パフォーマンスチューニングガイド](appendices/appendix02.md)
+- [付録B: トラブルシューティングガイド](appendices/appendix02/index.md)
 
 
 
 ---
 
-**著者:** 太田和彦（株式会社アイティードゥ）  
+**著者:** 株式会社アイティードゥ  
 **バージョン:** 1.0.0  
 **最終更新:** 2025-07-16

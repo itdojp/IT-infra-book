@@ -1,48 +1,30 @@
 {
-  "name": "it-infra-book",
+  "name": "itインフラストラクチャ技術ガイド",
   "version": "1.0.0",
-  "description": "ITインフラストラクチャ技術ガイド - ネットワークとサーバーシステムの設計と実装",
-  "author": "太田和彦（株式会社アイティードゥ）",
-  "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
+  "main": "index.md",
   "scripts": {
     "start": "jekyll serve --livereload",
     "build": "jekyll build",
-    "build:gh-pages": "bundle exec jekyll build",
-    "preview": "npm run build && npx http-server _site -p 8080 --silent",
-    "deploy": "gh-pages -d _site",
-    "clean": "rm -rf _site .jekyll-cache",
     "test": "npm run lint && npm run check-links",
-    "lint": "markdownlint 'src/**/*.md' --ignore node_modules",
-    "lint:light": "markdownlint 'src/**/*.md' --ignore node_modules",
+    "lint": "markdownlint src/**/*.md",
     "check-links": "markdown-link-check src/**/*.md",
-    "help": "echo 'Available commands:\n  npm start - Start development server\n  npm run build - Build the book\n  npm run preview - Local preview\n  npm run deploy - Deploy to GitHub Pages'"
-  },
-  "dependencies": {
-    "jekyll": "^4.0.0"
-  },
-  "devDependencies": {
-    "markdownlint-cli": "^0.37.0",
-    "markdown-link-check": "^3.11.2",
-    "gh-pages": "^6.0.0",
-    "http-server": "^14.1.1"
+    "deploy": "gh-pages -d _site"
   },
   "keywords": [
     "book",
     "documentation",
-    "infrastructure",
-    "network",
-    "server",
-    "japanese"
+    "ja"
   ],
+  "author": "太田和彦（株式会社アイティードゥ）",
+  "license": "MIT",
+  "devDependencies": {
+    "markdownlint-cli": "^0.37.0",
+    "markdown-link-check": "^3.11.2",
+    "gh-pages": "^6.0.0"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/itdojp/IT-infra-book.git"
-  },
-  "bugs": {
-    "url": "https://github.com/itdojp/IT-infra-book/issues"
-  },
-  "homepage": "https://github.com/itdojp/IT-infra-book#readme"
+    "url": "https://github.com/itdojp/IT-infra-book.git"
+  }
 }

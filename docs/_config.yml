@@ -22,7 +22,6 @@ exclude:
   - package-lock.json
   - scripts/
   - tests/
-  - "*.md"
   - "README.md"
 
 # 日本語対応

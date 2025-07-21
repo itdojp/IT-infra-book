@@ -50,7 +50,7 @@ version: "1.0.0"
 
 - [付録B: トラブルシューティングガイド](appendices/appendix02/index.md)
 
-
+- [あとがき](afterword/index.md)
 
 ---
 

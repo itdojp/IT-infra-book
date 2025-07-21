@@ -13,40 +13,40 @@ version: "1.0.0"
 
 
 
-- [第1章 プロトコルスタックの設計思想](src/chapter-chapter01/index.md)
+- [第1章 プロトコルスタックの設計思想](chapters/chapter01/index.md)
 
-- [第2章 L2ネットワークの実装詳細](src/chapter-chapter02/index.md)
+- [第2章 L2ネットワークの実装詳細](chapters/chapter02/index.md)
 
-- [第3章 L3ルーティングアーキテクチャ](src/chapter-chapter03/index.md)
+- [第3章 L3ルーティングアーキテクチャ](chapters/chapter03/index.md)
 
-- [第4章 トランスポート層の最適化](src/chapter-chapter04/index.md)
+- [第4章 トランスポート層の最適化](chapters/chapter04/index.md)
 
-- [第5章 アプリケーション層プロトコルの実装](src/chapter-chapter05/index.md)
+- [第5章 アプリケーション層プロトコルの実装](chapters/chapter05/index.md)
 
-- [第6章 オペレーティングシステムの内部構造](src/chapter-chapter06/index.md)
+- [第6章 オペレーティングシステムの内部構造](chapters/chapter06/index.md)
 
-- [第7章 仮想化技術の内部メカニズム](src/chapter-chapter07/index.md)
+- [第7章 仮想化技術の内部メカニズム](chapters/chapter07/index.md)
 
-- [第8章 コンテナ技術の実装原理](src/chapter-chapter08/index.md)
+- [第8章 コンテナ技術の実装原理](chapters/chapter08/index.md)
 
-- [第9章 システム運用の自動化](src/chapter-chapter09/index.md)
+- [第9章 システム運用の自動化](chapters/chapter09/index.md)
 
-- [第10章 分散ストレージアーキテクチャ](src/chapter-chapter10/index.md)
+- [第10章 分散ストレージアーキテクチャ](chapters/chapter10/index.md)
 
-- [第11章 高可用性システムの設計](src/chapter-chapter11/index.md)
+- [第11章 高可用性システムの設計](chapters/chapter11/index.md)
 
-- [第12章 クラウドネイティブアーキテクチャ](src/chapter-chapter12/index.md)
+- [第12章 クラウドネイティブアーキテクチャ](chapters/chapter12/index.md)
 
-- [第13章 技術選択のフレームワーク](src/chapter-chapter13/index.md)
+- [第13章 技術選択のフレームワーク](chapters/chapter13/index.md)
 
 
 
 
 ## 付録
 
-- [付録1 リファレンスアーキテクチャ集](src/appendices/appendix01.md)
+- [付録1 リファレンスアーキテクチャ集](appendices/appendix01.md)
 
-- [付録2 パフォーマンスチューニングガイド](src/appendices/appendix02.md)
+- [付録2 パフォーマンスチューニングガイド](appendices/appendix02.md)
 
 
 

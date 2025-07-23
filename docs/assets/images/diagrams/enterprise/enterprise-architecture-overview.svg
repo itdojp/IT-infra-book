@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="1000" viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --business-bg: #FEF3C7;
+        --application-bg: #DBEAFE;
+        --data-bg: #D1FAE5;
+        --technology-bg: #FCE7F3;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --business-bg: #92400E;
+          --application-bg: #1E40AF;
+          --data-bg: #047857;
+          --technology-bg: #BE185D;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .layer-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .component-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Layer Styles */
+      .business-layer {
+        fill: var(--business-bg);
+        stroke: var(--warning);
+        stroke-width: 2;
+      }
+      
+      .application-layer {
+        fill: var(--application-bg);
+        stroke: var(--primary);
+        stroke-width: 2;
+      }
+      
+      .data-layer {
+        fill: var(--data-bg);
+        stroke: var(--success);
+        stroke-width: 2;
+      }
+      
+      .technology-layer {
+        fill: var(--technology-bg);
+        stroke: var(--error);
+        stroke-width: 2;
+      }
+      
+      /* Connection Lines */
+      .layer-connection {
+        stroke: var(--neutral);
+        stroke-width: 2;
+        stroke-dasharray: 4,4;
+        marker-end: url(#arrow);
+      }
+      
+      .interaction-line {
+        stroke: var(--primary);
+        stroke-width: 1.5;
+        opacity: 0.7;
+      }
+    </style>
+    
+    <!-- Arrow Marker -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--neutral)"/>
+    </marker>
+  </defs>
+  
+  <title>エンタープライズアーキテクチャ俯瞰図</title>
+  <desc>ビジネス、アプリケーション、データ、テクノロジー各層の関係とTOGAFフレームワーク対応</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">エンタープライズアーキテクチャ俯瞰図</text>
+  
+  <!-- Business Layer -->
+  <rect x="50" y="60" width="700" height="180" rx="8" class="business-layer"/>
+  <text x="400" y="80" class="layer-title">ビジネス層 (Business Architecture)</text>
+  
+  <!-- Business Components -->
+  <rect x="80" y="100" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="145" y="120" class="component-title">ビジネス戦略</text>
+  <text x="145" y="140" class="label-text">企業目標・KPI</text>
+  
+  <rect x="230" y="100" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="295" y="120" class="component-title">ビジネスプロセス</text>
+  <text x="295" y="140" class="label-text">業務フローと手順</text>
+  
+  <rect x="380" y="100" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="445" y="120" class="component-title">組織・役割</text>
+  <text x="445" y="140" class="label-text">部門・責任範囲</text>
+  
+  <rect x="530" y="100" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="595" y="120" class="component-title">ガバナンス</text>
+  <text x="595" y="140" class="label-text">統制・リスク管理</text>
+  
+  <rect x="80" y="180" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="220" y="204" class="component-title">デジタル変革戦略・イノベーション推進</text>
+  
+  <rect x="380" y="180" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="520" y="204" class="component-title">ステークホルダー管理・パートナーシップ</text>
+  
+  <!-- Application Layer -->
+  <rect x="50" y="260" width="700" height="180" rx="8" class="application-layer"/>
+  <text x="400" y="280" class="layer-title">アプリケーション層 (Application Architecture)</text>
+  
+  <!-- Application Components -->
+  <rect x="80" y="300" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="145" y="320" class="component-title">ERP・基幹系</text>
+  <text x="145" y="340" class="label-text">SAP, Oracle</text>
+  
+  <rect x="230" y="300" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="295" y="320" class="component-title">CRM・営業支援</text>
+  <text x="295" y="340" class="label-text">Salesforce, HubSpot</text>
+  
+  <rect x="380" y="300" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="445" y="320" class="component-title">ECサイト・Portal</text>
+  <text x="445" y="340" class="label-text">Webアプリケーション</text>
+  
+  <rect x="530" y="300" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="595" y="320" class="component-title">BI・分析系</text>
+  <text x="595" y="340" class="label-text">Tableau, PowerBI</text>
+  
+  <rect x="80" y="380" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="220" y="404" class="component-title">API管理・マイクロサービス・ESB</text>
+  
+  <rect x="380" y="380" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="520" y="404" class="component-title">レガシーシステム・モダナイゼーション</text>
+  
+  <!-- Data Layer -->
+  <rect x="50" y="460" width="700" height="180" rx="8" class="data-layer"/>
+  <text x="400" y="480" class="layer-title">データ層 (Data Architecture)</text>
+  
+  <!-- Data Components -->
+  <rect x="80" y="500" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="145" y="520" class="component-title">マスターデータ</text>
+  <text x="145" y="540" class="label-text">顧客・製品・組織</text>
+  
+  <rect x="230" y="500" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="295" y="520" class="component-title">トランザクション</text>
+  <text x="295" y="540" class="label-text">受注・請求・在庫</text>
+  
+  <rect x="380" y="500" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="445" y="520" class="component-title">データレイク</text>
+  <text x="445" y="540" class="label-text">ビッグデータ・AI</text>
+  
+  <rect x="530" y="500" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="595" y="520" class="component-title">DWH・OLAP</text>
+  <text x="595" y="540" class="label-text">分析・レポート</text>
+  
+  <rect x="80" y="580" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="220" y="604" class="component-title">データガバナンス・品質管理・セキュリティ</text>
+  
+  <rect x="380" y="580" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="520" y="604" class="component-title">リアルタイム処理・ストリーミング・ETL</text>
+  
+  <!-- Technology Layer -->
+  <rect x="50" y="660" width="700" height="180" rx="8" class="technology-layer"/>
+  <text x="400" y="680" class="layer-title">テクノロジー層 (Technology Architecture)</text>
+  
+  <!-- Technology Components -->
+  <rect x="80" y="700" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="145" y="720" class="component-title">クラウド基盤</text>
+  <text x="145" y="740" class="label-text">AWS, Azure, GCP</text>
+  
+  <rect x="230" y="700" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="295" y="720" class="component-title">オンプレミス</text>
+  <text x="295" y="740" class="label-text">データセンター</text>
+  
+  <rect x="380" y="700" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="445" y="720" class="component-title">ネットワーク</text>
+  <text x="445" y="740" class="label-text">SD-WAN, VPN</text>
+  
+  <rect x="530" y="700" width="130" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="595" y="720" class="component-title">セキュリティ</text>
+  <text x="595" y="740" class="label-text">IAM, DLP, SIEM</text>
+  
+  <rect x="80" y="780" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="220" y="804" class="component-title">コンテナ・マイクロサービス・DevOps</text>
+  
+  <rect x="380" y="780" width="280" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="520" y="804" class="component-title">監視・運用・自動化・ITSM</text>
+  
+  <!-- Layer Connections -->
+  <line x1="400" y1="240" x2="400" y2="260" class="layer-connection"/>
+  <line x1="400" y1="440" x2="400" y2="460" class="layer-connection"/>
+  <line x1="400" y1="640" x2="400" y2="660" class="layer-connection"/>
+  
+  <!-- Cross-layer Interactions -->
+  <line x1="145" y1="160" x2="145" y2="300" class="interaction-line"/>
+  <line x1="295" y1="160" x2="295" y2="300" class="interaction-line"/>
+  <line x1="445" y1="360" x2="445" y2="500" class="interaction-line"/>
+  <line x1="595" y1="360" x2="595" y2="500" class="interaction-line"/>
+  
+  <!-- Governance Framework -->
+  <rect x="50" y="860" width="700" height="120" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="880" class="layer-title">エンタープライズアーキテクチャフレームワーク</text>
+  
+  <rect x="80" y="900" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="150" y="920" class="component-title">TOGAF ADM</text>
+  <text x="150" y="940" class="label-text">アーキテクチャ開発手法</text>
+  
+  <rect x="240" y="900" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="310" y="920" class="component-title">Zachman Framework</text>
+  <text x="310" y="940" class="label-text">6×6マトリクス</text>
+  
+  <rect x="400" y="900" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="470" y="920" class="component-title">COBIT</text>
+  <text x="470" y="940" class="label-text">ITガバナンス</text>
+  
+  <rect x="560" y="900" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="630" y="920" class="component-title">ITIL</text>
+  <text x="630" y="940" class="label-text">サービス管理</text>
+  
+</svg>

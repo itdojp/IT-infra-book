@@ -1,0 +1,121 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .diagram-text { font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 12px; fill: var(--color-text-primary, #1a1a1a); }
+      .diagram-title { font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 16px; font-weight: bold; fill: var(--color-text-primary, #1a1a1a); }
+      .category-box { fill: var(--color-bg-secondary, #f8f9fa); stroke: var(--color-border, #dee2e6); stroke-width: 2; }
+      .cpu-box { fill: var(--color-primary-light, #e3f2fd); stroke: var(--color-primary, #1976d2); stroke-width: 1.5; }
+      .memory-box { fill: var(--color-secondary-light, #f3e5f5); stroke: var(--color-secondary, #7b1fa2); stroke-width: 1.5; }
+      .io-box { fill: var(--color-accent-light, #fff3e0); stroke: var(--color-accent, #ff6b35); stroke-width: 1.5; }
+      .arrow { stroke: var(--color-text-secondary, #666); stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .interaction { stroke: var(--color-warning, #f57c00); stroke-width: 2; fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-text-secondary, #666)" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="var(--color-bg-primary, #ffffff)"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="diagram-title">図1-3: レイヤー間相互作用とパフォーマンス特性</text>
+  
+  <!-- CPU Processing Section -->
+  <text x="150" y="70" text-anchor="middle" class="diagram-title">CPU処理</text>
+  
+  <!-- Application Processing -->
+  <rect x="70" y="90" width="160" height="50" class="cpu-box"/>
+  <text x="150" y="110" text-anchor="middle" class="diagram-text">アプリケーション処理</text>
+  <text x="150" y="125" text-anchor="middle" class="diagram-text">(JSON解析、暗号化)</text>
+  
+  <!-- Protocol Processing -->
+  <rect x="70" y="160" width="160" height="50" class="cpu-box"/>
+  <text x="150" y="180" text-anchor="middle" class="diagram-text">プロトコル処理</text>
+  <text x="150" y="195" text-anchor="middle" class="diagram-text">(TCP/IP スタック)</text>
+  
+  <!-- Context Switch -->
+  <rect x="70" y="230" width="160" height="50" class="cpu-box"/>
+  <text x="150" y="250" text-anchor="middle" class="diagram-text">コンテキストスイッチ</text>
+  <text x="150" y="265" text-anchor="middle" class="diagram-text">(カーネル/ユーザー)</text>
+  
+  <!-- Memory Access Section -->
+  <text x="400" y="70" text-anchor="middle" class="diagram-title">メモリアクセス</text>
+  
+  <!-- Data Copy -->
+  <rect x="320" y="90" width="160" height="50" class="memory-box"/>
+  <text x="400" y="110" text-anchor="middle" class="diagram-text">データコピー</text>
+  <text x="400" y="125" text-anchor="middle" class="diagram-text">(ユーザー↔カーネル)</text>
+  
+  <!-- Buffer Management -->
+  <rect x="320" y="160" width="160" height="50" class="memory-box"/>
+  <text x="400" y="180" text-anchor="middle" class="diagram-text">バッファ管理</text>
+  <text x="400" y="195" text-anchor="middle" class="diagram-text">(メモリプール)</text>
+  
+  <!-- Cache Efficiency -->
+  <rect x="320" y="230" width="160" height="50" class="memory-box"/>
+  <text x="400" y="250" text-anchor="middle" class="diagram-text">キャッシュ効率</text>
+  <text x="400" y="265" text-anchor="middle" class="diagram-text">(L1/L2/L3)</text>
+  
+  <!-- I/O Processing Section -->
+  <text x="650" y="70" text-anchor="middle" class="diagram-title">I/O処理</text>
+  
+  <!-- Interrupt Processing -->
+  <rect x="570" y="90" width="160" height="50" class="io-box"/>
+  <text x="650" y="110" text-anchor="middle" class="diagram-text">割り込み処理</text>
+  <text x="650" y="125" text-anchor="middle" class="diagram-text">(IRQ ハンドリング)</text>
+  
+  <!-- DMA Transfer -->
+  <rect x="570" y="160" width="160" height="50" class="io-box"/>
+  <text x="650" y="180" text-anchor="middle" class="diagram-text">DMA転送</text>
+  <text x="650" y="195" text-anchor="middle" class="diagram-text">(ダイレクト転送)</text>
+  
+  <!-- Polling -->
+  <rect x="570" y="230" width="160" height="50" class="io-box"/>
+  <text x="650" y="250" text-anchor="middle" class="diagram-text">ポーリング</text>
+  <text x="650" y="265" text-anchor="middle" class="diagram-text">(NAPI/DPDK)</text>
+  
+  <!-- Interaction arrows -->
+  <line x1="230" y1="115" x2="320" y2="115" class="interaction"/>
+  <line x1="230" y1="185" x2="320" y2="185" class="interaction"/>
+  <line x1="230" y1="255" x2="320" y2="255" class="interaction"/>
+  
+  <line x1="480" y1="115" x2="570" y2="115" class="interaction"/>
+  <line x1="480" y1="185" x2="570" y2="185" class="interaction"/>
+  <line x1="480" y1="255" x2="570" y2="255" class="interaction"/>
+  
+  <!-- Vertical flow arrows -->
+  <line x1="150" y1="140" x2="150" y2="160" class="arrow"/>
+  <line x1="150" y1="210" x2="150" y2="230" class="arrow"/>
+  
+  <line x1="400" y1="140" x2="400" y2="160" class="arrow"/>
+  <line x1="400" y1="210" x2="400" y2="230" class="arrow"/>
+  
+  <line x1="650" y1="140" x2="650" y2="160" class="arrow"/>
+  <line x1="650" y1="210" x2="650" y2="230" class="arrow"/>
+  
+  <!-- Performance Impact Section -->
+  <rect x="50" y="320" width="700" height="220" class="category-box"/>
+  <text x="400" y="345" text-anchor="middle" class="diagram-title">パフォーマンスへの影響</text>
+  
+  <!-- Performance metrics -->
+  <text x="80" y="375" class="diagram-text" font-weight="bold">レイテンシ要因:</text>
+  <text x="80" y="395" class="diagram-text">• コンテキストスイッチ: 1-5μs</text>
+  <text x="80" y="410" class="diagram-text">• メモリコピー: 0.1-1μs/KB</text>
+  <text x="80" y="425" class="diagram-text">• 割り込み処理: 0.5-2μs</text>
+  
+  <text x="400" y="375" class="diagram-text" font-weight="bold">スループット要因:</text>
+  <text x="400" y="395" class="diagram-text">• プロトコル処理: CPU使用率</text>
+  <text x="400" y="410" class="diagram-text">• メモリ帯域: 10-100GB/s</text>
+  <text x="400" y="425" class="diagram-text">• PCIe帯域: 16-64GB/s</text>
+  
+  <text x="80" y="460" class="diagram-text" font-weight="bold">最適化手法:</text>
+  <text x="80" y="480" class="diagram-text">• ゼロコピー: データコピー削減</text>
+  <text x="80" y="495" class="diagram-text">• カーネルバイパス: DPDK/io_uring</text>
+  <text x="80" y="510" class="diagram-text">• アフィニティ: CPU/NIC結合</text>
+  
+  <!-- Accessibility -->
+  <title>レイヤー間相互作用とパフォーマンス特性</title>
+  <desc>ネットワークスタックにおけるCPU、メモリ、I/O処理の相互作用とパフォーマンスへの影響を示す図</desc>
+</svg>

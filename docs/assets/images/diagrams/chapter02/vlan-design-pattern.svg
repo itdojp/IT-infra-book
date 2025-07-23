@@ -1,233 +1,112 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="800" height="700" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      /* Color Palette */
-      :root {
-        --bg-primary: #FFFFFF;
-        --bg-secondary: #F8F9FA;
-        --text-primary: #1A1A1A;
-        --text-secondary: #6B7280;
-        --primary: #3B82F6;
-        --success: #10B981;
-        --warning: #F59E0B;
-        --error: #EF4444;
-        --neutral: #6B7280;
-        --border: #E5E7EB;
-        --core-bg: #e3f2fd;
-        --dist-bg: #fff3e0;
-        --access-bg: #e8f5e8;
-        --device-bg: #f3e5f5;
-      }
-      
-      /* Dark Theme */
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg-primary: #1A1A1A;
-          --bg-secondary: #2D2D2D;
-          --text-primary: #FFFFFF;
-          --text-secondary: #9CA3AF;
-          --primary: #60A5FA;
-          --success: #34D399;
-          --warning: #FBBF24;
-          --error: #F87171;
-          --neutral: #9CA3AF;
-          --border: #374151;
-          --core-bg: #1A237E;
-          --dist-bg: #E65100;
-          --access-bg: #1B5E20;
-          --device-bg: #4A148C;
-        }
-      }
-      
-      /* Typography */
-      .title-text {
-        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 16px;
-        font-weight: 600;
-        text-anchor: middle;
-        fill: var(--text-primary);
-      }
-      
-      .label-text {
-        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 12px;
-        font-weight: 500;
-        text-anchor: middle;
-        fill: var(--text-primary);
-      }
-      
-      .annotation-text {
-        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 10px;
-        font-weight: 400;
-        text-anchor: middle;
-        fill: var(--text-secondary);
-      }
-      
-      .section-title {
-        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        text-anchor: middle;
-        fill: var(--text-primary);
-      }
-      
-      /* Node Styles */
-      .core-node {
-        fill: var(--core-bg);
-        stroke: var(--primary);
-        stroke-width: 2;
-      }
-      
-      .dist-node {
-        fill: var(--dist-bg);
-        stroke: var(--warning);
-        stroke-width: 1.5;
-      }
-      
-      .access-node {
-        fill: var(--access-bg);
-        stroke: var(--success);
-        stroke-width: 1.5;
-      }
-      
-      .device-node {
-        fill: var(--device-bg);
-        stroke: var(--error);
-        stroke-width: 1.5;
-      }
-      
-      /* Connection Lines */
-      .trunk-line {
-        stroke: var(--primary);
-        stroke-width: 3;
-        opacity: 0.8;
-      }
-      
-      .access-line {
-        stroke: var(--success);
-        stroke-width: 2;
-        opacity: 0.8;
-      }
+      .diagram-text { font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 11px; fill: var(--color-text-primary, #1a1a1a); }
+      .diagram-title { font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 16px; font-weight: bold; fill: var(--color-text-primary, #1a1a1a); }
+      .switch-core { fill: var(--color-primary-light, #e3f2fd); stroke: var(--color-primary, #1976d2); stroke-width: 2; }
+      .switch-dist { fill: var(--color-secondary-light, #f3e5f5); stroke: var(--color-secondary, #7b1fa2); stroke-width: 2; }
+      .switch-access { fill: var(--color-accent-light, #fff3e0); stroke: var(--color-accent, #ff6b35); stroke-width: 2; }
+      .device { fill: var(--color-bg-secondary, #f8f9fa); stroke: var(--color-border, #dee2e6); stroke-width: 1.5; }
+      .trunk-link { stroke: var(--color-primary, #1976d2); stroke-width: 3; fill: none; }
+      .access-link { stroke: var(--color-accent, #ff6b35); stroke-width: 2; fill: none; }
+      .vlan10 { fill: var(--color-success-light, #e8f5e8); stroke: var(--color-success, #2e7d32); stroke-width: 1; }
+      .vlan20 { fill: var(--color-warning-light, #fff8e1); stroke: var(--color-warning, #f57c00); stroke-width: 1; }
+      .vlan30 { fill: var(--color-info-light, #e1f5fe); stroke: var(--color-info, #0288d1); stroke-width: 1; }
+      .vlan40 { fill: var(--color-error-light, #ffebee); stroke: var(--color-error, #d32f2f); stroke-width: 1; }
     </style>
   </defs>
   
-  <title>VLAN設計パターン</title>
-  <desc>階層型ネットワークにおけるVLAN設計とトランク/アクセスポート構成</desc>
-  
   <!-- Background -->
-  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  <rect width="800" height="600" fill="var(--color-bg-primary, #ffffff)"/>
   
-  <!-- Main Title -->
-  <text x="400" y="24" class="title-text">VLAN設計パターン</text>
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="diagram-title">図2-2: VLAN設計パターン</text>
   
-  <!-- Core Layer -->
-  <rect x="300" y="60" width="200" height="20" rx="3" fill="var(--core-bg)" stroke="var(--primary)" stroke-width="1"/>
-  <text x="400" y="74" class="section-title">コアスイッチ</text>
+  <!-- Core Switch -->
+  <rect x="350" y="60" width="100" height="60" class="switch-core"/>
+  <text x="400" y="85" text-anchor="middle" class="diagram-text">コアスイッチ</text>
+  <text x="400" y="105" text-anchor="middle" class="diagram-text">Trunk設定</text>
   
-  <rect x="320" y="90" width="160" height="40" rx="6" class="core-node"/>
-  <text x="400" y="108" class="label-text">コアスイッチ</text>
-  <text x="400" y="122" class="annotation-text">Trunk設定</text>
+  <!-- Distribution Switches -->
+  <rect x="200" y="160" width="120" height="60" class="switch-dist"/>
+  <text x="260" y="185" text-anchor="middle" class="diagram-text">ディストリ</text>
+  <text x="260" y="205" text-anchor="middle" class="diagram-text">スイッチ1</text>
   
-  <!-- Distribution Layer -->
-  <rect x="200" y="160" width="400" height="20" rx="3" fill="var(--dist-bg)" stroke="var(--warning)" stroke-width="1"/>
-  <text x="400" y="174" class="section-title">ディストリビューション層</text>
+  <rect x="480" y="160" width="120" height="60" class="switch-dist"/>
+  <text x="540" y="185" text-anchor="middle" class="diagram-text">ディストリ</text>
+  <text x="540" y="205" text-anchor="middle" class="diagram-text">スイッチ2</text>
   
-  <rect x="220" y="200" width="140" height="40" rx="6" class="dist-node"/>
-  <text x="290" y="224" class="label-text">ディストリスイッチ1</text>
+  <!-- Access Switches -->
+  <rect x="80" y="280" width="120" height="60" class="switch-access"/>
+  <text x="140" y="300" text-anchor="middle" class="diagram-text">アクセススイッチ1</text>
+  <text x="140" y="320" text-anchor="middle" class="diagram-text">VLAN 10,20</text>
   
-  <rect x="440" y="200" width="140" height="40" rx="6" class="dist-node"/>
-  <text x="510" y="224" class="label-text">ディストリスイッチ2</text>
+  <rect x="240" y="280" width="120" height="60" class="switch-access"/>
+  <text x="300" y="300" text-anchor="middle" class="diagram-text">アクセススイッチ2</text>
+  <text x="300" y="320" text-anchor="middle" class="diagram-text">VLAN 30,40</text>
   
-  <!-- Access Layer -->
-  <rect x="100" y="270" width="600" height="20" rx="3" fill="var(--access-bg)" stroke="var(--success)" stroke-width="1"/>
-  <text x="400" y="284" class="section-title">アクセス層</text>
-  
-  <rect x="120" y="310" width="140" height="50" rx="6" class="access-node"/>
-  <text x="190" y="328" class="label-text">アクセススイッチ1</text>
-  <text x="190" y="348" class="annotation-text">VLAN 10,20</text>
-  
-  <rect x="330" y="310" width="140" height="50" rx="6" class="access-node"/>
-  <text x="400" y="328" class="label-text">アクセススイッチ2</text>
-  <text x="400" y="348" class="annotation-text">VLAN 30,40</text>
-  
-  <rect x="540" y="310" width="140" height="50" rx="6" class="access-node"/>
-  <text x="610" y="328" class="label-text">アクセススイッチ3</text>
-  <text x="610" y="348" class="annotation-text">VLAN 10,30</text>
+  <rect x="560" y="280" width="120" height="60" class="switch-access"/>
+  <text x="620" y="300" text-anchor="middle" class="diagram-text">アクセススイッチ3</text>
+  <text x="620" y="320" text-anchor="middle" class="diagram-text">VLAN 10,30</text>
   
   <!-- End Devices -->
-  <rect x="100" y="390" width="600" height="20" rx="3" fill="var(--device-bg)" stroke="var(--error)" stroke-width="1"/>
-  <text x="400" y="404" class="section-title">エンドデバイス</text>
+  <rect x="60" y="420" width="80" height="50" class="device vlan10"/>
+  <text x="100" y="440" text-anchor="middle" class="diagram-text">PC1</text>
+  <text x="100" y="455" text-anchor="middle" class="diagram-text">VLAN 10</text>
   
-  <rect x="120" y="430" width="80" height="40" rx="4" class="device-node"/>
-  <text x="160" y="446" class="label-text">PC1</text>
-  <text x="160" y="460" class="annotation-text">VLAN 10</text>
+  <rect x="160" y="420" width="80" height="50" class="device vlan20"/>
+  <text x="200" y="440" text-anchor="middle" class="diagram-text">PC2</text>
+  <text x="200" y="455" text-anchor="middle" class="diagram-text">VLAN 20</text>
   
-  <rect x="220" y="430" width="80" height="40" rx="4" class="device-node"/>
-  <text x="260" y="446" class="label-text">PC2</text>
-  <text x="260" y="460" class="annotation-text">VLAN 20</text>
+  <rect x="260" y="420" width="80" height="50" class="device vlan30"/>
+  <text x="300" y="440" text-anchor="middle" class="diagram-text">Server1</text>
+  <text x="300" y="455" text-anchor="middle" class="diagram-text">VLAN 30</text>
   
-  <rect x="420" y="430" width="80" height="40" rx="4" class="device-node"/>
-  <text x="460" y="446" class="label-text">Server1</text>
-  <text x="460" y="460" class="annotation-text">VLAN 30</text>
+  <rect x="360" y="420" width="80" height="50" class="device vlan40"/>
+  <text x="400" y="440" text-anchor="middle" class="diagram-text">Server2</text>
+  <text x="400" y="455" text-anchor="middle" class="diagram-text">VLAN 40</text>
   
-  <rect x="520" y="430" width="80" height="40" rx="4" class="device-node"/>
-  <text x="560" y="446" class="label-text">Server2</text>
-  <text x="560" y="460" class="annotation-text">VLAN 40</text>
+  <!-- Trunk Links -->
+  <line x1="400" y1="120" x2="260" y2="160" class="trunk-link"/>
+  <line x1="400" y1="120" x2="540" y2="160" class="trunk-link"/>
   
-  <!-- Trunk Connections -->
-  <line x1="400" y1="130" x2="290" y2="200" class="trunk-line"/>
-  <line x1="400" y1="130" x2="510" y2="200" class="trunk-line"/>
+  <line x1="260" y1="220" x2="140" y2="280" class="trunk-link"/>
+  <line x1="260" y1="220" x2="300" y2="280" class="trunk-link"/>
   
-  <line x1="290" y1="240" x2="190" y2="310" class="trunk-line"/>
-  <line x1="290" y1="240" x2="400" y2="310" class="trunk-line"/>
-  <line x1="510" y1="240" x2="400" y2="310" class="trunk-line"/>
-  <line x1="510" y1="240" x2="610" y2="310" class="trunk-line"/>
+  <line x1="540" y1="220" x2="300" y2="280" class="trunk-link"/>
+  <line x1="540" y1="220" x2="620" y2="280" class="trunk-link"/>
   
-  <!-- Access Connections -->
-  <line x1="190" y1="360" x2="160" y2="430" class="access-line"/>
-  <line x1="190" y1="360" x2="260" y2="430" class="access-line"/>
-  <line x1="400" y1="360" x2="460" y2="430" class="access-line"/>
-  <line x1="400" y1="360" x2="560" y2="430" class="access-line"/>
-  
-  <!-- Connection Labels -->
-  <text x="340" y="170" class="annotation-text">Trunk</text>
-  <text x="460" y="170" class="annotation-text">Trunk</text>
-  <text x="240" y="280" class="annotation-text">Trunk</text>
-  <text x="340" y="280" class="annotation-text">Trunk</text>
-  <text x="460" y="280" class="annotation-text">Trunk</text>
-  <text x="560" y="280" class="annotation-text">Trunk</text>
-  <text x="170" y="400" class="annotation-text">Access</text>
-  <text x="250" y="400" class="annotation-text">Access</text>
-  <text x="440" y="400" class="annotation-text">Access</text>
-  <text x="540" y="400" class="annotation-text">Access</text>
+  <!-- Access Links -->
+  <line x1="140" y1="340" x2="100" y2="420" class="access-link"/>
+  <line x1="140" y1="340" x2="200" y2="420" class="access-link"/>
+  <line x1="300" y1="340" x2="300" y2="420" class="access-link"/>
+  <line x1="300" y1="340" x2="400" y2="420" class="access-link"/>
   
   <!-- VLAN Legend -->
-  <rect x="100" y="500" width="600" height="180" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
-  <text x="400" y="520" class="section-title">VLAN設計パターン詳細</text>
+  <text x="50" y="520" class="diagram-title">VLAN割り当て例</text>
   
-  <!-- Function-based VLAN -->
-  <text x="120" y="545" class="label-text" text-anchor="start">機能別VLAN:</text>
-  <text x="130" y="565" class="annotation-text" text-anchor="start">VLAN 10: 営業部門</text>
-  <text x="130" y="580" class="annotation-text" text-anchor="start">VLAN 20: 開発部門</text>
-  <text x="130" y="595" class="annotation-text" text-anchor="start">VLAN 30: 管理部門</text>
-  <text x="130" y="610" class="annotation-text" text-anchor="start">VLAN 99: 管理用</text>
+  <rect x="50" y="530" width="15" height="15" class="vlan10"/>
+  <text x="75" y="542" class="diagram-text">VLAN 10: 営業部門</text>
   
-  <!-- Service-based VLAN -->
-  <text x="420" y="545" class="label-text" text-anchor="start">サービス別VLAN:</text>
-  <text x="430" y="565" class="annotation-text" text-anchor="start">VLAN 100: ユーザーデータ</text>
-  <text x="430" y="580" class="annotation-text" text-anchor="start">VLAN 200: VoIP</text>
-  <text x="430" y="595" class="annotation-text" text-anchor="start">VLAN 300: ビデオ会議</text>
-  <text x="430" y="610" class="annotation-text" text-anchor="start">VLAN 400: ゲストアクセス</text>
+  <rect x="200" y="530" width="15" height="15" class="vlan20"/>
+  <text x="225" y="542" class="diagram-text">VLAN 20: 開発部門</text>
   
-  <!-- Benefits -->
-  <text x="120" y="635" class="label-text" text-anchor="start">利点:</text>
-  <text x="130" y="650" class="annotation-text" text-anchor="start">• 部門間トラフィック分離</text>
-  <text x="130" y="665" class="annotation-text" text-anchor="start">• セキュリティポリシー適用</text>
+  <rect x="350" y="530" width="15" height="15" class="vlan30"/>
+  <text x="375" y="542" class="diagram-text">VLAN 30: サーバー</text>
   
-  <text x="420" y="635" class="label-text" text-anchor="start">利点:</text>
-  <text x="430" y="650" class="annotation-text" text-anchor="start">• QoS適用が容易</text>
-  <text x="430" y="665" class="annotation-text" text-anchor="start">• サービス単位管理</text>
+  <rect x="500" y="530" width="15" height="15" class="vlan40"/>
+  <text x="525" y="542" class="diagram-text">VLAN 40: 管理用</text>
   
+  <!-- Link Types Legend -->
+  <text x="450" y="520" class="diagram-title">リンクタイプ</text>
+  
+  <line x1="450" y1="540" x2="480" y2="540" class="trunk-link"/>
+  <text x="490" y="545" class="diagram-text">Trunkリンク（全VLAN通過）</text>
+  
+  <line x1="450" y1="560" x2="480" y2="560" class="access-link"/>
+  <text x="490" y="565" class="diagram-text">Accessリンク（単一VLAN）</text>
+  
+  <!-- Accessibility -->
+  <title>VLAN設計パターン</title>
+  <desc>3層ネットワークアーキテクチャにおけるVLAN設計パターンと接続形態を示す図</desc>
 </svg>

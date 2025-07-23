@@ -29,44 +29,7 @@ title: "第12章：エンドツーエンドシステム設計"
 
 システムの成長に応じたスケーラビリティの段階を[図12-1]に示す。
 
-[図12-1: スケーラビリティの段階]
-```mermaid
-graph TB
-    subgraph "フェーズ1: 単一サーバー"
-        P1[Webサーバー<br/>アプリ<br/>DB<br/>キャッシュ]
-    end
-    
-    subgraph "フェーズ2: 機能分離"
-        P2_WEB[Webサーバー]
-        P2_APP[アプリサーバー]
-        P2_DB[DBサーバー]
-        P2_CACHE[キャッシュサーバー]
-        
-        P2_WEB --> P2_APP
-        P2_APP --> P2_DB
-        P2_APP --> P2_CACHE
-    end
-    
-    subgraph "フェーズ3: 水平スケーリング"
-        P3_LB[ロードバランサー]
-        P3_WEB1[Web1]
-        P3_WEB2[Web2]
-        P3_APP1[App1]
-        P3_APP2[App2]
-        P3_DB_M[DB Master]
-        P3_DB_S[DB Slave]
-        
-        P3_LB --> P3_WEB1
-        P3_LB --> P3_WEB2
-        P3_WEB1 --> P3_APP1
-        P3_WEB2 --> P3_APP2
-        P3_APP1 --> P3_DB_M
-        P3_APP2 --> P3_DB_S
-    end
-    
-    P1 -->|成長| P2_WEB
-    P2_APP -->|成長| P3_LB
-```
+![図12-1: スケーラビリティの段階]({{ '/assets/images/diagrams/chapter12/scalability-stages.svg' | relative_url }})
 
 ### 垂直スケーリングから水平スケーリングへ
 

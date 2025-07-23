@@ -83,26 +83,7 @@ Ethernetは時代の要求に応じて進化を続けた：
 
 スイッチング動作を理解するには、まずEthernetフレームの構造を知る必要がある。[図2-1]にフレーム構造を示す。
 
-[図2-1: Ethernetフレーム構造]
-```mermaid
-graph TB
-    subgraph "Ethernetフレーム"
-        A[プリアンブル<br/>7バイト]
-        B[SFD<br/>1バイト]
-        C[宛先MAC<br/>6バイト]
-        D[送信元MAC<br/>6バイト]
-        E[タイプ/長さ<br/>2バイト]
-        F[ペイロード<br/>46-1500バイト]
-        G[FCS<br/>4バイト]
-    end
-    
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-```
+![図2-1: Ethernetフレーム構造]({{ '/assets/images/diagrams/chapter02/ethernet-frame-structure.svg' | relative_url }})
 
 ### CAMテーブルの実装とメモリ制約
 
@@ -211,43 +192,7 @@ class SecurePort:
 
 実際のネットワークでは、目的に応じたVLAN設計が重要である。[図2-2]に典型的なVLAN設計パターンを示す。
 
-[図2-2: VLAN設計パターン]
-```mermaid
-graph TB
-    subgraph "コアスイッチ"
-        CS[コアスイッチ<br/>Trunk設定]
-    end
-    
-    subgraph "ディストリビューション層"
-        DS1[ディストリスイッチ1]
-        DS2[ディストリスイッチ2]
-    end
-    
-    subgraph "アクセス層"
-        AS1[アクセススイッチ1<br/>VLAN 10,20]
-        AS2[アクセススイッチ2<br/>VLAN 30,40]
-        AS3[アクセススイッチ3<br/>VLAN 10,30]
-    end
-    
-    subgraph "エンドデバイス"
-        PC1[PC1<br/>VLAN 10]
-        PC2[PC2<br/>VLAN 20]
-        SRV1[Server1<br/>VLAN 30]
-        SRV2[Server2<br/>VLAN 40]
-    end
-    
-    CS ---|Trunk| DS1
-    CS ---|Trunk| DS2
-    DS1 ---|Trunk| AS1
-    DS1 ---|Trunk| AS2
-    DS2 ---|Trunk| AS2
-    DS2 ---|Trunk| AS3
-    
-    AS1 ---|Access| PC1
-    AS1 ---|Access| PC2
-    AS2 ---|Access| SRV1
-    AS2 ---|Access| SRV2
-```
+![図2-2: VLAN設計パターン]({{ '/assets/images/diagrams/chapter02/vlan-design-pattern.svg' | relative_url }})
 
 **設計パターンの分類**
 
@@ -337,21 +282,7 @@ L2ネットワークでループが発生すると、ブロードキャストス
 
 STPは冗長性を保ちながらループを防ぐ。[図2-3]に状態遷移を示す。
 
-[図2-3: スパニングツリー収束プロセス]
-```mermaid
-stateDiagram-v2
-    [*] --> Disabled
-    Disabled --> Blocking: ポート有効化
-    Blocking --> Listening: 20秒経過
-    Listening --> Learning: 15秒経過
-    Learning --> Forwarding: 15秒経過
-    Forwarding --> Blocking: トポロジ変更検出
-    
-    note right of Blocking: BPDUを受信のみ
-    note right of Listening: BPDUを送受信
-    note right of Learning: MACアドレス学習
-    note right of Forwarding: データ転送可能
-```
+![図2-3: スパニングツリー収束プロセス]({{ '/assets/images/diagrams/chapter02/spanning-tree-convergence.svg' | relative_url }})
 
 ### 収束時間とネットワーク規模の関係
 

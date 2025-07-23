@@ -1,0 +1,126 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .diagram-text { font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 11px; fill: var(--color-text-primary, #1a1a1a); }
+      .diagram-title { font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 16px; font-weight: bold; fill: var(--color-text-primary, #1a1a1a); }
+      .phase-title { font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 13px; font-weight: bold; fill: var(--color-text-primary, #1a1a1a); }
+      .server { fill: var(--color-primary-light, #e3f2fd); stroke: var(--color-primary, #1976d2); stroke-width: 2; }
+      .web-server { fill: var(--color-secondary-light, #f3e5f5); stroke: var(--color-secondary, #7b1fa2); stroke-width: 2; }
+      .app-server { fill: var(--color-accent-light, #fff3e0); stroke: var(--color-accent, #ff6b35); stroke-width: 2; }
+      .db-server { fill: var(--color-warning-light, #fff8e1); stroke: var(--color-warning, #f57c00); stroke-width: 2; }
+      .cache-server { fill: var(--color-info-light, #e1f5fe); stroke: var(--color-info, #0288d1); stroke-width: 2; }
+      .lb-server { fill: var(--color-success-light, #e8f5e8); stroke: var(--color-success, #2e7d32); stroke-width: 2; }
+      .connection { stroke: var(--color-text-secondary, #666); stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .growth-arrow { stroke: var(--color-error, #d32f2f); stroke-width: 3; fill: none; marker-end: url(#growth); }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="var(--color-text-secondary, #666)" />
+    </marker>
+    <marker id="growth" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--color-error, #d32f2f)" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="600" fill="var(--color-bg-primary, #ffffff)"/>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" class="diagram-title">図12-1: スケーラビリティの段階</text>
+  
+  <!-- Phase 1: Single Server -->
+  <text x="120" y="70" text-anchor="middle" class="phase-title">フェーズ1: 単一サーバー</text>
+  <rect x="60" y="90" width="120" height="120" class="server"/>
+  <text x="120" y="110" text-anchor="middle" class="diagram-text">Webサーバー</text>
+  <text x="120" y="130" text-anchor="middle" class="diagram-text">アプリケーション</text>
+  <text x="120" y="150" text-anchor="middle" class="diagram-text">データベース</text>
+  <text x="120" y="170" text-anchor="middle" class="diagram-text">キャッシュ</text>
+  <text x="120" y="190" text-anchor="middle" class="diagram-text">すべて統合</text>
+  
+  <!-- Growth Arrow 1 -->
+  <line x1="200" y1="150" x2="260" y2="150" class="growth-arrow"/>
+  <text x="230" y="140" text-anchor="middle" class="diagram-text">成長</text>
+  
+  <!-- Phase 2: Functional Separation -->
+  <text x="400" y="70" text-anchor="middle" class="phase-title">フェーズ2: 機能分離</text>
+  
+  <rect x="300" y="90" width="80" height="50" class="web-server"/>
+  <text x="340" y="110" text-anchor="middle" class="diagram-text">Web</text>
+  <text x="340" y="125" text-anchor="middle" class="diagram-text">サーバー</text>
+  
+  <rect x="300" y="160" width="80" height="50" class="app-server"/>
+  <text x="340" y="180" text-anchor="middle" class="diagram-text">アプリ</text>
+  <text x="340" y="195" text-anchor="middle" class="diagram-text">サーバー</text>
+  
+  <rect x="420" y="160" width="80" height="50" class="db-server"/>
+  <text x="460" y="180" text-anchor="middle" class="diagram-text">DB</text>
+  <text x="460" y="195" text-anchor="middle" class="diagram-text">サーバー</text>
+  
+  <rect x="420" y="230" width="80" height="50" class="cache-server"/>
+  <text x="460" y="250" text-anchor="middle" class="diagram-text">キャッシュ</text>
+  <text x="460" y="265" text-anchor="middle" class="diagram-text">サーバー</text>
+  
+  <!-- Connections Phase 2 -->
+  <line x1="340" y1="140" x2="340" y2="160" class="connection"/>
+  <line x1="380" y1="185" x2="420" y2="185" class="connection"/>
+  <line x1="380" y1="185" x2="420" y2="255" class="connection"/>
+  
+  <!-- Growth Arrow 2 -->
+  <line x1="520" y1="180" x2="580" y2="180" class="growth-arrow"/>
+  <text x="550" y="170" text-anchor="middle" class="diagram-text">成長</text>
+  
+  <!-- Phase 3: Horizontal Scaling -->
+  <text x="750" y="70" text-anchor="middle" class="phase-title">フェーズ3: 水平スケーリング</text>
+  
+  <!-- Load Balancer -->
+  <rect x="700" y="90" width="100" height="40" class="lb-server"/>
+  <text x="750" y="115" text-anchor="middle" class="diagram-text">ロードバランサー</text>
+  
+  <!-- Web Servers -->
+  <rect x="650" y="150" width="70" height="40" class="web-server"/>
+  <text x="685" y="175" text-anchor="middle" class="diagram-text">Web1</text>
+  
+  <rect x="730" y="150" width="70" height="40" class="web-server"/>
+  <text x="765" y="175" text-anchor="middle" class="diagram-text">Web2</text>
+  
+  <!-- App Servers -->
+  <rect x="650" y="210" width="70" height="40" class="app-server"/>
+  <text x="685" y="235" text-anchor="middle" class="diagram-text">App1</text>
+  
+  <rect x="730" y="210" width="70" height="40" class="app-server"/>
+  <text x="765" y="235" text-anchor="middle" class="diagram-text">App2</text>
+  
+  <!-- Database Servers -->
+  <rect x="650" y="270" width="70" height="40" class="db-server"/>
+  <text x="685" y="285" text-anchor="middle" class="diagram-text">DB</text>
+  <text x="685" y="300" text-anchor="middle" class="diagram-text">Master</text>
+  
+  <rect x="730" y="270" width="70" height="40" class="db-server"/>
+  <text x="765" y="285" text-anchor="middle" class="diagram-text">DB</text>
+  <text x="765" y="300" text-anchor="middle" class="diagram-text">Slave</text>
+  
+  <!-- Connections Phase 3 -->
+  <line x1="750" y1="130" x2="685" y2="150" class="connection"/>
+  <line x1="750" y1="130" x2="765" y2="150" class="connection"/>
+  <line x1="685" y1="190" x2="685" y2="210" class="connection"/>
+  <line x1="765" y1="190" x2="765" y2="210" class="connection"/>
+  <line x1="685" y1="250" x2="685" y2="270" class="connection"/>
+  <line x1="765" y1="250" x2="765" y2="270" class="connection"/>
+  
+  <!-- Characteristics section -->
+  <text x="450" y="380" text-anchor="middle" class="diagram-title">各段階の特徴</text>
+  
+  <rect x="50" y="400" width="800" height="160" fill="var(--color-bg-secondary, #f8f9fa)" stroke="var(--color-border, #dee2e6)" stroke-width="1"/>
+  
+  <text x="70" y="425" class="diagram-text" font-weight="bold">フェーズ1 - 単一サーバー:</text>
+  <text x="70" y="445" class="diagram-text">• 簡単な構成、低コスト • リソース共有によるボトルネック • 単一障害点</text>
+  
+  <text x="70" y="475" class="diagram-text" font-weight="bold">フェーズ2 - 機能分離:</text>
+  <text x="70" y="495" class="diagram-text">• 各機能の独立最適化 • 障害の影響範囲を限定 • 運用複雑性の増加</text>
+  
+  <text x="70" y="525" class="diagram-text" font-weight="bold">フェーズ3 - 水平スケーリング:</text>
+  <text x="70" y="545" class="diagram-text">• 負荷分散によるスケーラビリティ • 冗長性と可用性向上 • 分散システムの複雑性</text>
+  
+  <!-- Accessibility -->
+  <title>スケーラビリティの段階</title>
+  <desc>システム成長に応じた3段階のスケーラビリティアーキテクチャの進化を示す図</desc>
+</svg>

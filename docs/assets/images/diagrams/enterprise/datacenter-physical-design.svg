@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="1200" viewBox="0 0 800 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --floor-bg: #F3F4F6;
+        --cold-aisle: #DBEAFE;
+        --hot-aisle: #FEE2E2;
+        --power-bg: #FEF3C7;
+        --cooling-bg: #D1FAE5;
+        --security-bg: #FCE7F3;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --floor-bg: #374151;
+          --cold-aisle: #1E40AF;
+          --hot-aisle: #991B1B;
+          --power-bg: #92400E;
+          --cooling-bg: #047857;
+          --security-bg: #BE185D;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .component-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .description-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 9px;
+        font-weight: 400;
+        text-anchor: start;
+        fill: var(--text-secondary);
+      }
+      
+      /* Component Styles */
+      .floor-area {
+        fill: var(--floor-bg);
+        stroke: var(--border);
+        stroke-width: 2;
+      }
+      
+      .cold-aisle {
+        fill: var(--cold-aisle);
+        stroke: var(--primary);
+        stroke-width: 2;
+      }
+      
+      .hot-aisle {
+        fill: var(--hot-aisle);
+        stroke: var(--error);
+        stroke-width: 2;
+      }
+      
+      .rack-unit {
+        fill: var(--bg-primary);
+        stroke: var(--neutral);
+        stroke-width: 1.5;
+      }
+      
+      .power-system {
+        fill: var(--power-bg);
+        stroke: var(--warning);
+        stroke-width: 2;
+      }
+      
+      .cooling-system {
+        fill: var(--cooling-bg);
+        stroke: var(--success);
+        stroke-width: 2;
+      }
+      
+      .security-system {
+        fill: var(--security-bg);
+        stroke: var(--error);
+        stroke-width: 2;
+      }
+      
+      /* Connection Lines */
+      .power-line {
+        stroke: var(--warning);
+        stroke-width: 3;
+        opacity: 0.8;
+      }
+      
+      .cooling-line {
+        stroke: var(--success);
+        stroke-width: 2;
+        stroke-dasharray: 4,4;
+      }
+      
+      .network-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+      }
+    </style>
+  </defs>
+  
+  <title>データセンター物理設計図</title>
+  <desc>コールドアイル/ホットアイル、電源・冷却システム、セキュリティシステムの統合設計</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">データセンター物理設計図</text>
+  
+  <!-- Floor Layout Section -->
+  <rect x="50" y="60" width="700" height="20" rx="3" fill="var(--floor-bg)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="74" class="section-title">フロアレイアウト（コールドアイル/ホットアイル設計）</text>
+  
+  <!-- Main Floor Area -->
+  <rect x="50" y="100" width="700" height="300" rx="8" class="floor-area"/>
+  
+  <!-- Cold Aisles -->
+  <rect x="80" y="120" width="40" height="260" rx="4" class="cold-aisle"/>
+  <text x="100" y="140" class="label-text" transform="rotate(-90 100 140)">Cold Aisle</text>
+  <text x="100" y="360" class="label-text">18-20°C</text>
+  
+  <rect x="200" y="120" width="40" height="260" rx="4" class="cold-aisle"/>
+  <text x="220" y="140" class="label-text" transform="rotate(-90 220 140)">Cold Aisle</text>
+  
+  <rect x="320" y="120" width="40" height="260" rx="4" class="cold-aisle"/>
+  <text x="340" y="140" class="label-text" transform="rotate(-90 340 140)">Cold Aisle</text>
+  
+  <rect x="440" y="120" width="40" height="260" rx="4" class="cold-aisle"/>
+  <text x="460" y="140" class="label-text" transform="rotate(-90 460 140)">Cold Aisle</text>
+  
+  <rect x="560" y="120" width="40" height="260" rx="4" class="cold-aisle"/>
+  <text x="580" y="140" class="label-text" transform="rotate(-90 580 140)">Cold Aisle</text>
+  
+  <rect x="680" y="120" width="40" height="260" rx="4" class="cold-aisle"/>
+  <text x="700" y="140" class="label-text" transform="rotate(-90 700 140)">Cold Aisle</text>
+  
+  <!-- Hot Aisles -->
+  <rect x="140" y="120" width="40" height="260" rx="4" class="hot-aisle"/>
+  <text x="160" y="140" class="label-text" transform="rotate(-90 160 140)">Hot Aisle</text>
+  <text x="160" y="360" class="label-text">35-40°C</text>
+  
+  <rect x="260" y="120" width="40" height="260" rx="4" class="hot-aisle"/>
+  <text x="280" y="140" class="label-text" transform="rotate(-90 280 140)">Hot Aisle</text>
+  
+  <rect x="380" y="120" width="40" height="260" rx="4" class="hot-aisle"/>
+  <text x="400" y="140" class="label-text" transform="rotate(-90 400 140)">Hot Aisle</text>
+  
+  <rect x="500" y="120" width="40" height="260" rx="4" class="hot-aisle"/>
+  <text x="520" y="140" class="label-text" transform="rotate(-90 520 140)">Hot Aisle</text>
+  
+  <rect x="620" y="120" width="40" height="260" rx="4" class="hot-aisle"/>
+  <text x="640" y="140" class="label-text" transform="rotate(-90 640 140)">Hot Aisle</text>
+  
+  <!-- Server Racks -->
+  <g id="racks">
+    <!-- Rack Row 1 -->
+    <rect x="120" y="130" width="20" height="30" class="rack-unit"/>
+    <rect x="120" y="170" width="20" height="30" class="rack-unit"/>
+    <rect x="120" y="210" width="20" height="30" class="rack-unit"/>
+    <rect x="120" y="250" width="20" height="30" class="rack-unit"/>
+    <rect x="120" y="290" width="20" height="30" class="rack-unit"/>
+    <rect x="120" y="330" width="20" height="30" class="rack-unit"/>
+    
+    <!-- Rack Row 2 -->
+    <rect x="180" y="130" width="20" height="30" class="rack-unit"/>
+    <rect x="180" y="170" width="20" height="30" class="rack-unit"/>
+    <rect x="180" y="210" width="20" height="30" class="rack-unit"/>
+    <rect x="180" y="250" width="20" height="30" class="rack-unit"/>
+    <rect x="180" y="290" width="20" height="30" class="rack-unit"/>
+    <rect x="180" y="330" width="20" height="30" class="rack-unit"/>
+    
+    <!-- Additional racks -->
+    <rect x="300" y="130" width="20" height="240" class="rack-unit"/>
+    <rect x="420" y="130" width="20" height="240" class="rack-unit"/>
+    <rect x="540" y="130" width="20" height="240" class="rack-unit"/>
+    <rect x="660" y="130" width="20" height="240" class="rack-unit"/>
+  </g>
+  
+  <!-- Power Systems Section -->
+  <rect x="50" y="430" width="700" height="20" rx="3" fill="var(--power-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="400" y="444" class="section-title">電源システム（UPS・発電機・PDU冗長構成）</text>
+  
+  <!-- Main Power Infrastructure -->
+  <rect x="50" y="470" width="700" height="200" rx="8" class="power-system"/>
+  
+  <!-- Utility Power -->
+  <rect x="80" y="490" width="120" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="140" y="510" class="component-title">商用電源</text>
+  <text x="140" y="530" class="label-text">Primary Feed</text>
+  <text x="140" y="545" class="label-text">11kV → 400V</text>
+  
+  <rect x="220" y="490" width="120" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="280" y="510" class="component-title">予備電源</text>
+  <text x="280" y="530" class="label-text">Secondary Feed</text>
+  <text x="280" y="545" class="label-text">11kV → 400V</text>
+  
+  <!-- Generator -->
+  <rect x="360" y="490" width="120" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="420" y="510" class="component-title">非常用発電機</text>
+  <text x="420" y="530" class="label-text">Diesel Generator</text>
+  <text x="420" y="545" class="label-text">2MW × 2台</text>
+  
+  <!-- UPS Systems -->
+  <rect x="500" y="490" width="120" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="560" y="510" class="component-title">UPS-A</text>
+  <text x="560" y="530" class="label-text">Online UPS</text>
+  <text x="560" y="545" class="label-text">500kVA</text>
+  
+  <rect x="640" y="490" width="80" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="680" y="510" class="component-title">UPS-B</text>
+  <text x="680" y="530" class="label-text">500kVA</text>
+  
+  <!-- PDU Distribution -->
+  <rect x="80" y="570" width="280" height="80" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="220" y="590" class="component-title">Power Distribution Unit (PDU)</text>
+  <text x="90" y="610" class="description-text">• A系統 PDU (冗長化)</text>
+  <text x="90" y="625" class="description-text">• B系統 PDU (冗長化)</text>
+  <text x="90" y="640" class="description-text">• 各ラックに A/B 電源供給</text>
+  
+  <!-- Power Capacity Management -->
+  <rect x="380" y="570" width="340" height="80" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="550" y="590" class="component-title">電力容量管理・監視</text>
+  <text x="390" y="610" class="description-text">• 総消費電力: 800kW (設計容量: 1.2MW)</text>
+  <text x="390" y="625" class="description-text">• PUE目標値: 1.3 (Power Usage Effectiveness)</text>
+  <text x="390" y="640" class="description-text">• リアルタイム電力監視・アラート</text>
+  
+  <!-- Cooling Systems Section -->
+  <rect x="50" y="690" width="700" height="20" rx="3" fill="var(--cooling-bg)" stroke="var(--success)" stroke-width="1"/>
+  <text x="400" y="704" class="section-title">空調システム（CRAC・液冷・熱負荷分散）</text>
+  
+  <!-- Cooling Infrastructure -->
+  <rect x="50" y="730" width="700" height="180" rx="8" class="cooling-system"/>
+  
+  <!-- CRAC Units -->
+  <rect x="80" y="750" width="100" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="130" y="770" class="component-title">CRAC-1</text>
+  <text x="130" y="790" class="label-text">80kW冷却</text>
+  <text x="130" y="805" class="label-text">N+1冗長</text>
+  
+  <rect x="200" y="750" width="100" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="250" y="770" class="component-title">CRAC-2</text>
+  <text x="250" y="790" class="label-text">80kW冷却</text>
+  
+  <rect x="320" y="750" width="100" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="370" y="770" class="component-title">CRAC-3</text>
+  <text x="370" y="790" class="label-text">80kW冷却</text>
+  
+  <!-- Liquid Cooling -->
+  <rect x="440" y="750" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="510" y="770" class="component-title">液冷システム</text>
+  <text x="510" y="790" class="label-text">高密度ラック対応</text>
+  <text x="510" y="805" class="label-text">40kW/ラック</text>
+  
+  <!-- Chiller System -->
+  <rect x="600" y="750" width="120" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="660" y="770" class="component-title">チラー</text>
+  <text x="660" y="790" class="label-text">外部冷却水</text>
+  <text x="660" y="805" class="label-text">500RT × 2台</text>
+  
+  <!-- Environmental Monitoring -->
+  <rect x="80" y="830" width="640" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="400" y="850" class="component-title">環境監視・制御システム</text>
+  <text x="90" y="870" class="description-text">• 温湿度センサー（各アイル）  • 風量・風向監視  • 自動負荷分散制御  • エネルギー効率最適化</text>
+  
+  <!-- Security & Safety Section -->
+  <rect x="50" y="930" width="700" height="20" rx="3" fill="var(--security-bg)" stroke="var(--error)" stroke-width="1"/>
+  <text x="400" y="944" class="section-title">セキュリティ・ファイアシステム（入退室・監視・消火）</text>
+  
+  <!-- Security Infrastructure -->
+  <rect x="50" y="970" width="700" height="160" rx="8" class="security-system"/>
+  
+  <!-- Access Control -->
+  <rect x="80" y="990" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--error)" stroke-width="1"/>
+  <text x="150" y="1010" class="component-title">入退室管理</text>
+  <text x="150" y="1030" class="label-text">生体認証・ICカード</text>
+  <text x="150" y="1045" class="label-text">マントラップ</text>
+  
+  <!-- CCTV System -->
+  <rect x="240" y="990" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="310" y="1010" class="component-title">監視カメラ</text>
+  <text x="310" y="1030" class="label-text">HD録画・AI分析</text>
+  <text x="310" y="1045" class="label-text">24時間監視</text>
+  
+  <!-- Fire Suppression -->
+  <rect x="400" y="990" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="470" y="1010" class="component-title">消火システム</text>
+  <text x="470" y="1030" class="label-text">ガス系消火剤</text>
+  <text x="470" y="1045" class="label-text">VESDA検知</text>
+  
+  <!-- Environmental Sensors -->
+  <rect x="560" y="990" width="140" height="60" rx="4" fill="var(--bg-primary)" stroke="var(--success)" stroke-width="1"/>
+  <text x="630" y="1010" class="component-title">環境センサー</text>
+  <text x="630" y="1030" class="label-text">煙・温度・湿度</text>
+  <text x="630" y="1045" class="label-text">漏水検知</text>
+  
+  <!-- Security Operations -->
+  <rect x="80" y="1070" width="640" height="40" rx="4" fill="var(--bg-primary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="400" y="1094" class="component-title">統合セキュリティ運用センター（SOC連携・インシデント対応）</text>
+  
+  <!-- Connection Lines -->
+  <!-- Power connections -->
+  <line x1="140" y1="550" x2="140" y2="570" class="power-line"/>
+  <line x1="280" y1="550" x2="280" y2="570" class="power-line"/>
+  <line x1="560" y1="550" x2="560" y2="570" class="power-line"/>
+  
+  <!-- Cooling airflow -->
+  <path d="M 130 810 Q 300 820 470 810" fill="none" class="cooling-line"/>
+  <path d="M 250 810 Q 400 820 550 810" fill="none" class="cooling-line"/>
+  
+</svg>

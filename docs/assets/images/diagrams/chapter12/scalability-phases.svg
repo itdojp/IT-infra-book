@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --phase1-bg: #ffebee;
+        --phase2-bg: #fff3e0;
+        --phase3-bg: #e8f5e8;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --phase1-bg: #B71C1C;
+          --phase2-bg: #E65100;
+          --phase3-bg: #1B5E20;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .phase1-node {
+        fill: var(--phase1-bg);
+        stroke: var(--error);
+        stroke-width: 2;
+      }
+      
+      .phase2-node {
+        fill: var(--phase2-bg);
+        stroke: var(--warning);
+        stroke-width: 1.5;
+      }
+      
+      .phase3-node {
+        fill: var(--phase3-bg);
+        stroke: var(--success);
+        stroke-width: 1.5;
+      }
+      
+      /* Connection Lines */
+      .connection-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+  </defs>
+  
+  <title>スケーラビリティの段階</title>
+  <desc>システム成長に応じたアーキテクチャの段階的発展</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">スケーラビリティの段階</text>
+  
+  <!-- Phase 1: Single Server -->
+  <rect x="100" y="60" width="180" height="20" rx="3" fill="var(--phase1-bg)" stroke="var(--error)" stroke-width="1"/>
+  <text x="190" y="74" class="section-title">フェーズ1: 単一サーバー</text>
+  
+  <rect x="130" y="100" width="120" height="80" rx="6" class="phase1-node"/>
+  <text x="190" y="120" class="label-text">Webサーバー</text>
+  <text x="190" y="136" class="label-text">アプリ</text>
+  <text x="190" y="152" class="label-text">DB</text>
+  <text x="190" y="168" class="label-text">キャッシュ</text>
+  
+  <!-- Phase 2: Function Separation -->
+  <rect x="310" y="60" width="180" height="20" rx="3" fill="var(--phase2-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="400" y="74" class="section-title">フェーズ2: 機能分離</text>
+  
+  <rect x="320" y="100" width="80" height="30" rx="4" class="phase2-node"/>
+  <text x="360" y="120" class="label-text">Webサーバー</text>
+  
+  <rect x="420" y="100" width="80" height="30" rx="4" class="phase2-node"/>
+  <text x="460" y="120" class="label-text">アプリサーバー</text>
+  
+  <rect x="320" y="150" width="80" height="30" rx="4" class="phase2-node"/>
+  <text x="360" y="170" class="label-text">DBサーバー</text>
+  
+  <rect x="420" y="150" width="80" height="30" rx="4" class="phase2-node"/>
+  <text x="460" y="170" class="label-text">キャッシュサーバー</text>
+  
+  <!-- Phase 2 Connections -->
+  <line x1="400" y1="115" x2="440" y2="115" class="connection-line"/>
+  <line x1="460" y1="130" x2="360" y2="150" class="connection-line"/>
+  <line x1="460" y1="130" x2="460" y2="150" class="connection-line"/>
+  
+  <!-- Phase 3: Horizontal Scaling -->
+  <rect x="520" y="60" width="180" height="20" rx="3" fill="var(--phase3-bg)" stroke="var(--success)" stroke-width="1"/>
+  <text x="610" y="74" class="section-title">フェーズ3: 水平スケーリング</text>
+  
+  <rect x="580" y="100" width="80" height="30" rx="4" class="phase3-node"/>
+  <text x="620" y="120" class="label-text">ロードバランサー</text>
+  
+  <rect x="540" y="150" width="60" height="30" rx="4" class="phase3-node"/>
+  <text x="570" y="170" class="label-text">Web1</text>
+  
+  <rect x="620" y="150" width="60" height="30" rx="4" class="phase3-node"/>
+  <text x="650" y="170" class="label-text">Web2</text>
+  
+  <!-- Phase 3 Connections -->
+  <line x1="620" y1="130" x2="570" y2="150" class="connection-line"/>
+  <line x1="620" y1="130" x2="650" y2="150" class="connection-line"/>
+  
+  <!-- Evolution Arrows -->
+  <path d="M 250 140 Q 270 120 310 140" fill="none" stroke="var(--primary)" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M 500 140 Q 510 120 520 140" fill="none" stroke="var(--primary)" stroke-width="3" marker-end="url(#arrow)"/>
+  
+  <!-- Characteristics -->
+  <rect x="100" y="220" width="600" height="260" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="240" class="section-title">各フェーズの特性</text>
+  
+  <!-- Phase 1 Details -->
+  <text x="120" y="265" class="label-text" text-anchor="start">フェーズ1: 単一サーバー</text>
+  <text x="130" y="285" class="annotation-text" text-anchor="start">• すべての機能が1台のサーバーに集約</text>
+  <text x="130" y="300" class="annotation-text" text-anchor="start">• 設定・管理が簡単</text>
+  <text x="130" y="315" class="annotation-text" text-anchor="start">• 単一障害点</text>
+  <text x="130" y="330" class="annotation-text" text-anchor="start">• 適用: 小規模、プロトタイプ</text>
+  
+  <!-- Phase 2 Details -->
+  <text x="120" y="355" class="label-text" text-anchor="start">フェーズ2: 機能分離</text>
+  <text x="130" y="375" class="annotation-text" text-anchor="start">• 機能ごとに専用サーバーを配置</text>
+  <text x="130" y="390" class="annotation-text" text-anchor="start">• ボトルネックの特定が容易</text>
+  <text x="130" y="405" class="annotation-text" text-anchor="start">• 個別最適化が可能</text>
+  <text x="130" y="420" class="annotation-text" text-anchor="start">• 適用: 中規模、成長期</text>
+  
+  <!-- Phase 3 Details -->
+  <text x="120" y="445" class="label-text" text-anchor="start">フェーズ3: 水平スケーリング</text>
+  <text x="130" y="465" class="annotation-text" text-anchor="start">• 同一機能のサーバーを複数配置</text>
+  
+  <!-- Performance Metrics -->
+  <text x="420" y="265" class="label-text" text-anchor="start">性能特性:</text>
+  <text x="430" y="285" class="annotation-text" text-anchor="start">フェーズ1: ~1,000 ユーザー</text>
+  <text x="430" y="300" class="annotation-text" text-anchor="start">フェーズ2: ~10,000 ユーザー</text>
+  <text x="430" y="315" class="annotation-text" text-anchor="start">フェーズ3: 10,000+ ユーザー</text>
+  
+  <text x="420" y="340" class="label-text" text-anchor="start">複雑性:</text>
+  <text x="430" y="360" class="annotation-text" text-anchor="start">フェーズ1: 低</text>
+  <text x="430" y="375" class="annotation-text" text-anchor="start">フェーズ2: 中</text>
+  <text x="430" y="390" class="annotation-text" text-anchor="start">フェーズ3: 高</text>
+  
+  <text x="420" y="415" class="label-text" text-anchor="start">移行指標:</text>
+  <text x="430" y="435" class="annotation-text" text-anchor="start">• CPU使用率 > 80%</text>
+  <text x="430" y="450" class="annotation-text" text-anchor="start">• レスポンス時間劣化</text>
+  <text x="430" y="465" class="annotation-text" text-anchor="start">• 可用性要件の向上</text>
+  
+</svg>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="700" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --master-bg: #10B981;
+        --slave-bg: #3B82F6;
+        --partition1-bg: #e8f5e8;
+        --partition2-bg: #fff3e0;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --master-bg: #34D399;
+          --slave-bg: #60A5FA;
+          --partition1-bg: #1B5E20;
+          --partition2-bg: #E65100;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .note-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: start;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .master-node {
+        fill: var(--master-bg);
+        stroke: var(--master-bg);
+        stroke-width: 2;
+      }
+      
+      .slave-node {
+        fill: var(--slave-bg);
+        stroke: var(--slave-bg);
+        stroke-width: 2;
+      }
+      
+      .partition-node {
+        fill: var(--warning);
+        stroke: var(--warning);
+        stroke-width: 2;
+      }
+      
+      /* Connection Lines */
+      .normal-connection {
+        stroke: var(--success);
+        stroke-width: 2;
+        opacity: 0.8;
+      }
+      
+      .broken-connection {
+        stroke: var(--error);
+        stroke-width: 2;
+        stroke-dasharray: 8,4;
+        opacity: 0.6;
+      }
+    </style>
+  </defs>
+  
+  <title>スプリットブレイン対策</title>
+  <desc>ネットワーク分断時のクォーラムによるスプリットブレイン防止</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">スプリットブレイン対策</text>
+  
+  <!-- Normal State Section -->
+  <rect x="50" y="60" width="700" height="20" rx="3" fill="var(--success)" fill-opacity="0.1" stroke="var(--success)" stroke-width="1"/>
+  <text x="400" y="74" class="section-title">正常時</text>
+  
+  <!-- Normal Nodes -->
+  <rect x="150" y="100" width="80" height="50" rx="6" class="master-node"/>
+  <text x="190" y="120" class="label-text" fill="white">ノード1</text>
+  <text x="190" y="138" class="annotation-text" fill="white">Master</text>
+  
+  <rect x="360" y="100" width="80" height="50" rx="6" class="slave-node"/>
+  <text x="400" y="120" class="label-text" fill="white">ノード2</text>
+  <text x="400" y="138" class="annotation-text" fill="white">Slave</text>
+  
+  <rect x="570" y="100" width="80" height="50" rx="6" class="slave-node"/>
+  <text x="610" y="120" class="label-text" fill="white">ノード3</text>
+  <text x="610" y="138" class="annotation-text" fill="white">Slave</text>
+  
+  <!-- Normal Connections -->
+  <line x1="230" y1="125" x2="360" y2="125" class="normal-connection"/>
+  <line x1="440" y1="125" x2="570" y2="125" class="normal-connection"/>
+  <line x1="190" y1="150" x2="610" y2="100" class="normal-connection"/>
+  
+  <!-- Network Partition Section -->
+  <rect x="50" y="190" width="700" height="20" rx="3" fill="var(--error)" fill-opacity="0.1" stroke="var(--error)" stroke-width="1"/>
+  <text x="400" y="204" class="section-title">ネットワーク分断</text>
+  
+  <!-- Partition 1 -->
+  <rect x="100" y="230" width="250" height="20" rx="3" fill="var(--partition1-bg)" stroke="var(--success)" stroke-width="1"/>
+  <text x="225" y="244" class="section-title">パーティション1</text>
+  
+  <rect x="130" y="260" width="80" height="50" rx="6" class="partition-node"/>
+  <text x="170" y="290" class="label-text" fill="white">ノード1</text>
+  
+  <rect x="240" y="260" width="80" height="50" rx="6" class="partition-node"/>
+  <text x="280" y="290" class="label-text" fill="white">ノード2</text>
+  
+  <!-- Partition 1 Connection -->
+  <line x1="210" y1="285" x2="240" y2="285" class="normal-connection"/>
+  
+  <!-- Partition 2 -->
+  <rect x="450" y="230" width="250" height="20" rx="3" fill="var(--partition2-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="575" y="244" class="section-title">パーティション2</text>
+  
+  <rect x="540" y="260" width="80" height="50" rx="6" class="partition-node"/>
+  <text x="580" y="290" class="label-text" fill="white">ノード3</text>
+  
+  <!-- Broken Connections -->
+  <line x1="320" y1="285" x2="540" y2="285" class="broken-connection"/>
+  <text x="400" y="275" class="annotation-text">分断</text>
+  <line x1="170" y1="310" x2="580" y2="260" class="broken-connection"/>
+  <text x="350" y="300" class="annotation-text">分断</text>
+  
+  <!-- Quorum Solution Section -->
+  <rect x="50" y="340" width="700" height="20" rx="3" fill="var(--primary)" fill-opacity="0.1" stroke="var(--primary)" stroke-width="1"/>
+  <text x="400" y="354" class="section-title">クォーラムによる解決</text>
+  
+  <!-- Quorum Explanation -->
+  <rect x="100" y="380" width="600" height="100" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="400" class="label-text">クォーラム判定結果</text>
+  
+  <text x="120" y="425" class="note-text">パーティション1: 2ノード（過半数） → サービス継続</text>
+  <text x="120" y="445" class="note-text">パーティション2: 1ノード（少数） → サービス停止</text>
+  <text x="120" y="465" class="note-text">クォーラム = ⌈(総ノード数 + 1) / 2⌉ = ⌈(3 + 1) / 2⌉ = 2</text>
+  
+  <!-- Technical Details -->
+  <rect x="50" y="500" width="700" height="180" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="520" class="section-title">実装詳細</text>
+  
+  <!-- Implementation Details -->
+  <text x="70" y="545" class="label-text" text-anchor="start">クォーラム計算:</text>
+  <text x="80" y="565" class="note-text">• 3ノード構成: クォーラム = 2</text>
+  <text x="80" y="580" class="note-text">• 5ノード構成: クォーラム = 3</text>
+  <text x="80" y="595" class="note-text">• 7ノード構成: クォーラム = 4</text>
+  
+  <text x="320" y="545" class="label-text" text-anchor="start">障害パターン:</text>
+  <text x="330" y="565" class="note-text">• 1ノード障害: 残り2ノードで継続</text>
+  <text x="330" y="580" class="note-text">• 2ノード障害: 残り1ノードで停止</text>
+  <text x="330" y="595" class="note-text">• ネットワーク分断: 過半数側のみ継続</text>
+  
+  <text x="70" y="620" class="label-text" text-anchor="start">追加対策:</text>
+  <text x="80" y="640" class="note-text">• フェンシング: 少数側ノードの強制停止</text>
+  <text x="80" y="655" class="note-text">• ウィットネス: 外部の判定ノード</text>
+  <text x="80" y="670" class="note-text">• ディスクベースクォーラム: 共有ストレージによる判定</text>
+  
+  <text x="420" y="620" class="label-text" text-anchor="start">注意点:</text>
+  <text x="430" y="640" class="note-text">• 偶数ノードでは完全な分断で両側停止</text>
+  <text x="430" y="655" class="note-text">• クォーラム要件を満たさない場合はサービス停止</text>
+  <text x="430" y="670" class="note-text">• ネットワーク復旧時の自動再統合</text>
+  
+</svg>

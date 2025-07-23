@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --sev1-bg: #ffebee;
+        --sev2-bg: #fff3e0;
+        --sev3-bg: #e8f5e8;
+        --sev4-bg: #e3f2fd;
+        --process-bg: #f5f3ff;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --sev1-bg: #B71C1C;
+          --sev2-bg: #E65100;
+          --sev3-bg: #1B5E20;
+          --sev4-bg: #1A237E;
+          --process-bg: #4A148C;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .note-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: start;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* State Styles */
+      .start-state {
+        fill: var(--success);
+        stroke: var(--success);
+        stroke-width: 2;
+      }
+      
+      .detection-state {
+        fill: var(--warning);
+        stroke: var(--warning);
+        stroke-width: 2;
+      }
+      
+      .classification-state {
+        fill: var(--primary);
+        stroke: var(--primary);
+        stroke-width: 2;
+      }
+      
+      .sev1-state {
+        fill: var(--sev1-bg);
+        stroke: var(--error);
+        stroke-width: 2;
+      }
+      
+      .sev2-state {
+        fill: var(--sev2-bg);
+        stroke: var(--warning);
+        stroke-width: 2;
+      }
+      
+      .sev3-state {
+        fill: var(--sev3-bg);
+        stroke: var(--success);
+        stroke-width: 2;
+      }
+      
+      .sev4-state {
+        fill: var(--sev4-bg);
+        stroke: var(--primary);
+        stroke-width: 2;
+      }
+      
+      .process-state {
+        fill: var(--process-bg);
+        stroke: var(--primary);
+        stroke-width: 2;
+      }
+      
+      .end-state {
+        fill: var(--neutral);
+        stroke: var(--neutral);
+        stroke-width: 2;
+      }
+      
+      /* Connection Lines */
+      .flow-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+      
+      .conditional-line {
+        stroke: var(--warning);
+        stroke-width: 2;
+        marker-end: url(#arrow-orange);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--warning)"/>
+    </marker>
+  </defs>
+  
+  <title>インシデント対応フロー</title>
+  <desc>SEV分類からポストモーテムまでの体系的インシデント対応プロセス</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">インシデント対応フロー</text>
+  
+  <!-- Start State -->
+  <circle cx="400" cy="70" r="16" class="start-state"/>
+  <text x="400" y="76" class="annotation-text" fill="white">開始</text>
+  
+  <!-- Detection State -->
+  <rect x="350" y="110" width="100" height="40" rx="6" class="detection-state"/>
+  <text x="400" y="124" class="label-text" fill="white">検知</text>
+  <text x="400" y="138" class="annotation-text" fill="white">アラート発生</text>
+  
+  <!-- Classification State -->
+  <rect x="350" y="180" width="100" height="40" rx="6" class="classification-state"/>
+  <text x="400" y="194" class="label-text" fill="white">分類</text>
+  <text x="400" y="208" class="annotation-text" fill="white">インシデント作成</text>
+  
+  <!-- Severity States -->
+  <rect x="100" y="260" width="80" height="40" rx="6" class="sev1-state"/>
+  <text x="140" y="274" class="label-text">SEV1</text>
+  <text x="140" y="288" class="annotation-text">重大</text>
+  
+  <rect x="220" y="260" width="80" height="40" rx="6" class="sev2-state"/>
+  <text x="260" y="274" class="label-text">SEV2</text>
+  <text x="260" y="288" class="annotation-text">大</text>
+  
+  <rect x="500" y="260" width="80" height="40" rx="6" class="sev3-state"/>
+  <text x="540" y="274" class="label-text">SEV3</text>
+  <text x="540" y="288" class="annotation-text">中</text>
+  
+  <rect x="620" y="260" width="80" height="40" rx="6" class="sev4-state"/>
+  <text x="660" y="274" class="label-text">SEV4</text>
+  <text x="660" y="288" class="annotation-text">小</text>
+  
+  <!-- Initial Response Times -->
+  <rect x="70" y="320" width="120" height="30" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="130" y="340" class="annotation-text">5分以内</text>
+  
+  <rect x="220" y="320" width="120" height="30" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="280" y="340" class="annotation-text">15分以内</text>
+  
+  <rect x="470" y="320" width="120" height="30" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="530" y="340" class="annotation-text">1時間以内</text>
+  
+  <rect x="620" y="320" width="120" height="30" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="680" y="340" class="annotation-text">翌営業日</text>
+  
+  <!-- Process States -->
+  <rect x="350" y="390" width="100" height="40" rx="6" class="process-state"/>
+  <text x="400" y="404" class="label-text" fill="white">初期対応</text>
+  <text x="400" y="418" class="annotation-text" fill="white">担当者アサイン</text>
+  
+  <rect x="350" y="460" width="100" height="40" rx="6" class="process-state"/>
+  <text x="400" y="484" class="label-text" fill="white">調査</text>
+  
+  <rect x="350" y="530" width="100" height="40" rx="6" class="process-state"/>
+  <text x="400" y="554" class="label-text" fill="white">暫定対処</text>
+  
+  <rect x="350" y="600" width="100" height="40" rx="6" class="process-state"/>
+  <text x="400" y="624" class="label-text" fill="white">恒久対処</text>
+  
+  <rect x="350" y="670" width="100" height="40" rx="6" class="process-state"/>
+  <text x="400" y="694" class="label-text" fill="white">検証</text>
+  
+  <rect x="350" y="740" width="100" height="40" rx="6" class="end-state"/>
+  <text x="400" y="754" class="label-text" fill="white">クローズ</text>
+  <text x="400" y="768" class="annotation-text" fill="white">完了</text>
+  
+  <!-- Post-mortem States -->
+  <rect x="550" y="740" width="120" height="40" rx="6" class="process-state"/>
+  <text x="610" y="754" class="label-text" fill="white">ポストモーテム</text>
+  <text x="610" y="768" class="annotation-text" fill="white">SEV1/2の場合</text>
+  
+  <!-- Final End State -->
+  <circle cx="650" cy="660" r="16" class="end-state"/>
+  <text x="650" y="666" class="annotation-text" fill="white">終了</text>
+  
+  <!-- Flow Lines -->
+  <!-- Start to Detection -->
+  <line x1="400" y1="86" x2="400" y2="110" class="flow-line"/>
+  
+  <!-- Detection to Classification -->
+  <line x1="400" y1="150" x2="400" y2="180" class="flow-line"/>
+  
+  <!-- Classification to Severity -->
+  <line x1="380" y1="220" x2="140" y2="260" class="flow-line"/>
+  <line x1="390" y1="220" x2="260" y2="260" class="flow-line"/>
+  <line x1="410" y1="220" x2="540" y2="260" class="flow-line"/>
+  <line x1="420" y1="220" x2="660" y2="260" class="flow-line"/>
+  
+  <!-- Severity to Response Times -->
+  <line x1="140" y1="300" x2="130" y2="320" class="flow-line"/>
+  <line x1="260" y1="300" x2="280" y2="320" class="flow-line"/>
+  <line x1="540" y1="300" x2="530" y2="320" class="flow-line"/>
+  <line x1="660" y1="300" x2="680" y2="320" class="flow-line"/>
+  
+  <!-- Response Times to Initial Response -->
+  <line x1="190" y1="335" x2="350" y2="410" class="flow-line"/>
+  <line x1="340" y1="335" x2="350" y2="410" class="flow-line"/>
+  <line x1="470" y1="335" x2="450" y2="410" class="flow-line"/>
+  <line x1="620" y1="335" x2="450" y2="410" class="flow-line"/>
+  
+  <!-- Process Flow -->
+  <line x1="400" y1="430" x2="400" y2="460" class="flow-line"/>
+  <line x1="400" y1="500" x2="400" y2="530" class="flow-line"/>
+  <line x1="400" y1="570" x2="400" y2="600" class="flow-line"/>
+  <line x1="400" y1="640" x2="400" y2="670" class="flow-line"/>
+  <line x1="400" y1="710" x2="400" y2="740" class="flow-line"/>
+  
+  <!-- Close to Post-mortem (conditional) -->
+  <line x1="450" y1="760" x2="550" y2="760" class="conditional-line"/>
+  
+  <!-- Close to End (SEV3/4) -->
+  <path d="M 350 760 Q 300 700 300 660 Q 300 620 650 620 Q 650 640 650 644" fill="none" stroke="var(--primary)" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="480" y="610" class="annotation-text">SEV3/4の場合</text>
+  
+  <!-- Post-mortem to End -->
+  <line x1="610" y1="740" x2="650" y2="676" class="flow-line"/>
+  
+  <!-- Labels -->
+  <text x="340" y="275" class="annotation-text">重大</text>
+  <text x="350" y="275" class="annotation-text">大</text>
+  <text x="460" y="275" class="annotation-text">中</text>
+  <text x="580" y="275" class="annotation-text">小</text>
+  
+</svg>

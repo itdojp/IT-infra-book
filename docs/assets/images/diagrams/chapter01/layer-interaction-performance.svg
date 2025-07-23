@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --cpu-bg: #ffccff;
+        --memory-bg: #ccccff;
+        --io-bg: #ffccff;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --cpu-bg: #7B1FA2;
+          --memory-bg: #3F51B5;
+          --io-bg: #8E24AA;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .cpu-node {
+        fill: var(--cpu-bg);
+        stroke: #333333;
+        stroke-width: 2;
+      }
+      
+      .memory-node {
+        fill: var(--memory-bg);
+        stroke: #333333;
+        stroke-width: 2;
+      }
+      
+      .io-node {
+        fill: var(--io-bg);
+        stroke: #333333;
+        stroke-width: 2;
+      }
+      
+      /* Connection Lines */
+      .connection-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+  </defs>
+  
+  <title>レイヤー間相互作用とパフォーマンス特性</title>
+  <desc>CPU処理、メモリアクセス、I/O処理の相互作用とパフォーマンスへの影響</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">レイヤー間相互作用とパフォーマンス特性</text>
+  
+  <!-- CPU Processing Section -->
+  <rect x="100" y="80" width="180" height="20" rx="3" fill="var(--cpu-bg)" stroke="#333333" stroke-width="1"/>
+  <text x="190" y="94" class="section-title">CPU処理</text>
+  
+  <rect x="120" y="120" width="140" height="40" rx="4" class="cpu-node"/>
+  <text x="190" y="144" class="label-text">アプリケーション処理</text>
+  
+  <rect x="120" y="180" width="140" height="40" rx="4" class="cpu-node"/>
+  <text x="190" y="204" class="label-text">プロトコル処理</text>
+  
+  <rect x="120" y="240" width="140" height="40" rx="4" class="cpu-node"/>
+  <text x="190" y="264" class="label-text">コンテキストスイッチ</text>
+  
+  <!-- Memory Access Section -->
+  <rect x="310" y="80" width="180" height="20" rx="3" fill="var(--memory-bg)" stroke="#333333" stroke-width="1"/>
+  <text x="400" y="94" class="section-title">メモリアクセス</text>
+  
+  <rect x="330" y="120" width="140" height="40" rx="4" class="memory-node"/>
+  <text x="400" y="144" class="label-text">データコピー</text>
+  
+  <rect x="330" y="180" width="140" height="40" rx="4" class="memory-node"/>
+  <text x="400" y="204" class="label-text">バッファ管理</text>
+  
+  <rect x="330" y="240" width="140" height="40" rx="4" class="memory-node"/>
+  <text x="400" y="264" class="label-text">キャッシュ効率</text>
+  
+  <!-- I/O Processing Section -->
+  <rect x="520" y="80" width="180" height="20" rx="3" fill="var(--io-bg)" stroke="#333333" stroke-width="1"/>
+  <text x="610" y="94" class="section-title">I/O処理</text>
+  
+  <rect x="540" y="120" width="140" height="40" rx="4" class="io-node"/>
+  <text x="610" y="144" class="label-text">割り込み処理</text>
+  
+  <rect x="540" y="180" width="140" height="40" rx="4" class="io-node"/>
+  <text x="610" y="204" class="label-text">DMA転送</text>
+  
+  <rect x="540" y="240" width="140" height="40" rx="4" class="io-node"/>
+  <text x="610" y="264" class="label-text">ポーリング</text>
+  
+  <!-- Connection Lines -->
+  <line x1="260" y1="140" x2="330" y2="140" class="connection-line"/>
+  <line x1="260" y1="200" x2="330" y2="200" class="connection-line"/>
+  <line x1="260" y1="260" x2="330" y2="260" class="connection-line"/>
+  
+  <line x1="470" y1="140" x2="540" y2="140" class="connection-line"/>
+  <line x1="470" y1="200" x2="540" y2="200" class="connection-line"/>
+  <line x1="470" y1="260" x2="540" y2="260" class="connection-line"/>
+  
+  <!-- Performance Impact Section -->
+  <rect x="100" y="320" width="600" height="20" rx="3" fill="var(--primary)" fill-opacity="0.1" stroke="var(--primary)" stroke-width="1"/>
+  <text x="400" y="334" class="section-title">パフォーマンス影響要因</text>
+  
+  <!-- Impact Details -->
+  <rect x="120" y="360" width="160" height="80" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="200" y="378" class="label-text">CPU オーバーヘッド</text>
+  <text x="130" y="398" class="label-text" text-anchor="start">• コンテキストスイッチ</text>
+  <text x="130" y="414" class="label-text" text-anchor="start">• プロトコル処理</text>
+  <text x="130" y="430" class="label-text" text-anchor="start">• 割り込みハンドリング</text>
+  
+  <rect x="300" y="360" width="160" height="80" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="380" y="378" class="label-text">メモリ オーバーヘッド</text>
+  <text x="310" y="398" class="label-text" text-anchor="start">• データコピー</text>
+  <text x="310" y="414" class="label-text" text-anchor="start">• キャッシュミス</text>
+  <text x="310" y="430" class="label-text" text-anchor="start">• バッファ断片化</text>
+  
+  <rect x="480" y="360" width="160" height="80" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="560" y="378" class="label-text">I/O オーバーヘッド</text>
+  <text x="490" y="398" class="label-text" text-anchor="start">• DMA設定時間</text>
+  <text x="490" y="414" class="label-text" text-anchor="start">• 割り込み遅延</text>
+  <text x="490" y="430" class="label-text" text-anchor="start">• バス競合</text>
+  
+  <!-- Optimization Strategies -->
+  <rect x="100" y="460" width="600" height="20" rx="3" fill="var(--success)" fill-opacity="0.1" stroke="var(--success)" stroke-width="1"/>
+  <text x="400" y="474" class="section-title">最適化戦略</text>
+  
+  <rect x="120" y="500" width="160" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="200" y="518" class="label-text">ゼロコピー技術</text>
+  <text x="130" y="534" class="label-text" text-anchor="start">• DPDK</text>
+  <text x="130" y="546" class="label-text" text-anchor="start">• io_uring</text>
+  <text x="130" y="558" class="label-text" text-anchor="start">• RDMA</text>
+  
+  <rect x="300" y="500" width="160" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="380" y="518" class="label-text">統合処理</text>
+  <text x="310" y="534" class="label-text" text-anchor="start">• TCP/IP統合</text>
+  <text x="310" y="546" class="label-text" text-anchor="start">• バッチ処理</text>
+  <text x="310" y="558" class="label-text" text-anchor="start">• キャッシュ最適化</text>
+  
+  <rect x="480" y="500" width="160" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="560" y="518" class="label-text">ハードウェア活用</text>
+  <text x="490" y="534" class="label-text" text-anchor="start">• TOE (TCP Offload)</text>
+  <text x="490" y="546" class="label-text" text-anchor="start">• SR-IOV</text>
+  <text x="490" y="558" class="label-text" text-anchor="start">• NUMA最適化</text>
+  
+</svg>

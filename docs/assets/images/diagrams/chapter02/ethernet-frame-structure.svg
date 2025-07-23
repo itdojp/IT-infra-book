@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --frame-bg: #e3f2fd;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --frame-bg: #1A237E;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .frame-node {
+        fill: var(--frame-bg);
+        stroke: var(--primary);
+        stroke-width: 1.5;
+      }
+      
+      /* Connection Lines */
+      .connection-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+  </defs>
+  
+  <title>Ethernetフレーム構造</title>
+  <desc>Ethernetフレームの各フィールドとその役割</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">Ethernetフレーム構造</text>
+  
+  <!-- Frame Container -->
+  <rect x="100" y="60" width="600" height="20" rx="3" fill="var(--frame-bg)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="400" y="74" class="section-title">Ethernetフレーム</text>
+  
+  <!-- Frame Fields -->
+  <!-- Preamble -->
+  <rect x="120" y="100" width="60" height="50" rx="4" class="frame-node"/>
+  <text x="150" y="120" class="label-text">プリアンブル</text>
+  <text x="150" y="136" class="annotation-text">7バイト</text>
+  
+  <!-- SFD -->
+  <rect x="200" y="100" width="50" height="50" rx="4" class="frame-node"/>
+  <text x="225" y="120" class="label-text">SFD</text>
+  <text x="225" y="136" class="annotation-text">1バイト</text>
+  
+  <!-- Destination MAC -->
+  <rect x="270" y="100" width="70" height="50" rx="4" class="frame-node"/>
+  <text x="305" y="120" class="label-text">宛先MAC</text>
+  <text x="305" y="136" class="annotation-text">6バイト</text>
+  
+  <!-- Source MAC -->
+  <rect x="360" y="100" width="70" height="50" rx="4" class="frame-node"/>
+  <text x="395" y="120" class="label-text">送信元MAC</text>
+  <text x="395" y="136" class="annotation-text">6バイト</text>
+  
+  <!-- Type/Length -->
+  <rect x="450" y="100" width="70" height="50" rx="4" class="frame-node"/>
+  <text x="485" y="120" class="label-text">タイプ/長さ</text>
+  <text x="485" y="136" class="annotation-text">2バイト</text>
+  
+  <!-- Payload -->
+  <rect x="540" y="100" width="80" height="50" rx="4" class="frame-node"/>
+  <text x="580" y="120" class="label-text">ペイロード</text>
+  <text x="580" y="136" class="annotation-text">46-1500バイト</text>
+  
+  <!-- FCS -->
+  <rect x="640" y="100" width="50" height="50" rx="4" class="frame-node"/>
+  <text x="665" y="120" class="label-text">FCS</text>
+  <text x="665" y="136" class="annotation-text">4バイト</text>
+  
+  <!-- Connection Arrows -->
+  <line x1="180" y1="125" x2="200" y2="125" class="connection-line"/>
+  <line x1="250" y1="125" x2="270" y2="125" class="connection-line"/>
+  <line x1="340" y1="125" x2="360" y2="125" class="connection-line"/>
+  <line x1="430" y1="125" x2="450" y2="125" class="connection-line"/>
+  <line x1="520" y1="125" x2="540" y2="125" class="connection-line"/>
+  <line x1="620" y1="125" x2="640" y2="125" class="connection-line"/>
+  
+  <!-- Field Descriptions -->
+  <rect x="120" y="180" width="560" height="180" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="200" class="section-title">フィールド詳細</text>
+  
+  <!-- Description Text -->
+  <text x="140" y="225" class="label-text" text-anchor="start">プリアンブル: フレーム同期用パターン (10101010...)</text>
+  <text x="140" y="245" class="label-text" text-anchor="start">SFD: Start Frame Delimiter (10101011)</text>
+  <text x="140" y="265" class="label-text" text-anchor="start">宛先MAC: 受信先デバイスのMACアドレス</text>
+  <text x="140" y="285" class="label-text" text-anchor="start">送信元MAC: 送信元デバイスのMACアドレス</text>
+  <text x="140" y="305" class="label-text" text-anchor="start">タイプ/長さ: 上位プロトコル識別またはペイロード長</text>
+  <text x="140" y="325" class="label-text" text-anchor="start">ペイロード: 上位層データ（IP、ARP等）</text>
+  <text x="140" y="345" class="label-text" text-anchor="start">FCS: Frame Check Sequence（CRC32チェックサム）</text>
+  
+</svg>

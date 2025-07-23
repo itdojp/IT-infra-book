@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --state-disabled: #9E9E9E;
+        --state-blocking: #F44336;
+        --state-listening: #FF9800;
+        --state-learning: #2196F3;
+        --state-forwarding: #4CAF50;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --state-disabled: #616161;
+          --state-blocking: #D32F2F;
+          --state-listening: #F57C00;
+          --state-learning: #1976D2;
+          --state-forwarding: #388E3C;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: start;
+        fill: var(--text-secondary);
+      }
+      
+      .note-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: start;
+        fill: var(--text-secondary);
+      }
+      
+      /* State Styles */
+      .state-disabled {
+        fill: var(--state-disabled);
+        stroke: var(--state-disabled);
+        stroke-width: 2;
+      }
+      
+      .state-blocking {
+        fill: var(--state-blocking);
+        stroke: var(--state-blocking);
+        stroke-width: 2;
+      }
+      
+      .state-listening {
+        fill: var(--state-listening);
+        stroke: var(--state-listening);
+        stroke-width: 2;
+      }
+      
+      .state-learning {
+        fill: var(--state-learning);
+        stroke: var(--state-learning);
+        stroke-width: 2;
+      }
+      
+      .state-forwarding {
+        fill: var(--state-forwarding);
+        stroke: var(--state-forwarding);
+        stroke-width: 2;
+      }
+      
+      /* Transition Lines */
+      .transition-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+      
+      .special-transition {
+        stroke: var(--error);
+        stroke-width: 2;
+        stroke-dasharray: 4,4;
+        marker-end: url(#arrow-red);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--error)"/>
+    </marker>
+  </defs>
+  
+  <title>スパニングツリー収束プロセス</title>
+  <desc>STPポートの状態遷移とタイマー、各状態での動作</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">スパニングツリー収束プロセス</text>
+  
+  <!-- Start State -->
+  <circle cx="100" cy="80" r="16" fill="var(--neutral)" stroke="var(--neutral)" stroke-width="2"/>
+  <text x="100" y="86" class="label-text" fill="white">[*]</text>
+  
+  <!-- Disabled State -->
+  <rect x="180" y="60" width="100" height="40" rx="20" class="state-disabled"/>
+  <text x="230" y="84" class="label-text" fill="white">Disabled</text>
+  
+  <!-- Blocking State -->
+  <rect x="180" y="140" width="100" height="40" rx="20" class="state-blocking"/>
+  <text x="230" y="164" class="label-text" fill="white">Blocking</text>
+  
+  <!-- Listening State -->
+  <rect x="380" y="140" width="100" height="40" rx="20" class="state-listening"/>
+  <text x="430" y="164" class="label-text" fill="white">Listening</text>
+  
+  <!-- Learning State -->
+  <rect x="580" y="140" width="100" height="40" rx="20" class="state-learning"/>
+  <text x="630" y="164" class="label-text" fill="white">Learning</text>
+  
+  <!-- Forwarding State -->
+  <rect x="580" y="240" width="100" height="40" rx="20" class="state-forwarding"/>
+  <text x="630" y="264" class="label-text" fill="white">Forwarding</text>
+  
+  <!-- State Transitions -->
+  <!-- Start to Disabled -->
+  <line x1="116" y1="80" x2="180" y2="80" class="transition-line"/>
+  
+  <!-- Disabled to Blocking -->
+  <line x1="230" y1="100" x2="230" y2="140" class="transition-line"/>
+  <text x="240" y="125" class="annotation-text">ポート有効化</text>
+  
+  <!-- Blocking to Listening -->
+  <line x1="280" y1="160" x2="380" y2="160" class="transition-line"/>
+  <text x="310" y="155" class="annotation-text">20秒経過</text>
+  
+  <!-- Listening to Learning -->
+  <line x1="480" y1="160" x2="580" y2="160" class="transition-line"/>
+  <text x="510" y="155" class="annotation-text">15秒経過</text>
+  
+  <!-- Learning to Forwarding -->
+  <line x1="630" y1="180" x2="630" y2="240" class="transition-line"/>
+  <text x="640" y="215" class="annotation-text">15秒経過</text>
+  
+  <!-- Forwarding to Blocking (topology change) -->
+  <path d="M 580 260 Q 350 320 280 160" fill="none" class="special-transition"/>
+  <text x="400" y="300" class="annotation-text">トポロジ変更検出</text>
+  
+  <!-- State Descriptions -->
+  <rect x="100" y="340" width="600" height="240" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="360" class="title-text">状態詳細</text>
+  
+  <!-- Blocking Description -->
+  <rect x="120" y="380" width="16" height="16" rx="2" class="state-blocking"/>
+  <text x="146" y="392" class="label-text" text-anchor="start">Blocking:</text>
+  <text x="126" y="408" class="note-text">• BPDUを受信のみ</text>
+  <text x="126" y="424" class="note-text">• データフレームを転送しない</text>
+  <text x="126" y="440" class="note-text">• MACアドレス学習しない</text>
+  
+  <!-- Listening Description -->
+  <rect x="320" y="380" width="16" height="16" rx="2" class="state-listening"/>
+  <text x="346" y="392" class="label-text" text-anchor="start">Listening:</text>
+  <text x="326" y="408" class="note-text">• BPDUを送受信</text>
+  <text x="326" y="424" class="note-text">• ルートブリッジ選出参加</text>
+  <text x="326" y="440" class="note-text">• データフレーム転送なし</text>
+  
+  <!-- Learning Description -->
+  <rect x="520" y="380" width="16" height="16" rx="2" class="state-learning"/>
+  <text x="546" y="392" class="label-text" text-anchor="start">Learning:</text>
+  <text x="526" y="408" class="note-text">• MACアドレス学習開始</text>
+  <text x="526" y="424" class="note-text">• CAMテーブル構築</text>
+  <text x="526" y="440" class="note-text">• データフレーム転送なし</text>
+  
+  <!-- Forwarding Description -->
+  <rect x="120" y="460" width="16" height="16" rx="2" class="state-forwarding"/>
+  <text x="146" y="472" class="label-text" text-anchor="start">Forwarding:</text>
+  <text x="126" y="488" class="note-text">• データ転送可能</text>
+  <text x="126" y="504" class="note-text">• 全機能動作</text>
+  <text x="126" y="520" class="note-text">• 通常運用状態</text>
+  
+  <!-- Timer Information -->
+  <rect x="320" y="460" width="360" height="80" rx="4" fill="var(--warning)" fill-opacity="0.1" stroke="var(--warning)" stroke-width="1"/>
+  <text x="500" y="480" class="label-text">収束時間</text>
+  <text x="330" y="500" class="note-text">標準STP (802.1D): 最大50秒 (20+15+15)</text>
+  <text x="330" y="516" class="note-text">RSTP (802.1w): 最大2秒</text>
+  <text x="330" y="532" class="note-text">ネットワーク規模により追加遅延あり</text>
+  
+</svg>

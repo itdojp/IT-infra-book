@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="700" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --code-debt-bg: #ffebee;
+        --arch-debt-bg: #fff3e0;
+        --infra-debt-bg: #e3f2fd;
+        --impact-bg: #f3e5f5;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --code-debt-bg: #B71C1C;
+          --arch-debt-bg: #E65100;
+          --infra-debt-bg: #1A237E;
+          --impact-bg: #4A148C;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .note-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: start;
+        fill: var(--text-secondary);
+      }
+      
+      /* Node Styles */
+      .code-debt-node {
+        fill: var(--code-debt-bg);
+        stroke: var(--error);
+        stroke-width: 1.5;
+      }
+      
+      .arch-debt-node {
+        fill: var(--arch-debt-bg);
+        stroke: var(--warning);
+        stroke-width: 1.5;
+      }
+      
+      .infra-debt-node {
+        fill: var(--infra-debt-bg);
+        stroke: var(--primary);
+        stroke-width: 1.5;
+      }
+      
+      .impact-node {
+        fill: var(--impact-bg);
+        stroke: var(--neutral);
+        stroke-width: 1.5;
+      }
+      
+      /* Connection Lines */
+      .impact-line {
+        stroke: var(--error);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--error)"/>
+    </marker>
+  </defs>
+  
+  <title>技術的負債の分類</title>
+  <desc>コード、アーキテクチャ、インフラ負債とその影響の体系的分析</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">技術的負債の分類</text>
+  
+  <!-- Code Debt Section -->
+  <rect x="50" y="60" width="200" height="20" rx="3" fill="var(--code-debt-bg)" stroke="var(--error)" stroke-width="1"/>
+  <text x="150" y="74" class="section-title">コード負債</text>
+  
+  <rect x="70" y="100" width="80" height="30" rx="4" class="code-debt-node"/>
+  <text x="110" y="120" class="label-text">複雑性</text>
+  
+  <rect x="170" y="100" width="80" height="30" rx="4" class="code-debt-node"/>
+  <text x="210" y="120" class="label-text">重複</text>
+  
+  <rect x="70" y="150" width="80" height="30" rx="4" class="code-debt-node"/>
+  <text x="110" y="170" class="label-text">テスト不足</text>
+  
+  <rect x="170" y="150" width="80" height="30" rx="4" class="code-debt-node"/>
+  <text x="210" y="165" class="annotation-text">古い</text>
+  <text x="210" y="175" class="annotation-text">依存関係</text>
+  
+  <!-- Architecture Debt Section -->
+  <rect x="300" y="60" width="200" height="20" rx="3" fill="var(--arch-debt-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="400" y="74" class="section-title">アーキテクチャ負債</text>
+  
+  <rect x="320" y="100" width="80" height="30" rx="4" class="arch-debt-node"/>
+  <text x="360" y="120" class="label-text">モノリシック</text>
+  
+  <rect x="420" y="100" width="80" height="30" rx="4" class="arch-debt-node"/>
+  <text x="460" y="120" class="label-text">密結合</text>
+  
+  <rect x="320" y="150" width="80" height="30" rx="4" class="arch-debt-node"/>
+  <text x="360" y="165" class="annotation-text">スケーラビリティ</text>
+  <text x="360" y="175" class="annotation-text">制限</text>
+  
+  <rect x="420" y="150" width="80" height="30" rx="4" class="arch-debt-node"/>
+  <text x="460" y="165" class="annotation-text">技術的</text>
+  <text x="460" y="175" class="annotation-text">陳腐化</text>
+  
+  <!-- Infrastructure Debt Section -->
+  <rect x="550" y="60" width="200" height="20" rx="3" fill="var(--infra-debt-bg)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="650" y="74" class="section-title">インフラ負債</text>
+  
+  <rect x="570" y="100" width="80" height="30" rx="4" class="infra-debt-node"/>
+  <text x="610" y="120" class="label-text">手動運用</text>
+  
+  <rect x="670" y="100" width="80" height="30" rx="4" class="infra-debt-node"/>
+  <text x="710" y="120" class="label-text">監視不足</text>
+  
+  <rect x="570" y="150" width="80" height="30" rx="4" class="infra-debt-node"/>
+  <text x="610" y="170" class="label-text">文書化不足</text>
+  
+  <rect x="670" y="150" width="80" height="30" rx="4" class="infra-debt-node"/>
+  <text x="710" y="170" class="label-text">単一障害点</text>
+  
+  <!-- Impact Section -->
+  <rect x="200" y="220" width="400" height="20" rx="3" fill="var(--impact-bg)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="400" y="234" class="section-title">負債の影響</text>
+  
+  <rect x="230" y="260" width="120" height="40" rx="6" class="impact-node"/>
+  <text x="290" y="284" class="label-text">開発速度低下</text>
+  
+  <rect x="370" y="260" width="120" height="40" rx="6" class="impact-node"/>
+  <text x="430" y="284" class="label-text">品質問題</text>
+  
+  <rect x="230" y="320" width="120" height="40" rx="6" class="impact-node"/>
+  <text x="290" y="344" class="label-text">運用コスト増</text>
+  
+  <rect x="370" y="320" width="120" height="40" rx="6" class="impact-node"/>
+  <text x="430" y="344" class="label-text">リスク増大</text>
+  
+  <!-- Impact Lines -->
+  <!-- Code complexity to development speed -->
+  <line x1="110" y1="130" x2="290" y2="260" class="impact-line"/>
+  
+  <!-- Code duplication to quality issues -->
+  <line x1="210" y1="130" x2="430" y2="260" class="impact-line"/>
+  
+  <!-- Monolithic to development speed -->
+  <line x1="360" y1="130" x2="290" y2="260" class="impact-line"/>
+  
+  <!-- Tight coupling to risk increase -->
+  <line x1="460" y1="130" x2="430" y2="320" class="impact-line"/>
+  
+  <!-- Manual operations to operational cost -->
+  <line x1="610" y1="130" x2="290" y2="320" class="impact-line"/>
+  
+  <!-- Single point of failure to risk increase -->
+  <line x1="710" y1="150" x2="430" y2="320" class="impact-line"/>
+  
+  <!-- Details Section -->
+  <rect x="50" y="390" width="700" height="290" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="410" class="section-title">技術的負債の詳細分析</text>
+  
+  <!-- Code Debt Details -->
+  <text x="70" y="435" class="label-text" text-anchor="start">コード負債の典型例:</text>
+  <text x="80" y="455" class="note-text">• 複雑性: ネストの深いコード、巨大な関数・クラス</text>
+  <text x="80" y="470" class="note-text">• 重複: コピー&ペーストコード、類似ロジックの散在</text>
+  <text x="80" y="485" class="note-text">• テスト不足: カバレッジ低下、テストコードの劣化</text>
+  <text x="80" y="500" class="note-text">• 古い依存関係: セキュリティリスク、互換性問題</text>
+  
+  <!-- Architecture Debt Details -->
+  <text x="70" y="525" class="label-text" text-anchor="start">アーキテクチャ負債の典型例:</text>
+  <text x="80" y="545" class="note-text">• モノリシック: 部分更新困難、技術スタック固定</text>
+  <text x="80" y="560" class="note-text">• 密結合: 変更の波及範囲拡大、テスト困難</text>
+  <text x="80" y="575" class="note-text">• スケーラビリティ制限: 性能限界、拡張困難</text>
+  <text x="80" y="590" class="note-text">• 技術的陳腐化: 保守困難、人材確保困難</text>
+  
+  <!-- Infrastructure Debt Details -->
+  <text x="420" y="435" class="label-text" text-anchor="start">インフラ負債の典型例:</text>
+  <text x="430" y="455" class="note-text">• 手動運用: 人的ミス、作業時間増大</text>
+  <text x="430" y="470" class="note-text">• 監視不足: 障害検知遅延、原因特定困難</text>
+  <text x="430" y="485" class="note-text">• 文書化不足: 属人化、引き継ぎ困難</text>
+  <text x="430" y="500" class="note-text">• 単一障害点: 可用性リスク、復旧時間長期化</text>
+  
+  <!-- Management Strategy -->
+  <text x="420" y="525" class="label-text" text-anchor="start">負債管理戦略:</text>
+  <text x="430" y="545" class="note-text">• 定量化: 技術的負債の可視化・測定</text>
+  <text x="430" y="560" class="note-text">• 優先順位付け: ビジネス影響度による重み付け</text>
+  <text x="430" y="575" class="note-text">• 計画的返済: スプリント/リリースサイクルへの組み込み</text>
+  <text x="430" y="590" class="note-text">• 予防策: コーディング規約、設計レビュー</text>
+  
+  <!-- Impact Assessment -->
+  <text x="70" y="615" class="label-text" text-anchor="start">影響度評価指標:</text>
+  <text x="80" y="635" class="note-text">• 開発速度: 機能追加・バグ修正の所要時間増加率</text>
+  <text x="80" y="650" class="note-text">• 品質問題: バグ発生率、障害頻度の増加</text>
+  <text x="80" y="665" class="note-text">• 運用コスト: 人件費、インフラ費用の増大</text>
+  
+  <text x="420" y="615" class="label-text" text-anchor="start">返済効果測定:</text>
+  <text x="430" y="635" class="note-text">• 開発生産性の向上</text>
+  <text x="430" y="650" class="note-text">• システム安定性の改善</text>
+  <text x="430" y="665" class="note-text">• 運用効率の向上</text>
+  
+</svg>

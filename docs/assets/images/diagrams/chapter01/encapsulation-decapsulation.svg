@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="700" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --layer-app: #e3f2fd;
+        --layer-trans: #fff3e0;
+        --layer-net: #e8f5e8;
+        --layer-link: #f3e5f5;
+        --layer-phy: #ffe0b2;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --layer-app: #1A237E;
+          --layer-trans: #E65100;
+          --layer-net: #1B5E20;
+          --layer-link: #4A148C;
+          --layer-phy: #FF6F00;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .app-node {
+        fill: var(--layer-app);
+        stroke: var(--primary);
+        stroke-width: 1.5;
+      }
+      
+      .trans-node {
+        fill: var(--layer-trans);
+        stroke: var(--warning);
+        stroke-width: 1.5;
+      }
+      
+      .net-node {
+        fill: var(--layer-net);
+        stroke: var(--success);
+        stroke-width: 1.5;
+      }
+      
+      .link-node {
+        fill: var(--layer-link);
+        stroke: var(--error);
+        stroke-width: 1.5;
+      }
+      
+      .phy-node {
+        fill: var(--layer-phy);
+        stroke: var(--warning);
+        stroke-width: 1.5;
+      }
+      
+      /* Lines */
+      .sequence-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+      
+      .internal-line {
+        stroke: var(--neutral);
+        stroke-width: 1.5;
+        marker-end: url(#arrow-small);
+      }
+      
+      .lifeline {
+        stroke: var(--neutral);
+        stroke-width: 1;
+        stroke-dasharray: 2,2;
+        opacity: 0.5;
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+    <marker id="arrow-small" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="var(--neutral)"/>
+    </marker>
+  </defs>
+  
+  <title>カプセル化とデカプセル化のプロセス</title>
+  <desc>ネットワーク通信における各層でのヘッダー追加・除去プロセス</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">カプセル化とデカプセル化のプロセス</text>
+  
+  <!-- Layer Headers -->
+  <rect x="80" y="60" width="100" height="24" rx="3" class="app-node"/>
+  <text x="130" y="76" class="label-text">アプリケーション</text>
+  
+  <rect x="200" y="60" width="100" height="24" rx="3" class="trans-node"/>
+  <text x="250" y="76" class="label-text">トランスポート層</text>
+  
+  <rect x="320" y="60" width="100" height="24" rx="3" class="net-node"/>
+  <text x="370" y="76" class="label-text">ネットワーク層</text>
+  
+  <rect x="440" y="60" width="100" height="24" rx="3" class="link-node"/>
+  <text x="490" y="76" class="label-text">データリンク層</text>
+  
+  <rect x="560" y="60" width="100" height="24" rx="3" class="phy-node"/>
+  <text x="610" y="76" class="label-text">物理層</text>
+  
+  <!-- Lifelines -->
+  <line x1="130" y1="84" x2="130" y2="650" class="lifeline"/>
+  <line x1="250" y1="84" x2="250" y2="650" class="lifeline"/>
+  <line x1="370" y1="84" x2="370" y2="650" class="lifeline"/>
+  <line x1="490" y1="84" x2="490" y2="650" class="lifeline"/>
+  <line x1="610" y1="84" x2="610" y2="650" class="lifeline"/>
+  
+  <!-- Encapsulation Section -->
+  <rect x="50" y="110" width="700" height="20" rx="3" fill="var(--success)" fill-opacity="0.1" stroke="var(--success)" stroke-width="1"/>
+  <text x="400" y="124" class="section-title">送信側（カプセル化）</text>
+  
+  <!-- Encapsulation Flow -->
+  <!-- App to Trans -->
+  <line x1="130" y1="150" x2="250" y2="150" class="sequence-line"/>
+  <text x="190" y="146" class="annotation-text">データ</text>
+  
+  <!-- TCP Header Addition -->
+  <rect x="220" y="170" width="60" height="16" rx="2" fill="var(--bg-secondary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="250" y="182" class="annotation-text">TCPヘッダー追加</text>
+  
+  <!-- Trans to Net -->
+  <line x1="250" y1="200" x2="370" y2="200" class="sequence-line"/>
+  <text x="310" y="196" class="annotation-text">セグメント</text>
+  
+  <!-- IP Header Addition -->
+  <rect x="340" y="220" width="60" height="16" rx="2" fill="var(--bg-secondary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="370" y="232" class="annotation-text">IPヘッダー追加</text>
+  
+  <!-- Net to Link -->
+  <line x1="370" y1="250" x2="490" y2="250" class="sequence-line"/>
+  <text x="430" y="246" class="annotation-text">パケット</text>
+  
+  <!-- Ethernet Header Addition -->
+  <rect x="460" y="270" width="60" height="16" rx="2" fill="var(--bg-secondary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="490" y="282" class="annotation-text">Ethernetヘッダー追加</text>
+  
+  <!-- Link to Phy -->
+  <line x1="490" y1="300" x2="610" y2="300" class="sequence-line"/>
+  <text x="550" y="296" class="annotation-text">フレーム</text>
+  
+  <!-- Bit Conversion -->
+  <rect x="580" y="320" width="60" height="16" rx="2" fill="var(--bg-secondary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="610" y="332" class="annotation-text">ビット列に変換</text>
+  
+  <!-- Decapsulation Section -->
+  <rect x="50" y="370" width="700" height="20" rx="3" fill="var(--error)" fill-opacity="0.1" stroke="var(--error)" stroke-width="1"/>
+  <text x="400" y="384" class="section-title">受信側（デカプセル化）</text>
+  
+  <!-- Decapsulation Flow -->
+  <!-- Phy to Link -->
+  <line x1="610" y1="410" x2="490" y2="410" class="sequence-line"/>
+  <text x="550" y="406" class="annotation-text">ビット列</text>
+  
+  <!-- Ethernet Header Removal -->
+  <rect x="460" y="430" width="60" height="16" rx="2" fill="var(--bg-secondary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="490" y="442" class="annotation-text">Ethernetヘッダー除去</text>
+  
+  <!-- Link to Net -->
+  <line x1="490" y1="460" x2="370" y2="460" class="sequence-line"/>
+  <text x="430" y="456" class="annotation-text">パケット</text>
+  
+  <!-- IP Header Removal -->
+  <rect x="340" y="480" width="60" height="16" rx="2" fill="var(--bg-secondary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="370" y="492" class="annotation-text">IPヘッダー除去</text>
+  
+  <!-- Net to Trans -->
+  <line x1="370" y1="510" x2="250" y2="510" class="sequence-line"/>
+  <text x="310" y="506" class="annotation-text">セグメント</text>
+  
+  <!-- TCP Header Removal -->
+  <rect x="220" y="530" width="60" height="16" rx="2" fill="var(--bg-secondary)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="250" y="542" class="annotation-text">TCPヘッダー除去</text>
+  
+  <!-- Trans to App -->
+  <line x1="250" y1="560" x2="130" y2="560" class="sequence-line"/>
+  <text x="190" y="556" class="annotation-text">データ</text>
+  
+  <!-- Data Structure Visualization -->
+  <rect x="50" y="590" width="700" height="20" rx="3" fill="var(--primary)" fill-opacity="0.1" stroke="var(--primary)" stroke-width="1"/>
+  <text x="400" y="604" class="section-title">データ構造の変化</text>
+  
+  <!-- Header Stack Visualization -->
+  <text x="100" y="630" class="annotation-text">送信:</text>
+  <text x="150" y="630" class="annotation-text">データ → TCP+データ → IP+TCP+データ → Eth+IP+TCP+データ → ビット列</text>
+  
+  <text x="100" y="650" class="annotation-text">受信:</text>
+  <text x="150" y="650" class="annotation-text">ビット列 → Eth+IP+TCP+データ → IP+TCP+データ → TCP+データ → データ</text>
+  
+</svg>

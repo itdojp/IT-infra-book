@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --source-bg: #e3f2fd;
+        --metrics-bg: #e8f5e8;
+        --logs-bg: #fff3e0;
+        --traces-bg: #f3e5f5;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --source-bg: #1A237E;
+          --metrics-bg: #1B5E20;
+          --logs-bg: #E65100;
+          --traces-bg: #4A148C;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .source-node {
+        fill: var(--source-bg);
+        stroke: var(--primary);
+        stroke-width: 1.5;
+      }
+      
+      .metrics-node {
+        fill: var(--metrics-bg);
+        stroke: var(--success);
+        stroke-width: 1.5;
+      }
+      
+      .logs-node {
+        fill: var(--logs-bg);
+        stroke: var(--warning);
+        stroke-width: 1.5;
+      }
+      
+      .traces-node {
+        fill: var(--traces-bg);
+        stroke: var(--error);
+        stroke-width: 1.5;
+      }
+      
+      /* Connection Lines */
+      .connection-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+  </defs>
+  
+  <title>可観測性の三本柱</title>
+  <desc>メトリクス、ログ、トレースによる総合的なシステム監視</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">可観測性の三本柱</text>
+  
+  <!-- Data Sources -->
+  <rect x="300" y="60" width="200" height="20" rx="3" fill="var(--source-bg)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="400" y="74" class="section-title">データソース</text>
+  
+  <rect x="320" y="100" width="60" height="30" rx="4" class="source-node"/>
+  <text x="350" y="120" class="label-text">アプリケーション</text>
+  
+  <rect x="400" y="100" width="60" height="30" rx="4" class="source-node"/>
+  <text x="430" y="120" class="label-text">システム</text>
+  
+  <rect x="480" y="100" width="60" height="30" rx="4" class="source-node"/>
+  <text x="510" y="120" class="label-text">ネットワーク</text>
+  
+  <!-- Metrics Pillar -->
+  <rect x="50" y="180" width="200" height="20" rx="3" fill="var(--metrics-bg)" stroke="var(--success)" stroke-width="1"/>
+  <text x="150" y="194" class="section-title">メトリクス</text>
+  
+  <rect x="70" y="220" width="80" height="30" rx="4" class="metrics-node"/>
+  <text x="110" y="240" class="label-text">収集エージェント</text>
+  
+  <rect x="170" y="220" width="80" height="30" rx="4" class="metrics-node"/>
+  <text x="210" y="232" class="annotation-text">時系列DB</text>
+  <text x="210" y="244" class="annotation-text">Prometheus</text>
+  
+  <rect x="70" y="270" width="80" height="30" rx="4" class="metrics-node"/>
+  <text x="110" y="282" class="annotation-text">可視化</text>
+  <text x="110" y="294" class="annotation-text">Grafana</text>
+  
+  <!-- Logs Pillar -->
+  <rect x="300" y="180" width="200" height="20" rx="3" fill="var(--logs-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="400" y="194" class="section-title">ログ</text>
+  
+  <rect x="320" y="220" width="80" height="30" rx="4" class="logs-node"/>
+  <text x="360" y="232" class="annotation-text">ログ収集</text>
+  <text x="360" y="244" class="annotation-text">Fluentd</text>
+  
+  <rect x="420" y="220" width="80" height="30" rx="4" class="logs-node"/>
+  <text x="460" y="232" class="annotation-text">ログストア</text>
+  <text x="460" y="244" class="annotation-text">Elasticsearch</text>
+  
+  <rect x="320" y="270" width="80" height="30" rx="4" class="logs-node"/>
+  <text x="360" y="282" class="annotation-text">分析</text>
+  <text x="360" y="294" class="annotation-text">Kibana</text>
+  
+  <!-- Traces Pillar -->
+  <rect x="550" y="180" width="200" height="20" rx="3" fill="var(--traces-bg)" stroke="var(--error)" stroke-width="1"/>
+  <text x="650" y="194" class="section-title">トレース</text>
+  
+  <rect x="570" y="220" width="80" height="30" rx="4" class="traces-node"/>
+  <text x="610" y="232" class="annotation-text">トレース収集</text>
+  <text x="610" y="244" class="annotation-text">Jaeger</text>
+  
+  <rect x="670" y="220" width="80" height="30" rx="4" class="traces-node"/>
+  <text x="710" y="232" class="annotation-text">分散トレース</text>
+  <text x="710" y="244" class="annotation-text">Zipkin</text>
+  
+  <rect x="570" y="270" width="80" height="30" rx="4" class="traces-node"/>
+  <text x="610" y="282" class="annotation-text">可視化</text>
+  <text x="610" y="294" class="annotation-text">UI</text>
+  
+  <!-- Data Flow Connections -->
+  <line x1="350" y1="130" x2="110" y2="220" class="connection-line"/>
+  <line x1="430" y1="130" x2="360" y2="220" class="connection-line"/>
+  <line x1="510" y1="130" x2="610" y2="220" class="connection-line"/>
+  
+  <!-- Internal Connections -->
+  <line x1="110" y1="250" x2="210" y2="220" class="connection-line"/>
+  <line x1="210" y1="250" x2="110" y2="270" class="connection-line"/>
+  
+  <line x1="360" y1="250" x2="460" y2="220" class="connection-line"/>
+  <line x1="460" y1="250" x2="360" y2="270" class="connection-line"/>
+  
+  <line x1="610" y1="250" x2="710" y2="220" class="connection-line"/>
+  <line x1="710" y1="250" x2="610" y2="270" class="connection-line"/>
+  
+  <!-- Characteristics -->
+  <rect x="50" y="330" width="700" height="250" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="350" class="section-title">各柱の特徴と用途</text>
+  
+  <!-- Metrics Details -->
+  <text x="70" y="375" class="label-text" text-anchor="start">メトリクス:</text>
+  <text x="80" y="395" class="annotation-text" text-anchor="start">• 数値データの時系列収集</text>
+  <text x="80" y="410" class="annotation-text" text-anchor="start">• CPU、メモリ、ディスク使用率</text>
+  <text x="80" y="425" class="annotation-text" text-anchor="start">• レスポンス時間、スループット</text>
+  <text x="80" y="440" class="annotation-text" text-anchor="start">• アラート閾値の設定</text>
+  <text x="80" y="455" class="annotation-text" text-anchor="start">• ダッシュボード可視化</text>
+  
+  <!-- Logs Details -->
+  <text x="270" y="375" class="label-text" text-anchor="start">ログ:</text>
+  <text x="280" y="395" class="annotation-text" text-anchor="start">• イベントの詳細記録</text>
+  <text x="280" y="410" class="annotation-text" text-anchor="start">• エラーメッセージ、スタックトレース</text>
+  <text x="280" y="425" class="annotation-text" text-anchor="start">• アクセスログ、監査ログ</text>
+  <text x="280" y="440" class="annotation-text" text-anchor="start">• 全文検索、フィルタリング</text>
+  <text x="280" y="455" class="annotation-text" text-anchor="start">• 問題の根本原因分析</text>
+  
+  <!-- Traces Details -->
+  <text x="470" y="375" class="label-text" text-anchor="start">トレース:</text>
+  <text x="480" y="395" class="annotation-text" text-anchor="start">• リクエストの経路追跡</text>
+  <text x="480" y="410" class="annotation-text" text-anchor="start">• マイクロサービス間の通信</text>
+  <text x="480" y="425" class="annotation-text" text-anchor="start">• ボトルネック特定</text>
+  <text x="480" y="440" class="annotation-text" text-anchor="start">• レイテンシ分析</text>
+  <text x="480" y="455" class="annotation-text" text-anchor="start">• 依存関係の可視化</text>
+  
+  <!-- Integration Benefits -->
+  <text x="70" y="485" class="label-text" text-anchor="start">統合による効果:</text>
+  <text x="80" y="505" class="annotation-text" text-anchor="start">• メトリクスでアラート検知 → ログで詳細調査 → トレースで経路分析</text>
+  <text x="80" y="520" class="annotation-text" text-anchor="start">• 問題の発見から解決まで一貫したワークフロー</text>
+  <text x="80" y="535" class="annotation-text" text-anchor="start">• 予防的監視から事後分析まで包括的な可観測性</text>
+  <text x="80" y="550" class="annotation-text" text-anchor="start">• チーム間での共通理解とコラボレーション向上</text>
+  
+</svg>

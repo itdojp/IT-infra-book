@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --active-bg: #10B981;
+        --standby-bg: #F59E0B;
+        --spare-bg: #6B7280;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --active-bg: #34D399;
+          --standby-bg: #FBBF24;
+          --spare-bg: #9CA3AF;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .active-node {
+        fill: var(--active-bg);
+        stroke: var(--active-bg);
+        stroke-width: 2;
+      }
+      
+      .standby-node {
+        fill: var(--standby-bg);
+        stroke: var(--standby-bg);
+        stroke-width: 2;
+      }
+      
+      .spare-node {
+        fill: var(--spare-bg);
+        stroke: var(--spare-bg);
+        stroke-width: 2;
+      }
+      
+      .vip-node {
+        fill: var(--primary);
+        stroke: var(--primary);
+        stroke-width: 2;
+      }
+      
+      .lb-node {
+        fill: var(--error);
+        stroke: var(--error);
+        stroke-width: 2;
+      }
+      
+      /* Connection Lines */
+      .active-line {
+        stroke: var(--success);
+        stroke-width: 2;
+        marker-end: url(#arrow-green);
+      }
+      
+      .sync-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        stroke-dasharray: 4,4;
+        opacity: 0.7;
+        marker-end: url(#arrow-blue);
+      }
+      
+      .failover-line {
+        stroke: var(--error);
+        stroke-width: 2;
+        stroke-dasharray: 8,4;
+        marker-end: url(#arrow-red);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--success)"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--error)"/>
+    </marker>
+  </defs>
+  
+  <title>冗長化パターン</title>
+  <desc>アクティブ/スタンバイ、アクティブ/アクティブ、N+M冗長の構成比較</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">冗長化パターン</text>
+  
+  <!-- Active/Standby Pattern -->
+  <rect x="50" y="60" width="220" height="20" rx="3" fill="var(--success)" fill-opacity="0.1" stroke="var(--success)" stroke-width="1"/>
+  <text x="160" y="74" class="section-title">アクティブ/スタンバイ</text>
+  
+  <!-- Virtual IP -->
+  <rect x="120" y="100" width="80" height="30" rx="4" class="vip-node"/>
+  <text x="160" y="120" class="label-text" fill="white">仮想IP</text>
+  
+  <!-- Active Node -->
+  <rect x="80" y="150" width="80" height="40" rx="6" class="active-node"/>
+  <text x="120" y="166" class="label-text" fill="white">アクティブ</text>
+  <text x="120" y="182" class="annotation-text" fill="white">処理中</text>
+  
+  <!-- Standby Node -->
+  <rect x="180" y="150" width="80" height="40" rx="6" class="standby-node"/>
+  <text x="220" y="166" class="label-text" fill="white">スタンバイ</text>
+  <text x="220" y="182" class="annotation-text" fill="white">待機</text>
+  
+  <!-- AS Connections -->
+  <line x1="160" y1="130" x2="120" y2="150" class="active-line"/>
+  <line x1="120" y1="190" x2="220" y2="150" class="sync-line"/>
+  <text x="170" y="175" class="annotation-text">同期</text>
+  <line x1="120" y1="190" x2="220" y2="190" class="failover-line"/>
+  <text x="170" y="210" class="annotation-text">障害</text>
+  
+  <!-- Active/Active Pattern -->
+  <rect x="300" y="60" width="220" height="20" rx="3" fill="var(--error)" fill-opacity="0.1" stroke="var(--error)" stroke-width="1"/>
+  <text x="410" y="74" class="section-title">アクティブ/アクティブ</text>
+  
+  <!-- Load Balancer -->
+  <rect x="370" y="100" width="80" height="30" rx="4" class="lb-node"/>
+  <text x="410" y="120" class="label-text" fill="white">ロードバランサー</text>
+  
+  <!-- Active Node 1 -->
+  <rect x="330" y="150" width="80" height="40" rx="6" class="active-node"/>
+  <text x="370" y="166" class="label-text" fill="white">アクティブ1</text>
+  <text x="370" y="182" class="annotation-text" fill="white">処理中</text>
+  
+  <!-- Active Node 2 -->
+  <rect x="430" y="150" width="80" height="40" rx="6" class="active-node"/>
+  <text x="470" y="166" class="label-text" fill="white">アクティブ2</text>
+  <text x="470" y="182" class="annotation-text" fill="white">処理中</text>
+  
+  <!-- AA Connections -->
+  <line x1="410" y1="130" x2="370" y2="150" class="active-line"/>
+  <line x1="410" y1="130" x2="470" y2="150" class="active-line"/>
+  <line x1="370" y1="190" x2="470" y2="150" class="sync-line"/>
+  <text x="420" y="175" class="annotation-text">同期</text>
+  
+  <!-- N+M Redundancy Pattern -->
+  <rect x="550" y="60" width="200" height="20" rx="3" fill="var(--neutral)" fill-opacity="0.1" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="650" y="74" class="section-title">N+M冗長</text>
+  
+  <!-- Active Nodes -->
+  <rect x="570" y="100" width="60" height="30" rx="4" class="active-node"/>
+  <text x="600" y="120" class="label-text" fill="white">アクティブ1</text>
+  
+  <rect x="640" y="100" width="60" height="30" rx="4" class="active-node"/>
+  <text x="670" y="120" class="label-text" fill="white">アクティブ2</text>
+  
+  <rect x="710" y="100" width="60" height="30" rx="4" class="active-node"/>
+  <text x="740" y="120" class="label-text" fill="white">アクティブ3</text>
+  
+  <!-- Spare Nodes -->
+  <rect x="590" y="150" width="60" height="30" rx="4" class="spare-node"/>
+  <text x="620" y="170" class="label-text" fill="white">予備1</text>
+  
+  <rect x="660" y="150" width="60" height="30" rx="4" class="spare-node"/>
+  <text x="690" y="170" class="label-text" fill="white">予備2</text>
+  
+  <!-- NM Connections -->
+  <line x1="600" y1="130" x2="620" y2="150" class="failover-line"/>
+  <line x1="670" y1="130" x2="620" y2="150" class="failover-line"/>
+  <line x1="740" y1="130" x2="690" y2="150" class="failover-line"/>
+  <text x="610" y="145" class="annotation-text">障害時</text>
+  <text x="680" y="145" class="annotation-text">障害時</text>
+  <text x="715" y="145" class="annotation-text">障害時</text>
+  
+  <!-- Pattern Comparison -->
+  <rect x="50" y="250" width="700" height="320" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="270" class="title-text">パターン比較</text>
+  
+  <!-- Active/Standby Details -->
+  <rect x="70" y="290" width="200" height="120" rx="4" fill="var(--success)" fill-opacity="0.1" stroke="var(--success)" stroke-width="1"/>
+  <text x="170" y="308" class="section-title">アクティブ/スタンバイ</text>
+  
+  <text x="80" y="328" class="label-text" text-anchor="start">特徴:</text>
+  <text x="85" y="344" class="annotation-text" text-anchor="start">• 1台が処理、1台が待機</text>
+  <text x="85" y="356" class="annotation-text" text-anchor="start">• シンプルな構成</text>
+  <text x="85" y="368" class="annotation-text" text-anchor="start">• リソース使用率50%</text>
+  
+  <text x="80" y="385" class="label-text" text-anchor="start">用途:</text>
+  <text x="85" y="398" class="annotation-text" text-anchor="start">• データベース</text>
+  <text x="85" y="410" class="annotation-text" text-anchor="start">• ファイルサーバー</text>
+  
+  <!-- Active/Active Details -->
+  <rect x="290" y="290" width="200" height="120" rx="4" fill="var(--error)" fill-opacity="0.1" stroke="var(--error)" stroke-width="1"/>
+  <text x="390" y="308" class="section-title">アクティブ/アクティブ</text>
+  
+  <text x="300" y="328" class="label-text" text-anchor="start">特徴:</text>
+  <text x="305" y="344" class="annotation-text" text-anchor="start">• 全台が処理に参加</text>
+  <text x="305" y="356" class="annotation-text" text-anchor="start">• 高いリソース効率</text>
+  <text x="305" y="368" class="annotation-text" text-anchor="start">• 負荷分散効果</text>
+  
+  <text x="300" y="385" class="label-text" text-anchor="start">用途:</text>
+  <text x="305" y="398" class="annotation-text" text-anchor="start">• Webサーバー</text>
+  <text x="305" y="410" class="annotation-text" text-anchor="start">• アプリケーションサーバー</text>
+  
+  <!-- N+M Details -->
+  <rect x="510" y="290" width="200" height="120" rx="4" fill="var(--neutral)" fill-opacity="0.1" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="610" y="308" class="section-title">N+M冗長</text>
+  
+  <text x="520" y="328" class="label-text" text-anchor="start">特徴:</text>
+  <text x="525" y="344" class="annotation-text" text-anchor="start">• N台運用、M台予備</text>
+  <text x="525" y="356" class="annotation-text" text-anchor="start">• 複数障害に対応</text>
+  <text x="525" y="368" class="annotation-text" text-anchor="start">• 段階的縮退運転</text>
+  
+  <text x="520" y="385" class="label-text" text-anchor="start">用途:</text>
+  <text x="525" y="398" class="annotation-text" text-anchor="start">• ミッションクリティカル</text>
+  <text x="525" y="410" class="annotation-text" text-anchor="start">• 大規模システム</text>
+  
+  <!-- Implementation Considerations -->
+  <rect x="70" y="430" width="640" height="120" rx="4" fill="var(--warning)" fill-opacity="0.1" stroke="var(--warning)" stroke-width="1"/>
+  <text x="390" y="450" class="section-title">実装時の考慮事項</text>
+  
+  <text x="80" y="470" class="label-text" text-anchor="start">フェイルオーバー時間:</text>
+  <text x="85" y="486" class="annotation-text" text-anchor="start">• アクティブ/スタンバイ: 数秒〜数分</text>
+  <text x="85" y="498" class="annotation-text" text-anchor="start">• アクティブ/アクティブ: 瞬時〜数秒</text>
+  <text x="85" y="510" class="annotation-text" text-anchor="start">• N+M冗長: 数秒（予備への切り替え）</text>
+  
+  <text x="400" y="470" class="label-text" text-anchor="start">コスト:</text>
+  <text x="405" y="486" class="annotation-text" text-anchor="start">• アクティブ/スタンバイ: 2倍</text>
+  <text x="405" y="498" class="annotation-text" text-anchor="start">• アクティブ/アクティブ: 2倍（効率的）</text>
+  <text x="405" y="510" class="annotation-text" text-anchor="start">• N+M冗長: (N+M)/N倍</text>
+  
+  <text x="580" y="470" class="label-text" text-anchor="start">複雑性:</text>
+  <text x="585" y="486" class="annotation-text" text-anchor="start">• アクティブ/スタンバイ: 低</text>
+  <text x="585" y="498" class="annotation-text" text-anchor="start">• アクティブ/アクティブ: 中</text>
+  <text x="585" y="510" class="annotation-text" text-anchor="start">• N+M冗長: 高</text>
+  
+</svg>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --evaluation-bg: #e3f2fd;
+        --technology-bg: #f3e5f5;
+        --scoring-bg: #e8f5e8;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --evaluation-bg: #1A237E;
+          --technology-bg: #4A148C;
+          --scoring-bg: #1B5E20;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      /* Node Styles */
+      .evaluation-node {
+        fill: var(--evaluation-bg);
+        stroke: var(--primary);
+        stroke-width: 1.5;
+      }
+      
+      .technology-node {
+        fill: var(--technology-bg);
+        stroke: var(--warning);
+        stroke-width: 1.5;
+      }
+      
+      .scoring-node {
+        fill: var(--scoring-bg);
+        stroke: var(--success);
+        stroke-width: 1.5;
+      }
+      
+      /* Connection Lines */
+      .connection-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+  </defs>
+  
+  <title>技術評価マトリクス</title>
+  <desc>体系的な技術選択のための多軸評価フレームワーク</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">技術評価マトリクス</text>
+  
+  <!-- Evaluation Axes Section -->
+  <rect x="50" y="60" width="200" height="20" rx="3" fill="var(--evaluation-bg)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="150" y="74" class="section-title">評価軸</text>
+  
+  <rect x="70" y="100" width="80" height="40" rx="4" class="evaluation-node"/>
+  <text x="110" y="114" class="annotation-text">機能要件</text>
+  <text x="110" y="128" class="annotation-text">充足度</text>
+  
+  <rect x="170" y="100" width="80" height="40" rx="4" class="evaluation-node"/>
+  <text x="210" y="114" class="annotation-text">性能</text>
+  <text x="210" y="128" class="annotation-text">スケーラビリティ</text>
+  
+  <rect x="70" y="160" width="80" height="40" rx="4" class="evaluation-node"/>
+  <text x="110" y="174" class="annotation-text">運用性</text>
+  <text x="110" y="188" class="annotation-text">保守性</text>
+  
+  <rect x="170" y="160" width="80" height="40" rx="4" class="evaluation-node"/>
+  <text x="210" y="174" class="annotation-text">コスト</text>
+  <text x="210" y="188" class="annotation-text">TCO</text>
+  
+  <rect x="70" y="220" width="80" height="40" rx="4" class="evaluation-node"/>
+  <text x="110" y="234" class="annotation-text">リスク</text>
+  <text x="110" y="248" class="annotation-text">成熟度</text>
+  
+  <rect x="170" y="220" width="80" height="40" rx="4" class="evaluation-node"/>
+  <text x="210" y="234" class="annotation-text">組織</text>
+  <text x="210" y="248" class="annotation-text">適合性</text>
+  
+  <!-- Technology Candidates Section -->
+  <rect x="300" y="60" width="200" height="20" rx="3" fill="var(--technology-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="400" y="74" class="section-title">評価対象技術</text>
+  
+  <rect x="340" y="100" width="120" height="40" rx="4" class="technology-node"/>
+  <text x="400" y="124" class="label-text">技術A</text>
+  
+  <rect x="340" y="160" width="120" height="40" rx="4" class="technology-node"/>
+  <text x="400" y="184" class="label-text">技術B</text>
+  
+  <rect x="340" y="220" width="120" height="40" rx="4" class="technology-node"/>
+  <text x="400" y="244" class="label-text">技術C</text>
+  
+  <!-- Scoring Section -->
+  <rect x="550" y="60" width="200" height="20" rx="3" fill="var(--scoring-bg)" stroke="var(--success)" stroke-width="1"/>
+  <text x="650" y="74" class="section-title">総合評価</text>
+  
+  <rect x="580" y="100" width="140" height="40" rx="4" class="scoring-node"/>
+  <text x="650" y="114" class="annotation-text">スコアリング</text>
+  <text x="650" y="128" class="annotation-text">重み付け集計</text>
+  
+  <rect x="580" y="160" width="140" height="40" rx="4" class="scoring-node"/>
+  <text x="650" y="184" class="label-text">選択決定</text>
+  
+  <!-- Connections from Evaluation Axes to Scoring -->
+  <line x1="150" y1="120" x2="580" y2="120" class="connection-line"/>
+  <line x1="210" y1="120" x2="580" y2="120" class="connection-line"/>
+  <line x1="150" y1="180" x2="580" y2="120" class="connection-line"/>
+  <line x1="210" y1="180" x2="580" y2="120" class="connection-line"/>
+  <line x1="150" y1="240" x2="580" y2="120" class="connection-line"/>
+  <line x1="210" y1="240" x2="580" y2="120" class="connection-line"/>
+  
+  <!-- Connections from Technologies to Scoring -->
+  <line x1="460" y1="120" x2="580" y2="120" class="connection-line"/>
+  <line x1="460" y1="180" x2="580" y2="120" class="connection-line"/>
+  <line x1="460" y1="240" x2="580" y2="120" class="connection-line"/>
+  
+  <!-- Scoring to Decision -->
+  <line x1="650" y1="140" x2="650" y2="160" class="connection-line"/>
+  
+  <!-- Detailed Breakdown -->
+  <rect x="50" y="300" width="700" height="280" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="320" class="section-title">評価プロセス詳細</text>
+  
+  <!-- Evaluation Criteria Details -->
+  <text x="70" y="345" class="label-text" text-anchor="start">評価基準:</text>
+  <text x="80" y="365" class="annotation-text" text-anchor="start">• 機能要件充足度: 必須機能カバー率、拡張性</text>
+  <text x="80" y="380" class="annotation-text" text-anchor="start">• 性能・スケーラビリティ: スループット、レイテンシ、拡張限界</text>
+  <text x="80" y="395" class="annotation-text" text-anchor="start">• 運用性・保守性: 監視容易性、デバッグ支援、運用負荷</text>
+  <text x="80" y="410" class="annotation-text" text-anchor="start">• コスト・TCO: 初期導入費、運用費、人件費</text>
+  <text x="80" y="425" class="annotation-text" text-anchor="start">• リスク・成熟度: 枯れ具合、コミュニティ、サポート</text>
+  <text x="80" y="440" class="annotation-text" text-anchor="start">• 組織適合性: スキル要件、学習コスト、文化的適合</text>
+  
+  <!-- Scoring Method -->
+  <text x="70" y="465" class="label-text" text-anchor="start">スコアリング方式:</text>
+  <text x="80" y="485" class="annotation-text" text-anchor="start">• 各項目を1-5点で評価</text>
+  <text x="80" y="500" class="annotation-text" text-anchor="start">• 重要度に応じた重み付け（×0.5〜×2.0）</text>
+  <text x="80" y="515" class="annotation-text" text-anchor="start">• 総合点 = Σ（評価点 × 重み）/ Σ重み</text>
+  <text x="80" y="530" class="annotation-text" text-anchor="start">• 必須要件を満たさない場合は失格</text>
+  
+  <!-- Decision Process -->
+  <text x="420" y="345" class="label-text" text-anchor="start">意思決定プロセス:</text>
+  <text x="430" y="365" class="annotation-text" text-anchor="start">1. ステークホルダー合意による重み設定</text>
+  <text x="430" y="380" class="annotation-text" text-anchor="start">2. 複数人による独立評価と議論</text>
+  <text x="430" y="395" class="annotation-text" text-anchor="start">3. PoC/評価版での実証</text>
+  <text x="430" y="410" class="annotation-text" text-anchor="start">4. リスク・制約事項の明確化</text>
+  <text x="430" y="425" class="annotation-text" text-anchor="start">5. 最終選択と根拠の文書化</text>
+  
+  <!-- Best Practices -->
+  <text x="420" y="450" class="label-text" text-anchor="start">評価のポイント:</text>
+  <text x="430" y="470" class="annotation-text" text-anchor="start">• 主観的な偏見を排除する仕組み</text>
+  <text x="430" y="485" class="annotation-text" text-anchor="start">• 長期的視点での評価</text>
+  <text x="430" y="500" class="annotation-text" text-anchor="start">• 既存システムとの親和性考慮</text>
+  <text x="430" y="515" class="annotation-text" text-anchor="start">• 移行コスト・リスクの適切な見積</text>
+  <text x="430" y="530" class="annotation-text" text-anchor="start">• 代替案・撤退戦略の検討</text>
+  
+  <!-- Matrix Example -->
+  <text x="70" y="555" class="label-text" text-anchor="start">評価例（重み付け例）:</text>
+  <text x="80" y="570" class="annotation-text" text-anchor="start">機能要件(×2.0) + 性能(×1.5) + 運用性(×1.5) + コスト(×1.0) + リスク(×1.2) + 組織適合(×1.0)</text>
+  
+</svg>

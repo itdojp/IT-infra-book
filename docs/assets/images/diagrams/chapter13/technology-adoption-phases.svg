@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="700" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Color Palette */
+      :root {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F8F9FA;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B7280;
+        --primary: #3B82F6;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --neutral: #6B7280;
+        --border: #E5E7EB;
+        --poc-bg: #e3f2fd;
+        --pilot-bg: #fff3e0;
+        --rollout-bg: #e8f5e8;
+        --production-bg: #f3e5f5;
+        --timeline-bg: #fffbf0;
+      }
+      
+      /* Dark Theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1A1A1A;
+          --bg-secondary: #2D2D2D;
+          --text-primary: #FFFFFF;
+          --text-secondary: #9CA3AF;
+          --primary: #60A5FA;
+          --success: #34D399;
+          --warning: #FBBF24;
+          --error: #F87171;
+          --neutral: #9CA3AF;
+          --border: #374151;
+          --poc-bg: #1A237E;
+          --pilot-bg: #E65100;
+          --rollout-bg: #1B5E20;
+          --production-bg: #4A148C;
+          --timeline-bg: #3E2723;
+        }
+      }
+      
+      /* Typography */
+      .title-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .label-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .annotation-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: middle;
+        fill: var(--text-secondary);
+      }
+      
+      .section-title {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-anchor: middle;
+        fill: var(--text-primary);
+      }
+      
+      .note-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-anchor: start;
+        fill: var(--text-secondary);
+      }
+      
+      /* Node Styles */
+      .poc-node {
+        fill: var(--poc-bg);
+        stroke: var(--primary);
+        stroke-width: 1.5;
+      }
+      
+      .pilot-node {
+        fill: var(--pilot-bg);
+        stroke: var(--warning);
+        stroke-width: 1.5;
+      }
+      
+      .rollout-node {
+        fill: var(--rollout-bg);
+        stroke: var(--success);
+        stroke-width: 1.5;
+      }
+      
+      .production-node {
+        fill: var(--production-bg);
+        stroke: var(--neutral);
+        stroke-width: 1.5;
+      }
+      
+      .decision-node {
+        fill: var(--warning);
+        stroke: var(--warning);
+        stroke-width: 2;
+      }
+      
+      .exit-node {
+        fill: var(--error);
+        stroke: var(--error);
+        stroke-width: 2;
+      }
+      
+      /* Connection Lines */
+      .flow-line {
+        stroke: var(--primary);
+        stroke-width: 2;
+        marker-end: url(#arrow);
+      }
+      
+      .decision-line {
+        stroke: var(--success);
+        stroke-width: 2;
+        marker-end: url(#arrow-green);
+      }
+      
+      .exit-line {
+        stroke: var(--error);
+        stroke-width: 2;
+        marker-end: url(#arrow-red);
+      }
+    </style>
+    
+    <!-- Arrow Markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--primary)"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--success)"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="var(--error)"/>
+    </marker>
+  </defs>
+  
+  <title>技術導入フェーズ</title>
+  <desc>PoC、パイロット、展開、本番の段階的技術導入プロセス</desc>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="var(--bg-primary)"/>
+  
+  <!-- Main Title -->
+  <text x="400" y="24" class="title-text">技術導入フェーズ</text>
+  
+  <!-- Phase 1: PoC -->
+  <rect x="50" y="60" width="150" height="20" rx="3" fill="var(--poc-bg)" stroke="var(--primary)" stroke-width="1"/>
+  <text x="125" y="74" class="section-title">フェーズ1: PoC</text>
+  
+  <rect x="70" y="100" width="110" height="30" rx="4" class="poc-node"/>
+  <text x="125" y="120" class="label-text">技術調査</text>
+  
+  <rect x="70" y="140" width="110" height="30" rx="4" class="poc-node"/>
+  <text x="125" y="160" class="label-text">プロトタイプ</text>
+  
+  <rect x="70" y="180" width="110" height="30" rx="4" class="poc-node"/>
+  <text x="125" y="200" class="label-text">評価</text>
+  
+  <!-- Phase 2: Pilot -->
+  <rect x="250" y="60" width="150" height="20" rx="3" fill="var(--pilot-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="325" y="74" class="section-title">フェーズ2: パイロット</text>
+  
+  <rect x="270" y="100" width="110" height="30" rx="4" class="pilot-node"/>
+  <text x="325" y="120" class="label-text">限定導入</text>
+  
+  <rect x="270" y="140" width="110" height="30" rx="4" class="pilot-node"/>
+  <text x="325" y="160" class="label-text">効果測定</text>
+  
+  <rect x="270" y="180" width="110" height="30" rx="4" class="pilot-node"/>
+  <text x="325" y="200" class="label-text">課題抽出</text>
+  
+  <!-- Phase 3: Rollout -->
+  <rect x="450" y="60" width="150" height="20" rx="3" fill="var(--rollout-bg)" stroke="var(--success)" stroke-width="1"/>
+  <text x="525" y="74" class="section-title">フェーズ3: 展開</text>
+  
+  <rect x="470" y="100" width="110" height="30" rx="4" class="rollout-node"/>
+  <text x="525" y="120" class="label-text">段階展開</text>
+  
+  <rect x="470" y="140" width="110" height="30" rx="4" class="rollout-node"/>
+  <text x="525" y="160" class="label-text">移行実施</text>
+  
+  <rect x="470" y="180" width="110" height="30" rx="4" class="rollout-node"/>
+  <text x="525" y="200" class="label-text">並行運用</text>
+  
+  <!-- Phase 4: Production -->
+  <rect x="650" y="60" width="150" height="20" rx="3" fill="var(--production-bg)" stroke="var(--neutral)" stroke-width="1"/>
+  <text x="725" y="74" class="section-title">フェーズ4: 本番</text>
+  
+  <rect x="670" y="100" width="110" height="30" rx="4" class="production-node"/>
+  <text x="725" y="120" class="label-text">全面移行</text>
+  
+  <rect x="670" y="140" width="110" height="30" rx="4" class="production-node"/>
+  <text x="725" y="160" class="label-text">最適化</text>
+  
+  <rect x="670" y="180" width="110" height="30" rx="4" class="production-node"/>
+  <text x="725" y="200" class="label-text">標準化</text>
+  
+  <!-- Decision Points and Exits -->
+  <!-- PoC to Pilot -->
+  <line x1="180" y1="195" x2="270" y2="115" class="decision-line"/>
+  <text x="215" y="150" class="annotation-text">Go</text>
+  
+  <!-- PoC Exit -->
+  <rect x="130" y="240" width="60" height="30" rx="4" class="exit-node"/>
+  <text x="160" y="260" class="label-text" fill="white">中止</text>
+  <line x1="125" y1="210" x2="160" y2="240" class="exit-line"/>
+  <text x="115" y="225" class="annotation-text">No-Go</text>
+  
+  <!-- Pilot to Rollout -->
+  <line x1="380" y1="195" x2="470" y2="115" class="decision-line"/>
+  <text x="415" y="150" class="annotation-text">Go</text>
+  
+  <!-- Pilot Exit -->
+  <rect x="330" y="240" width="60" height="30" rx="4" class="exit-node"/>
+  <text x="360" y="260" class="label-text" fill="white">撤退</text>
+  <line x1="325" y1="210" x2="360" y2="240" class="exit-line"/>
+  <text x="315" y="225" class="annotation-text">No-Go</text>
+  
+  <!-- Rollout to Production -->
+  <line x1="580" y1="195" x2="670" y2="115" class="flow-line"/>
+  
+  <!-- Timeline Section -->
+  <rect x="50" y="300" width="700" height="20" rx="3" fill="var(--timeline-bg)" stroke="var(--warning)" stroke-width="1"/>
+  <text x="400" y="314" class="section-title">各フェーズの期間</text>
+  
+  <rect x="70" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="130" y="360" class="label-text">PoC</text>
+  <text x="130" y="375" class="annotation-text">2-4週</text>
+  <text x="130" y="390" class="annotation-text">技術検証</text>
+  
+  <rect x="220" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="280" y="360" class="label-text">パイロット</text>
+  <text x="280" y="375" class="annotation-text">2-3ヶ月</text>
+  <text x="280" y="390" class="annotation-text">実地検証</text>
+  
+  <rect x="370" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="430" y="360" class="label-text">展開</text>
+  <text x="430" y="375" class="annotation-text">3-6ヶ月</text>
+  <text x="430" y="390" class="annotation-text">段階移行</text>
+  
+  <rect x="520" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="580" y="360" class="label-text">本番</text>
+  <text x="580" y="375" class="annotation-text">継続</text>
+  <text x="580" y="390" class="annotation-text">運用最適化</text>
+  
+  <!-- Detailed Process -->
+  <rect x="50" y="430" width="700" height="250" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
+  <text x="400" y="450" class="section-title">各フェーズの詳細プロセス</text>
+  
+  <!-- PoC Details -->
+  <text x="70" y="475" class="label-text" text-anchor="start">PoC（Proof of Concept）:</text>
+  <text x="80" y="495" class="note-text">• 技術調査: 文献調査、競合分析、技術評価</text>
+  <text x="80" y="510" class="note-text">• プロトタイプ: 最小機能実装、基本動作確認</text>
+  <text x="80" y="525" class="note-text">• 評価: 技術的実現可能性、性能特性の測定</text>
+  <text x="80" y="540" class="note-text">• 判定基準: 必須要件充足、技術リスクの許容範囲</text>
+  
+  <!-- Pilot Details -->
+  <text x="70" y="565" class="label-text" text-anchor="start">パイロット（実証導入）:</text>
+  <text x="80" y="585" class="note-text">• 限定導入: 特定業務・ユーザーでの実運用開始</text>
+  <text x="80" y="600" class="note-text">• 効果測定: KPI設定、定量的効果の測定</text>
+  <text x="80" y="615" class="note-text">• 課題抽出: 運用課題、品質問題の特定</text>
+  <text x="80" y="630" class="note-text">• 判定基準: ROI達成、運用可能性の確認</text>
+  
+  <!-- Rollout and Production Details -->
+  <text x="420" y="475" class="label-text" text-anchor="start">展開（ロールアウト）:</text>
+  <text x="430" y="495" class="note-text">• 段階展開: リスク最小化のための段階的拡大</text>
+  <text x="430" y="510" class="note-text">• 移行実施: データ移行、システム切り替え</text>
+  <text x="430" y="525" class="note-text">• 並行運用: 新旧システムの並行稼働</text>
+  <text x="430" y="540" class="note-text">• リスク管理: ロールバック計画、監視強化</text>
+  
+  <text x="420" y="565" class="label-text" text-anchor="start">本番（運用最適化）:</text>
+  <text x="430" y="585" class="note-text">• 全面移行: 全ユーザー・全業務への適用</text>
+  <text x="430" y="600" class="note-text">• 最適化: 性能チューニング、運用効率化</text>
+  <text x="430" y="615" class="note-text">• 標準化: 運用手順の標準化、ノウハウ蓄積</text>
+  <text x="430" y="630" class="note-text">• 継続改善: 定期レビュー、機能拡張</text>
+  
+  <!-- Success Factors -->
+  <text x="70" y="655" class="label-text" text-anchor="start">成功要因:</text>
+  <text x="80" y="670" class="note-text">明確な判定基準、適切なリスク管理、ステークホルダーの合意形成、段階的なアプローチ</text>
+  
+</svg>

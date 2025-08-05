@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 2
 title: "第1章：プロトコルスタックの設計思想"
 ---
 

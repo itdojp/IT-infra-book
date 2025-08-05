@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 12
 title: "第11章：高可用性システムの設計"
 ---
 

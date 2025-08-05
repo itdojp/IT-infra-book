@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 11
 title: "第10章：セキュリティアーキテクチャ"
 ---
 
@@ -1530,7 +1531,6 @@ chmod +x /usr/local/bin/auto-cert.sh
 ```yaml
 # suricata.yaml - Suricata設定ファイル
 %YAML 1.1
----
 
 # 統計情報設定
 stats:

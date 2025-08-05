@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 3
 title: "第2章：L2ネットワークの設計と実装"
 ---
 

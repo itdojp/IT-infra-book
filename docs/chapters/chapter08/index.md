@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 9
 title: "第8章：仮想化技術の実装原理"
 ---
 

@@ -1,7 +1,6 @@
 title: "ITインフラストラクチャ技術ガイド"
 description: "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書"
 author: "株式会社アイティードゥ"
-organization: "株式会社アイティードゥ"
 version: "1.0.0"
 lang: "ja"
 
@@ -15,6 +14,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 # 除外ファイル
 exclude:
@@ -24,6 +24,10 @@ exclude:
   - scripts/
   - tests/
   - "README.md"
+  - vendor/
+  - .bundle/
+  - Gemfile
+  - Gemfile.lock
 
 # 日本語対応
 kramdown:
@@ -31,6 +35,7 @@ kramdown:
   syntax_highlighter: rouge
   
 # GitHub Pages設定
-
+url: "https://itdojp.github.io"
+baseurl: "/IT-infra-book"
 repository: "itdojp/IT-infra-book"
 

@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 5
 title: "第4章：名前解決とサービス発見"
 ---
 

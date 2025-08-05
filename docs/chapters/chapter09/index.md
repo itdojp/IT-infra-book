@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 10
 title: "第9章：システム運用の自動化"
 ---
 

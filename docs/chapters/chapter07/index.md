@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 8
 title: "第7章：ストレージアーキテクチャ"
 ---
 

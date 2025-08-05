@@ -1,7 +1,7 @@
 ---
 layout: book
 order: 15
-title: "付録A: 設計パターンカタログ"
+title: "付録A: 用語集"
 ---
 
 # 付録A: 用語集

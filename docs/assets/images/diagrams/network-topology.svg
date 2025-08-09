@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="700" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: 'Noto Sans JP', sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; }
+      .topology-title { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: bold; fill: #34495e; }
+      .feature-text { font-family: 'Noto Sans JP', sans-serif; font-size: 10px; fill: #2c3e50; }
+      .advantage { font-family: 'Noto Sans JP', sans-serif; font-size: 9px; fill: #27ae60; }
+      .disadvantage { font-family: 'Noto Sans JP', sans-serif; font-size: 9px; fill: #e74c3c; }
+      .node { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .center-node { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .connection { stroke: #34495e; stroke-width: 2; fill: none; }
+      .info-box { fill: #f8f9fa; stroke: #dee2e6; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" class="title" text-anchor="middle">ネットワークトポロジー</text>
+
+  <!-- Bus Topology -->
+  <g id="bus-topology">
+    <text x="150" y="80" class="topology-title" text-anchor="middle">バス型</text>
+    <line x1="50" y1="120" x2="250" y2="120" class="connection" stroke-width="3"/>
+    <circle cx="70" cy="120" r="10" class="node"/>
+    <circle cx="120" cy="120" r="10" class="node"/>
+    <circle cx="170" cy="120" r="10" class="node"/>
+    <circle cx="220" cy="120" r="10" class="node"/>
+    <line x1="70" y1="120" x2="70" y2="100" class="connection"/>
+    <line x1="120" y1="120" x2="120" y2="100" class="connection"/>
+    <line x1="170" y1="120" x2="170" y2="100" class="connection"/>
+    <line x1="220" y1="120" x2="220" y2="100" class="connection"/>
+    
+    <rect x="40" y="150" width="220" height="60" class="info-box" rx="3"/>
+    <text x="50" y="170" class="advantage">✓ シンプル・低コスト</text>
+    <text x="50" y="185" class="disadvantage">✗ 障害時全体影響</text>
+    <text x="50" y="200" class="disadvantage">✗ 衝突発生</text>
+  </g>
+
+  <!-- Star Topology -->
+  <g id="star-topology">
+    <text x="450" y="80" class="topology-title" text-anchor="middle">スター型</text>
+    <circle cx="450" cy="120" r="12" class="center-node"/>
+    <circle cx="400" cy="90" r="10" class="node"/>
+    <circle cx="500" cy="90" r="10" class="node"/>
+    <circle cx="400" cy="150" r="10" class="node"/>
+    <circle cx="500" cy="150" r="10" class="node"/>
+    <line x1="450" y1="120" x2="400" y2="90" class="connection"/>
+    <line x1="450" y1="120" x2="500" y2="90" class="connection"/>
+    <line x1="450" y1="120" x2="400" y2="150" class="connection"/>
+    <line x1="450" y1="120" x2="500" y2="150" class="connection"/>
+    
+    <rect x="340" y="180" width="220" height="60" class="info-box" rx="3"/>
+    <text x="350" y="200" class="advantage">✓ 管理容易</text>
+    <text x="350" y="215" class="advantage">✓ 障害切り分け容易</text>
+    <text x="350" y="230" class="disadvantage">✗ 中央依存（単一障害点）</text>
+  </g>
+
+  <!-- Ring Topology -->
+  <g id="ring-topology">
+    <text x="750" y="80" class="topology-title" text-anchor="middle">リング型</text>
+    <circle cx="720" cy="100" r="10" class="node"/>
+    <circle cx="780" cy="100" r="10" class="node"/>
+    <circle cx="780" cy="140" r="10" class="node"/>
+    <circle cx="720" cy="140" r="10" class="node"/>
+    <path d="M 720 100 Q 750 80 780 100" class="connection" fill="none"/>
+    <path d="M 780 100 Q 800 120 780 140" class="connection" fill="none"/>
+    <path d="M 780 140 Q 750 160 720 140" class="connection" fill="none"/>
+    <path d="M 720 140 Q 700 120 720 100" class="connection" fill="none"/>
+    
+    <rect x="640" y="170" width="220" height="60" class="info-box" rx="3"/>
+    <text x="650" y="190" class="advantage">✓ トークン制御</text>
+    <text x="650" y="205" class="disadvantage">✗ 一箇所切断で全体停止</text>
+    <text x="650" y="220" class="feature-text">※ 二重リングで冗長化可能</text>
+  </g>
+
+  <!-- Mesh Topology -->
+  <g id="mesh-topology">
+    <text x="150" y="300" class="topology-title" text-anchor="middle">メッシュ型</text>
+    <circle cx="120" cy="340" r="10" class="node"/>
+    <circle cx="180" cy="340" r="10" class="node"/>
+    <circle cx="120" cy="380" r="10" class="node"/>
+    <circle cx="180" cy="380" r="10" class="node"/>
+    <line x1="120" y1="340" x2="180" y2="340" class="connection"/>
+    <line x1="120" y1="340" x2="120" y2="380" class="connection"/>
+    <line x1="180" y1="340" x2="180" y2="380" class="connection"/>
+    <line x1="120" y1="380" x2="180" y2="380" class="connection"/>
+    <line x1="120" y1="340" x2="180" y2="380" class="connection"/>
+    <line x1="180" y1="340" x2="120" y2="380" class="connection"/>
+    
+    <rect x="40" y="410" width="220" height="60" class="info-box" rx="3"/>
+    <text x="50" y="430" class="advantage">✓ 高可用性・冗長性</text>
+    <text x="50" y="445" class="advantage">✓ 複数経路</text>
+    <text x="50" y="460" class="disadvantage">✗ 高コスト・複雑</text>
+  </g>
+
+  <!-- Tree Topology -->
+  <g id="tree-topology">
+    <text x="450" y="300" class="topology-title" text-anchor="middle">ツリー型</text>
+    <circle cx="450" cy="340" r="12" class="center-node"/>
+    <circle cx="400" cy="370" r="10" class="node"/>
+    <circle cx="500" cy="370" r="10" class="node"/>
+    <circle cx="380" cy="400" r="8" class="node"/>
+    <circle cx="420" cy="400" r="8" class="node"/>
+    <circle cx="480" cy="400" r="8" class="node"/>
+    <circle cx="520" cy="400" r="8" class="node"/>
+    <line x1="450" y1="340" x2="400" y2="370" class="connection"/>
+    <line x1="450" y1="340" x2="500" y2="370" class="connection"/>
+    <line x1="400" y1="370" x2="380" y2="400" class="connection"/>
+    <line x1="400" y1="370" x2="420" y2="400" class="connection"/>
+    <line x1="500" y1="370" x2="480" y2="400" class="connection"/>
+    <line x1="500" y1="370" x2="520" y2="400" class="connection"/>
+    
+    <rect x="340" y="430" width="220" height="60" class="info-box" rx="3"/>
+    <text x="350" y="450" class="advantage">✓ 階層構造</text>
+    <text x="350" y="465" class="advantage">✓ 拡張容易</text>
+    <text x="350" y="480" class="disadvantage">✗ ルートノード依存</text>
+  </g>
+
+  <!-- Hybrid Topology -->
+  <g id="hybrid-topology">
+    <text x="750" y="300" class="topology-title" text-anchor="middle">ハイブリッド型</text>
+    <!-- Star part -->
+    <circle cx="720" cy="350" r="10" class="center-node"/>
+    <circle cx="690" cy="340" r="8" class="node"/>
+    <circle cx="690" cy="360" r="8" class="node"/>
+    <line x1="720" y1="350" x2="690" y2="340" class="connection"/>
+    <line x1="720" y1="350" x2="690" y2="360" class="connection"/>
+    <!-- Bus part -->
+    <line x1="730" y1="350" x2="800" y2="350" class="connection" stroke-width="3"/>
+    <circle cx="760" cy="350" r="8" class="node"/>
+    <circle cx="790" cy="350" r="8" class="node"/>
+    <line x1="760" y1="350" x2="760" y2="330" class="connection"/>
+    <line x1="790" y1="350" x2="790" y2="330" class="connection"/>
+    <!-- Ring part -->
+    <circle cx="750" cy="390" r="8" class="node"/>
+    <circle cx="780" cy="390" r="8" class="node"/>
+    <circle cx="765" cy="410" r="8" class="node"/>
+    <path d="M 750 390 Q 765 380 780 390" class="connection" fill="none"/>
+    <path d="M 780 390 Q 780 400 765 410" class="connection" fill="none"/>
+    <path d="M 765 410 Q 750 400 750 390" class="connection" fill="none"/>
+    <line x1="750" y1="350" x2="750" y2="390" class="connection"/>
+    
+    <rect x="640" y="440" width="220" height="60" class="info-box" rx="3"/>
+    <text x="650" y="460" class="advantage">✓ 柔軟性高い</text>
+    <text x="650" y="475" class="advantage">✓ 要件に応じた設計</text>
+    <text x="650" y="490" class="disadvantage">✗ 設計・管理複雑</text>
+  </g>
+
+  <!-- Comparison Table -->
+  <g id="comparison">
+    <rect x="50" y="520" width="800" height="150" class="info-box" rx="5"/>
+    <text x="450" y="545" class="topology-title" text-anchor="middle">トポロジー比較</text>
+    
+    <text x="100" y="570" class="feature-text" font-weight="bold">種類</text>
+    <text x="250" y="570" class="feature-text" font-weight="bold">コスト</text>
+    <text x="400" y="570" class="feature-text" font-weight="bold">拡張性</text>
+    <text x="550" y="570" class="feature-text" font-weight="bold">信頼性</text>
+    <text x="700" y="570" class="feature-text" font-weight="bold">適用場面</text>
+    
+    <text x="100" y="590" class="feature-text">バス型</text>
+    <text x="250" y="590" class="advantage">低</text>
+    <text x="400" y="590" class="disadvantage">低</text>
+    <text x="550" y="590" class="disadvantage">低</text>
+    <text x="700" y="590" class="feature-text">小規模LAN</text>
+    
+    <text x="100" y="610" class="feature-text">スター型</text>
+    <text x="250" y="610" class="feature-text">中</text>
+    <text x="400" y="610" class="advantage">高</text>
+    <text x="550" y="610" class="feature-text">中</text>
+    <text x="700" y="610" class="feature-text">オフィスLAN</text>
+    
+    <text x="100" y="630" class="feature-text">メッシュ型</text>
+    <text x="250" y="630" class="disadvantage">高</text>
+    <text x="400" y="630" class="feature-text">中</text>
+    <text x="550" y="630" class="advantage">高</text>
+    <text x="700" y="630" class="feature-text">基幹ネットワーク</text>
+    
+    <text x="100" y="650" class="feature-text">ハイブリッド型</text>
+    <text x="250" y="650" class="feature-text">可変</text>
+    <text x="400" y="650" class="advantage">高</text>
+    <text x="550" y="650" class="feature-text">可変</text>
+    <text x="700" y="650" class="feature-text">大規模企業</text>
+  </g>
+</svg>

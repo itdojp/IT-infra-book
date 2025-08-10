@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <title>CI/CDパイプラインワークフロー</title>
+  <desc>継続的インテグレーション/デリバリーの自動化ワークフロー、ツールチェーン、デプロイメント戦略の詳細図</desc>
+  <defs>
+    <style>
+      :root {
+        --svg-bg: #ffffff;
+        --svg-text: #1a1a1a;
+        --svg-primary: #0066cc;
+        --svg-success: #16a34a;
+        --svg-warning: #ca8a04;
+        --svg-error: #dc2626;
+        --svg-neutral: #6b7280;
+      }
+      .title-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: var(--svg-text); }
+      .stage-title { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 500; fill: var(--svg-bg); }
+      .process-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 400; fill: var(--svg-text); }
+      .annotation-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 400; fill: var(--svg-neutral); }
+      .source-stage { fill: var(--svg-primary); stroke: var(--svg-primary); stroke-width: 2; }
+      .build-stage { fill: var(--svg-warning); stroke: var(--svg-warning); stroke-width: 2; }
+      .test-stage { fill: var(--svg-success); stroke: var(--svg-success); stroke-width: 2; }
+      .deploy-stage { fill: var(--svg-error); stroke: var(--svg-error); stroke-width: 2; }
+      .monitor-stage { fill: var(--svg-neutral); stroke: var(--svg-neutral); stroke-width: 2; }
+      .pipeline-flow { stroke: var(--svg-primary); stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .feedback-flow { stroke: var(--svg-error); stroke-width: 2; stroke-dasharray: 5,3; fill: none; marker-end: url(#arrowhead-red); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="var(--svg-primary)"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="var(--svg-error)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" class="title-text" text-anchor="middle">CI/CDパイプラインワークフロー</text>
+
+  <!-- Source Control Stage -->
+  <g id="source-control">
+    <rect x="60" y="60" width="140" height="120" class="source-stage" rx="4"/>
+    <text x="130" y="80" class="stage-title" text-anchor="middle">ソース管理</text>
+    
+    <rect x="75" y="90" width="110" height="75" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="130" y="110" class="process-text" text-anchor="middle" font-weight="500">Git Repository</text>
+    <text x="85" y="125" class="annotation-text">• コミット/プッシュ</text>
+    <text x="85" y="140" class="annotation-text">• ブランチ戦略</text>
+    <text x="85" y="155" class="annotation-text">• Pull Request</text>
+  </g>
+
+  <!-- CI Stage -->
+  <g id="continuous-integration">
+    <rect x="220" y="60" width="160" height="120" class="build-stage" rx="4"/>
+    <text x="300" y="80" class="stage-title" text-anchor="middle">継続的インテグレーション</text>
+    
+    <!-- Build -->
+    <rect x="235" y="90" width="60" height="35" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="265" y="105" class="process-text" text-anchor="middle" font-weight="500">Build</text>
+    <text x="265" y="120" class="annotation-text" text-anchor="middle">コンパイル</text>
+    
+    <!-- Unit Test -->
+    <rect x="305" y="90" width="60" height="35" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="335" y="105" class="process-text" text-anchor="middle" font-weight="500">Unit Test</text>
+    <text x="335" y="120" class="annotation-text" text-anchor="middle">単体テスト</text>
+    
+    <!-- Code Analysis -->
+    <rect x="235" y="135" width="130" height="35" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="300" y="150" class="process-text" text-anchor="middle" font-weight="500">静的解析</text>
+    <text x="300" y="165" class="annotation-text" text-anchor="middle">SonarQube/ESLint</text>
+  </g>
+
+  <!-- Test Stage -->
+  <g id="test-stage">
+    <rect x="400" y="60" width="160" height="120" class="test-stage" rx="4"/>
+    <text x="480" y="80" class="stage-title" text-anchor="middle">テスト自動化</text>
+    
+    <!-- Integration Test -->
+    <rect x="415" y="90" width="130" height="25" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="480" y="105" class="process-text" text-anchor="middle" font-weight="500">統合テスト</text>
+    
+    <!-- Performance Test -->
+    <rect x="415" y="120" width="130" height="25" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="480" y="135" class="process-text" text-anchor="middle" font-weight="500">性能テスト</text>
+    
+    <!-- Security Test -->
+    <rect x="415" y="150" width="130" height="25" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="480" y="165" class="process-text" text-anchor="middle" font-weight="500">セキュリティテスト</text>
+  </g>
+
+  <!-- Deploy Stage -->
+  <g id="deploy-stage">
+    <rect x="580" y="60" width="160" height="120" class="deploy-stage" rx="4"/>
+    <text x="660" y="80" class="stage-title" text-anchor="middle">デプロイメント</text>
+    
+    <!-- Staging -->
+    <rect x="595" y="90" width="130" height="35" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="660" y="105" class="process-text" text-anchor="middle" font-weight="500">Staging環境</text>
+    <text x="660" y="120" class="annotation-text" text-anchor="middle">受入テスト</text>
+    
+    <!-- Production -->
+    <rect x="595" y="135" width="130" height="35" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="660" y="150" class="process-text" text-anchor="middle" font-weight="500">Production環境</text>
+    <text x="660" y="165" class="annotation-text" text-anchor="middle">Blue-Green/Canary</text>
+  </g>
+
+  <!-- Tools Layer -->
+  <g id="tools-layer">
+    <rect x="80" y="200" width="640" height="100" fill="var(--svg-neutral)" fill-opacity="0.05" stroke="var(--svg-text)" stroke-width="2" rx="4"/>
+    <text x="400" y="220" class="process-text" text-anchor="middle" font-weight="500">ツールチェーン</text>
+    
+    <!-- VCS Tools -->
+    <rect x="100" y="230" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="150" y="250" class="process-text" text-anchor="middle" font-weight="500">VCS</text>
+    <text x="150" y="265" class="annotation-text" text-anchor="middle">GitHub/GitLab</text>
+    <text x="150" y="275" class="annotation-text" text-anchor="middle">Bitbucket</text>
+    
+    <!-- CI/CD Tools -->
+    <rect x="220" y="230" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="270" y="250" class="process-text" text-anchor="middle" font-weight="500">CI/CD</text>
+    <text x="270" y="265" class="annotation-text" text-anchor="middle">Jenkins</text>
+    <text x="270" y="275" class="annotation-text" text-anchor="middle">GitLab CI</text>
+    
+    <!-- Container Tools -->
+    <rect x="340" y="230" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="390" y="250" class="process-text" text-anchor="middle" font-weight="500">Container</text>
+    <text x="390" y="265" class="annotation-text" text-anchor="middle">Docker</text>
+    <text x="390" y="275" class="annotation-text" text-anchor="middle">Kubernetes</text>
+    
+    <!-- IaC Tools -->
+    <rect x="460" y="230" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="510" y="250" class="process-text" text-anchor="middle" font-weight="500">IaC</text>
+    <text x="510" y="265" class="annotation-text" text-anchor="middle">Terraform</text>
+    <text x="510" y="275" class="annotation-text" text-anchor="middle">Ansible</text>
+    
+    <!-- Monitoring Tools -->
+    <rect x="580" y="230" width="120" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="640" y="250" class="process-text" text-anchor="middle" font-weight="500">Monitoring</text>
+    <text x="640" y="265" class="annotation-text" text-anchor="middle">Prometheus</text>
+    <text x="640" y="275" class="annotation-text" text-anchor="middle">Grafana/ELK</text>
+  </g>
+
+  <!-- Deployment Strategies -->
+  <g id="deployment-strategies">
+    <rect x="60" y="320" width="340" height="120" fill="var(--svg-success)" fill-opacity="0.05" stroke="var(--svg-success)" stroke-width="2" rx="4"/>
+    <text x="230" y="340" class="process-text" text-anchor="middle" font-weight="500">デプロイメント戦略</text>
+    
+    <!-- Blue-Green -->
+    <rect x="80" y="350" width="100" height="70" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="130" y="370" class="process-text" text-anchor="middle" font-weight="500">Blue-Green</text>
+    <text x="90" y="385" class="annotation-text">• 即座の切替</text>
+    <text x="90" y="400" class="annotation-text">• ロールバック容易</text>
+    <text x="90" y="415" class="annotation-text">• リソース2倍</text>
+    
+    <!-- Canary -->
+    <rect x="190" y="350" width="100" height="70" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="240" y="370" class="process-text" text-anchor="middle" font-weight="500">Canary</text>
+    <text x="200" y="385" class="annotation-text">• 段階的展開</text>
+    <text x="200" y="400" class="annotation-text">• リスク最小化</text>
+    <text x="200" y="415" class="annotation-text">• A/Bテスト</text>
+    
+    <!-- Rolling -->
+    <rect x="300" y="350" width="80" height="70" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="340" y="370" class="process-text" text-anchor="middle" font-weight="500">Rolling</text>
+    <text x="310" y="385" class="annotation-text">• 順次更新</text>
+    <text x="310" y="400" class="annotation-text">• ダウンタイム無</text>
+    <text x="310" y="415" class="annotation-text">• 時間要</text>
+  </g>
+
+  <!-- Monitoring & Feedback -->
+  <g id="monitoring-feedback">
+    <rect x="420" y="320" width="320" height="120" class="monitor-stage" rx="4"/>
+    <text x="580" y="340" class="stage-title" text-anchor="middle">監視とフィードバック</text>
+    
+    <!-- Metrics -->
+    <rect x="440" y="350" width="90" height="70" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="485" y="370" class="process-text" text-anchor="middle" font-weight="500">メトリクス</text>
+    <text x="450" y="385" class="annotation-text">• CPU/Memory</text>
+    <text x="450" y="400" class="annotation-text">• Response Time</text>
+    <text x="450" y="415" class="annotation-text">• Error Rate</text>
+    
+    <!-- Logs -->
+    <rect x="540" y="350" width="90" height="70" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="585" y="370" class="process-text" text-anchor="middle" font-weight="500">ログ分析</text>
+    <text x="550" y="385" class="annotation-text">• 集約</text>
+    <text x="550" y="400" class="annotation-text">• 検索</text>
+    <text x="550" y="415" class="annotation-text">• 可視化</text>
+    
+    <!-- Alerts -->
+    <rect x="640" y="350" width="80" height="70" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="680" y="370" class="process-text" text-anchor="middle" font-weight="500">アラート</text>
+    <text x="650" y="385" class="annotation-text">• 閾値監視</text>
+    <text x="650" y="400" class="annotation-text">• 通知</text>
+    <text x="650" y="415" class="annotation-text">• エスカレーション</text>
+  </g>
+
+  <!-- GitOps Workflow -->
+  <g id="gitops-workflow">
+    <rect x="100" y="460" width="600" height="120" fill="var(--svg-primary)" fill-opacity="0.05" stroke="var(--svg-primary)" stroke-width="2" rx="4"/>
+    <text x="400" y="480" class="process-text" text-anchor="middle" font-weight="500">GitOpsワークフロー</text>
+    
+    <!-- Git as Source of Truth -->
+    <rect x="120" y="490" width="120" height="70" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="180" y="510" class="process-text" text-anchor="middle" font-weight="500">Git Repository</text>
+    <text x="130" y="525" class="annotation-text">• 宣言的設定</text>
+    <text x="130" y="540" class="annotation-text">• IaCマニフェスト</text>
+    <text x="130" y="555" class="annotation-text">• 変更履歴</text>
+    
+    <!-- Sync Agent -->
+    <rect x="340" y="490" width="120" height="70" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="400" y="510" class="process-text" text-anchor="middle" font-weight="500">同期エージェント</text>
+    <text x="350" y="525" class="annotation-text">• ArgoCD</text>
+    <text x="350" y="540" class="annotation-text">• Flux</text>
+    <text x="350" y="555" class="annotation-text">• 自動同期</text>
+    
+    <!-- Target Cluster -->
+    <rect x="560" y="490" width="120" height="70" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="620" y="510" class="process-text" text-anchor="middle" font-weight="500">Target Cluster</text>
+    <text x="570" y="525" class="annotation-text">• Kubernetes</text>
+    <text x="570" y="540" class="annotation-text">• 実環境</text>
+    <text x="570" y="555" class="annotation-text">• 自動更新</text>
+    
+    <!-- GitOps Flow -->
+    <path d="M 240 525 L 340 525" class="pipeline-flow"/>
+    <path d="M 460 525 L 560 525" class="pipeline-flow"/>
+  </g>
+
+  <!-- Pipeline Flow Arrows -->
+  <path d="M 200 120 L 220 120" class="pipeline-flow"/>
+  <path d="M 380 120 L 400 120" class="pipeline-flow"/>
+  <path d="M 560 120 L 580 120" class="pipeline-flow"/>
+  
+  <!-- Feedback Loop -->
+  <path d="M 580 380 L 580 410 L 130 410 L 130 180" class="feedback-flow"/>
+  <text x="350" y="405" class="annotation-text">フィードバックループ</text>
+</svg>

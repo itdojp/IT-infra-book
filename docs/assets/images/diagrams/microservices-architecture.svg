@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <title>マイクロサービスアーキテクチャパターン</title>
+  <desc>マイクロサービスの通信パターン、サービスメッシュ、API Gateway、分散トレーシングの詳細図</desc>
+  <defs>
+    <style>
+      :root {
+        --svg-bg: #ffffff;
+        --svg-text: #1a1a1a;
+        --svg-primary: #0066cc;
+        --svg-success: #16a34a;
+        --svg-warning: #ca8a04;
+        --svg-error: #dc2626;
+        --svg-neutral: #6b7280;
+      }
+      .title-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: var(--svg-text); }
+      .layer-title { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 500; fill: var(--svg-bg); }
+      .service-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 400; fill: var(--svg-text); }
+      .annotation-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 400; fill: var(--svg-neutral); }
+      .client-layer { fill: var(--svg-primary); stroke: var(--svg-primary); stroke-width: 2; }
+      .gateway-layer { fill: var(--svg-warning); stroke: var(--svg-warning); stroke-width: 2; }
+      .service-layer { fill: var(--svg-success); stroke: var(--svg-success); stroke-width: 2; }
+      .data-layer { fill: var(--svg-error); stroke: var(--svg-error); stroke-width: 2; }
+      .mesh-layer { fill: var(--svg-neutral); stroke: var(--svg-neutral); stroke-width: 2; }
+      .comm-flow { stroke: var(--svg-primary); stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .mesh-flow { stroke: var(--svg-neutral); stroke-width: 1; stroke-dasharray: 3,2; fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="var(--svg-primary)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" class="title-text" text-anchor="middle">マイクロサービスアーキテクチャパターン</text>
+
+  <!-- Client Layer -->
+  <g id="client-layer">
+    <rect x="60" y="60" width="680" height="60" class="client-layer" rx="4"/>
+    <text x="400" y="80" class="layer-title" text-anchor="middle">クライアント層</text>
+    
+    <rect x="180" y="85" width="80" height="25" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="220" y="101" class="annotation-text" text-anchor="middle">Webアプリ</text>
+    
+    <rect x="310" y="85" width="80" height="25" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="350" y="101" class="annotation-text" text-anchor="middle">モバイルアプリ</text>
+    
+    <rect x="440" y="85" width="80" height="25" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="480" y="101" class="annotation-text" text-anchor="middle">API Client</text>
+    
+    <rect x="570" y="85" width="80" height="25" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="610" y="101" class="annotation-text" text-anchor="middle">IoTデバイス</text>
+  </g>
+
+  <!-- API Gateway Layer -->
+  <g id="gateway-layer">
+    <rect x="200" y="140" width="400" height="80" class="gateway-layer" rx="4"/>
+    <text x="400" y="160" class="layer-title" text-anchor="middle">API Gateway</text>
+    
+    <rect x="220" y="170" width="80" height="40" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="260" y="185" class="service-text" text-anchor="middle" font-weight="500">認証</text>
+    <text x="260" y="200" class="annotation-text" text-anchor="middle">OAuth/JWT</text>
+    
+    <rect x="310" y="170" width="80" height="40" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="350" y="185" class="service-text" text-anchor="middle" font-weight="500">ルーティング</text>
+    <text x="350" y="200" class="annotation-text" text-anchor="middle">負荷分散</text>
+    
+    <rect x="400" y="170" width="90" height="40" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="445" y="185" class="service-text" text-anchor="middle" font-weight="500">Rate Limiting</text>
+    <text x="445" y="200" class="annotation-text" text-anchor="middle">流量制御</text>
+    
+    <rect x="500" y="170" width="80" height="40" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="540" y="185" class="service-text" text-anchor="middle" font-weight="500">キャッシュ</text>
+    <text x="540" y="200" class="annotation-text" text-anchor="middle">レスポンス</text>
+  </g>
+
+  <!-- Microservices Layer -->
+  <g id="microservices">
+    <!-- User Service -->
+    <rect x="80" y="240" width="140" height="100" class="service-layer" rx="4"/>
+    <text x="150" y="260" class="layer-title" text-anchor="middle">ユーザーサービス</text>
+    <rect x="95" y="270" width="110" height="60" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="150" y="290" class="service-text" text-anchor="middle">認証/認可</text>
+    <text x="105" y="305" class="annotation-text">• ユーザー管理</text>
+    <text x="105" y="320" class="annotation-text">• プロファイル</text>
+    
+    <!-- Order Service -->
+    <rect x="240" y="240" width="140" height="100" class="service-layer" rx="4"/>
+    <text x="310" y="260" class="layer-title" text-anchor="middle">注文サービス</text>
+    <rect x="255" y="270" width="110" height="60" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="310" y="290" class="service-text" text-anchor="middle">注文処理</text>
+    <text x="265" y="305" class="annotation-text">• 注文管理</text>
+    <text x="265" y="320" class="annotation-text">• ワークフロー</text>
+    
+    <!-- Product Service -->
+    <rect x="400" y="240" width="140" height="100" class="service-layer" rx="4"/>
+    <text x="470" y="260" class="layer-title" text-anchor="middle">商品サービス</text>
+    <rect x="415" y="270" width="110" height="60" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="470" y="290" class="service-text" text-anchor="middle">カタログ管理</text>
+    <text x="425" y="305" class="annotation-text">• 在庫管理</text>
+    <text x="425" y="320" class="annotation-text">• 価格設定</text>
+    
+    <!-- Payment Service -->
+    <rect x="560" y="240" width="140" height="100" class="service-layer" rx="4"/>
+    <text x="630" y="260" class="layer-title" text-anchor="middle">決済サービス</text>
+    <rect x="575" y="270" width="110" height="60" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="630" y="290" class="service-text" text-anchor="middle">決済処理</text>
+    <text x="585" y="305" class="annotation-text">• 支払い方法</text>
+    <text x="585" y="320" class="annotation-text">• トランザクション</text>
+  </g>
+
+  <!-- Service Mesh Layer -->
+  <g id="service-mesh">
+    <rect x="60" y="360" width="340" height="100" fill="var(--svg-neutral)" fill-opacity="0.05" stroke="var(--svg-neutral)" stroke-width="2" rx="4"/>
+    <text x="230" y="380" class="service-text" text-anchor="middle" font-weight="500">サービスメッシュ (Istio/Linkerd)</text>
+    
+    <!-- Sidecar Proxy -->
+    <rect x="80" y="390" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="130" y="410" class="service-text" text-anchor="middle" font-weight="500">Sidecar Proxy</text>
+    <text x="130" y="425" class="annotation-text" text-anchor="middle">Envoy</text>
+    
+    <!-- Traffic Management -->
+    <rect x="190" y="390" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="240" y="410" class="service-text" text-anchor="middle" font-weight="500">トラフィック管理</text>
+    <text x="240" y="425" class="annotation-text" text-anchor="middle">Circuit Breaker</text>
+    
+    <!-- Observability -->
+    <rect x="300" y="390" width="80" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="340" y="410" class="service-text" text-anchor="middle" font-weight="500">可観測性</text>
+    <text x="340" y="425" class="annotation-text" text-anchor="middle">Tracing</text>
+  </g>
+
+  <!-- Communication Patterns -->
+  <g id="comm-patterns">
+    <rect x="420" y="360" width="320" height="100" fill="var(--svg-primary)" fill-opacity="0.05" stroke="var(--svg-primary)" stroke-width="2" rx="4"/>
+    <text x="580" y="380" class="service-text" text-anchor="middle" font-weight="500">通信パターン</text>
+    
+    <!-- Synchronous -->
+    <rect x="440" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="485" y="410" class="service-text" text-anchor="middle" font-weight="500">同期通信</text>
+    <text x="485" y="425" class="annotation-text" text-anchor="middle">REST/gRPC</text>
+    
+    <!-- Asynchronous -->
+    <rect x="540" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="585" y="410" class="service-text" text-anchor="middle" font-weight="500">非同期通信</text>
+    <text x="585" y="425" class="annotation-text" text-anchor="middle">Message Queue</text>
+    
+    <!-- Event Driven -->
+    <rect x="640" y="390" width="80" height="50" fill="var(--svg-bg)" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="680" y="410" class="service-text" text-anchor="middle" font-weight="500">Event Driven</text>
+    <text x="680" y="425" class="annotation-text" text-anchor="middle">Pub/Sub</text>
+  </g>
+
+  <!-- Data Layer -->
+  <g id="data-layer">
+    <rect x="80" y="480" width="640" height="100" class="data-layer" rx="4"/>
+    <text x="400" y="500" class="layer-title" text-anchor="middle">データ層 (Database per Service)</text>
+    
+    <!-- User DB -->
+    <rect x="100" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="150" y="530" class="service-text" text-anchor="middle" font-weight="500">User DB</text>
+    <text x="150" y="545" class="annotation-text" text-anchor="middle">PostgreSQL</text>
+    
+    <!-- Order DB -->
+    <rect x="250" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="300" y="530" class="service-text" text-anchor="middle" font-weight="500">Order DB</text>
+    <text x="300" y="545" class="annotation-text" text-anchor="middle">MongoDB</text>
+    
+    <!-- Product DB -->
+    <rect x="400" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="450" y="530" class="service-text" text-anchor="middle" font-weight="500">Product DB</text>
+    <text x="450" y="545" class="annotation-text" text-anchor="middle">Elasticsearch</text>
+    
+    <!-- Cache -->
+    <rect x="550" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="600" y="530" class="service-text" text-anchor="middle" font-weight="500">Cache</text>
+    <text x="600" y="545" class="annotation-text" text-anchor="middle">Redis</text>
+  </g>
+
+  <!-- Communication Flows -->
+  <path d="M 400 120 L 400 140" class="comm-flow"/>
+  <path d="M 400 220 L 150 240" class="comm-flow"/>
+  <path d="M 400 220 L 310 240" class="comm-flow"/>
+  <path d="M 400 220 L 470 240" class="comm-flow"/>
+  <path d="M 400 220 L 630 240" class="comm-flow"/>
+  
+  <!-- Service to Service -->
+  <path d="M 220 290 L 240 290" class="mesh-flow"/>
+  <path d="M 380 290 L 400 290" class="mesh-flow"/>
+  <path d="M 540 290 L 560 290" class="mesh-flow"/>
+  
+  <!-- Service to Data -->
+  <path d="M 150 340 L 150 510" class="comm-flow"/>
+  <path d="M 310 340 L 300 510" class="comm-flow"/>
+  <path d="M 470 340 L 450 510" class="comm-flow"/>
+  <path d="M 630 340 L 600 510" class="comm-flow"/>
+</svg>

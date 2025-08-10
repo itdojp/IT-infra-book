@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <title>コンテナレイヤリングアーキテクチャ</title>
+  <desc>Dockerコンテナのレイヤー構造、イメージビルド、名前空間分離、リソース制御の詳細図</desc>
+  <defs>
+    <style>
+      :root {
+        --svg-bg: #ffffff;
+        --svg-text: #1a1a1a;
+        --svg-primary: #0066cc;
+        --svg-success: #16a34a;
+        --svg-warning: #ca8a04;
+        --svg-error: #dc2626;
+        --svg-neutral: #6b7280;
+      }
+      .title-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: var(--svg-text); }
+      .section-title { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 500; fill: var(--svg-bg); }
+      .layer-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 400; fill: var(--svg-text); }
+      .annotation-text { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 400; fill: var(--svg-neutral); }
+      .base-layer { fill: var(--svg-neutral); stroke: var(--svg-neutral); stroke-width: 2; }
+      .image-layer { fill: var(--svg-primary); stroke: var(--svg-primary); stroke-width: 2; }
+      .container-layer { fill: var(--svg-success); stroke: var(--svg-success); stroke-width: 2; }
+      .namespace-box { fill: var(--svg-warning); stroke: var(--svg-warning); stroke-width: 2; }
+      .cgroup-box { fill: var(--svg-error); stroke: var(--svg-error); stroke-width: 2; }
+      .layer-flow { stroke: var(--svg-primary); stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="var(--svg-primary)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" class="title-text" text-anchor="middle">コンテナレイヤリングアーキテクチャ</text>
+
+  <!-- Image Layers Section -->
+  <g id="image-layers">
+    <rect x="60" y="60" width="320" height="280" fill="var(--svg-primary)" fill-opacity="0.05" stroke="var(--svg-primary)" stroke-width="2" rx="4"/>
+    <text x="220" y="80" class="layer-text" text-anchor="middle" font-weight="500">イメージレイヤー構造</text>
+    
+    <!-- Base OS Layer -->
+    <rect x="80" y="260" width="280" height="60" class="base-layer" rx="4"/>
+    <text x="220" y="280" class="section-title" text-anchor="middle">ベースOSレイヤー</text>
+    <text x="90" y="295" class="annotation-text">• Ubuntu/Alpine Linux</text>
+    <text x="90" y="310" class="annotation-text">• 基本システムライブラリ (glibc等)</text>
+    
+    <!-- System Libraries Layer -->
+    <rect x="80" y="190" width="280" height="60" fill="var(--svg-primary)" fill-opacity="0.2" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="220" y="210" class="layer-text" text-anchor="middle" font-weight="500">システムライブラリレイヤー</text>
+    <text x="90" y="225" class="annotation-text">• 言語ランタイム (Python/Node.js)</text>
+    <text x="90" y="240" class="annotation-text">• パッケージマネージャー</text>
+    
+    <!-- Application Dependencies Layer -->
+    <rect x="80" y="120" width="280" height="60" fill="var(--svg-primary)" fill-opacity="0.3" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="220" y="140" class="layer-text" text-anchor="middle" font-weight="500">依存関係レイヤー</text>
+    <text x="90" y="155" class="annotation-text">• アプリケーション依存パッケージ</text>
+    <text x="90" y="170" class="annotation-text">• 設定ファイル</text>
+    
+    <!-- Application Layer -->
+    <rect x="80" y="90" width="280" height="25" fill="var(--svg-primary)" fill-opacity="0.4" stroke="var(--svg-primary)" stroke-width="1" rx="4"/>
+    <text x="220" y="106" class="layer-text" text-anchor="middle" font-weight="500">アプリケーションレイヤー</text>
+  </g>
+
+  <!-- Container Runtime Section -->
+  <g id="container-runtime">
+    <rect x="420" y="60" width="320" height="280" class="container-layer" rx="4"/>
+    <text x="580" y="80" class="section-title" text-anchor="middle">コンテナランタイム層</text>
+    
+    <!-- Read-Write Layer -->
+    <rect x="440" y="90" width="280" height="40" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="580" y="105" class="layer-text" text-anchor="middle" font-weight="500">読み書き可能レイヤー</text>
+    <text x="580" y="120" class="annotation-text" text-anchor="middle">コンテナ実行時の変更内容</text>
+    
+    <!-- Union File System -->
+    <rect x="440" y="140" width="280" height="50" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="580" y="155" class="layer-text" text-anchor="middle" font-weight="500">UnionFS (OverlayFS)</text>
+    <text x="450" y="170" class="annotation-text">• レイヤー統合</text>
+    <text x="450" y="185" class="annotation-text">• Copy-on-Write機構</text>
+    
+    <!-- Container Process -->
+    <rect x="440" y="200" width="130" height="60" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="505" y="220" class="layer-text" text-anchor="middle" font-weight="500">コンテナプロセス</text>
+    <text x="450" y="235" class="annotation-text">• PID 1プロセス</text>
+    <text x="450" y="250" class="annotation-text">• 子プロセス</text>
+    
+    <!-- Container Network -->
+    <rect x="590" y="200" width="130" height="60" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="655" y="220" class="layer-text" text-anchor="middle" font-weight="500">ネットワーク</text>
+    <text x="600" y="235" class="annotation-text">• veth pairs</text>
+    <text x="600" y="250" class="annotation-text">• ブリッジ/ホスト</text>
+    
+    <!-- Container Storage -->
+    <rect x="440" y="270" width="280" height="50" fill="var(--svg-bg)" stroke="var(--svg-success)" stroke-width="1" rx="4"/>
+    <text x="580" y="285" class="layer-text" text-anchor="middle" font-weight="500">ストレージドライバー</text>
+    <text x="450" y="300" class="annotation-text">• overlay2, devicemapper</text>
+    <text x="450" y="315" class="annotation-text">• ボリュームマウント</text>
+  </g>
+
+  <!-- Namespace Isolation -->
+  <g id="namespace-isolation">
+    <rect x="60" y="360" width="320" height="100" class="namespace-box" rx="4"/>
+    <text x="220" y="380" class="section-title" text-anchor="middle">名前空間による分離</text>
+    
+    <rect x="80" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="125" y="405" class="layer-text" text-anchor="middle" font-weight="500">PID NS</text>
+    <text x="125" y="420" class="annotation-text" text-anchor="middle">プロセス分離</text>
+    <text x="125" y="435" class="annotation-text" text-anchor="middle">独立PID空間</text>
+    
+    <rect x="180" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="225" y="405" class="layer-text" text-anchor="middle" font-weight="500">NET NS</text>
+    <text x="225" y="420" class="annotation-text" text-anchor="middle">ネットワーク分離</text>
+    <text x="225" y="435" class="annotation-text" text-anchor="middle">独立IP/ポート</text>
+    
+    <rect x="280" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-warning)" stroke-width="1" rx="4"/>
+    <text x="325" y="405" class="layer-text" text-anchor="middle" font-weight="500">MNT NS</text>
+    <text x="325" y="420" class="annotation-text" text-anchor="middle">マウント分離</text>
+    <text x="325" y="435" class="annotation-text" text-anchor="middle">独立FS階層</text>
+  </g>
+
+  <!-- Cgroup Resource Control -->
+  <g id="cgroup-control">
+    <rect x="420" y="360" width="320" height="100" class="cgroup-box" rx="4"/>
+    <text x="580" y="380" class="section-title" text-anchor="middle">Cgroupsによるリソース制御</text>
+    
+    <rect x="440" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="485" y="405" class="layer-text" text-anchor="middle" font-weight="500">CPU</text>
+    <text x="485" y="420" class="annotation-text" text-anchor="middle">CPU制限</text>
+    <text x="485" y="435" class="annotation-text" text-anchor="middle">shares/quota</text>
+    
+    <rect x="540" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="585" y="405" class="layer-text" text-anchor="middle" font-weight="500">Memory</text>
+    <text x="585" y="420" class="annotation-text" text-anchor="middle">メモリ制限</text>
+    <text x="585" y="435" class="annotation-text" text-anchor="middle">limit/swap</text>
+    
+    <rect x="640" y="390" width="90" height="50" fill="var(--svg-bg)" stroke="var(--svg-error)" stroke-width="1" rx="4"/>
+    <text x="685" y="405" class="layer-text" text-anchor="middle" font-weight="500">I/O</text>
+    <text x="685" y="420" class="annotation-text" text-anchor="middle">I/O制限</text>
+    <text x="685" y="435" class="annotation-text" text-anchor="middle">bps/iops</text>
+  </g>
+
+  <!-- Container Lifecycle -->
+  <g id="container-lifecycle">
+    <rect x="80" y="480" width="640" height="100" fill="var(--svg-neutral)" fill-opacity="0.05" stroke="var(--svg-text)" stroke-width="2" rx="4"/>
+    <text x="400" y="500" class="layer-text" text-anchor="middle" font-weight="500">コンテナライフサイクル</text>
+    
+    <!-- Build -->
+    <rect x="100" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="150" y="530" class="layer-text" text-anchor="middle" font-weight="500">Build</text>
+    <text x="150" y="545" class="annotation-text" text-anchor="middle">Dockerfile</text>
+    <text x="150" y="560" class="annotation-text" text-anchor="middle">イメージ作成</text>
+    
+    <!-- Ship -->
+    <rect x="250" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="300" y="530" class="layer-text" text-anchor="middle" font-weight="500">Ship</text>
+    <text x="300" y="545" class="annotation-text" text-anchor="middle">Registry</text>
+    <text x="300" y="560" class="annotation-text" text-anchor="middle">配布</text>
+    
+    <!-- Run -->
+    <rect x="400" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="450" y="530" class="layer-text" text-anchor="middle" font-weight="500">Run</text>
+    <text x="450" y="545" class="annotation-text" text-anchor="middle">コンテナ起動</text>
+    <text x="450" y="560" class="annotation-text" text-anchor="middle">実行管理</text>
+    
+    <!-- Scale -->
+    <rect x="550" y="510" width="100" height="50" fill="var(--svg-bg)" stroke="var(--svg-neutral)" stroke-width="1" rx="4"/>
+    <text x="600" y="530" class="layer-text" text-anchor="middle" font-weight="500">Scale</text>
+    <text x="600" y="545" class="annotation-text" text-anchor="middle">Orchestration</text>
+    <text x="600" y="560" class="annotation-text" text-anchor="middle">K8s/Swarm</text>
+    
+    <!-- Flow arrows -->
+    <path d="M 200 535 L 250 535" class="layer-flow"/>
+    <path d="M 350 535 L 400 535" class="layer-flow"/>
+    <path d="M 500 535 L 550 535" class="layer-flow"/>
+  </g>
+
+  <!-- Connection arrow between layers -->
+  <path d="M 380 200 L 420 200" class="layer-flow"/>
+</svg>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="700" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: 'Noto Sans JP', sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; }
+      .storage-title { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: bold; fill: #fff; }
+      .feature-text { font-family: 'Noto Sans JP', sans-serif; font-size: 11px; fill: #2c3e50; }
+      .small-text { font-family: 'Noto Sans JP', sans-serif; font-size: 10px; fill: #7f8c8d; }
+      .das-box { fill: #95a5a6; stroke: #7f8c8d; stroke-width: 2; }
+      .nas-box { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .san-box { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .object-box { fill: #2ecc71; stroke: #27ae60; stroke-width: 2; }
+      .sds-box { fill: #9b59b6; stroke: #8e44ad; stroke-width: 2; }
+      .server-box { fill: #f39c12; stroke: #e67e22; stroke-width: 2; }
+      .connection { stroke: #34495e; stroke-width: 2; fill: none; }
+      .network-connection { stroke: #3498db; stroke-width: 2; stroke-dasharray: 5,3; fill: none; }
+      .fc-connection { stroke: #e74c3c; stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" class="title" text-anchor="middle">ストレージアーキテクチャ</text>
+
+  <!-- DAS (Direct Attached Storage) -->
+  <g id="das">
+    <text x="150" y="80" class="feature-text" text-anchor="middle" font-weight="bold">DAS (Direct Attached Storage)</text>
+    
+    <rect x="100" y="100" width="100" height="60" class="server-box" rx="5"/>
+    <text x="150" y="135" class="storage-title" text-anchor="middle">サーバー</text>
+    
+    <rect x="100" y="180" width="100" height="40" class="das-box" rx="5"/>
+    <text x="150" y="205" class="storage-title" text-anchor="middle">ストレージ</text>
+    
+    <line x1="150" y1="160" x2="150" y2="180" class="connection"/>
+    
+    <rect x="50" y="240" width="200" height="80" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="3"/>
+    <text x="60" y="260" class="small-text">• 直接接続（SATA/SAS/USB）</text>
+    <text x="60" y="275" class="small-text">• 低レイテンシ</text>
+    <text x="60" y="290" class="small-text">• 共有不可</text>
+    <text x="60" y="305" class="small-text">• 低コスト</text>
+  </g>
+
+  <!-- NAS (Network Attached Storage) -->
+  <g id="nas">
+    <text x="450" y="80" class="feature-text" text-anchor="middle" font-weight="bold">NAS (Network Attached Storage)</text>
+    
+    <rect x="350" y="100" width="80" height="40" class="server-box" rx="5"/>
+    <text x="390" y="125" class="storage-title" text-anchor="middle">Server1</text>
+    
+    <rect x="470" y="100" width="80" height="40" class="server-box" rx="5"/>
+    <text x="510" y="125" class="storage-title" text-anchor="middle">Server2</text>
+    
+    <circle cx="450" cy="200" r="30" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="450" y="205" class="storage-title" text-anchor="middle">LAN</text>
+    
+    <rect x="400" y="260" width="100" height="50" class="nas-box" rx="5"/>
+    <text x="450" y="290" class="storage-title" text-anchor="middle">NAS</text>
+    
+    <line x1="390" y1="140" x2="430" y2="175" class="network-connection"/>
+    <line x1="510" y1="140" x2="470" y2="175" class="network-connection"/>
+    <line x1="450" y1="230" x2="450" y2="260" class="network-connection"/>
+    
+    <rect x="350" y="330" width="200" height="80" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="3"/>
+    <text x="360" y="350" class="small-text">• ファイルレベルアクセス</text>
+    <text x="360" y="365" class="small-text">• NFS/CIFS/SMB</text>
+    <text x="360" y="380" class="small-text">• 簡単な共有設定</text>
+    <text x="360" y="395" class="small-text">• Ethernet接続</text>
+  </g>
+
+  <!-- SAN (Storage Area Network) -->
+  <g id="san">
+    <text x="750" y="80" class="feature-text" text-anchor="middle" font-weight="bold">SAN (Storage Area Network)</text>
+    
+    <rect x="650" y="100" width="80" height="40" class="server-box" rx="5"/>
+    <text x="690" y="125" class="storage-title" text-anchor="middle">Server1</text>
+    
+    <rect x="770" y="100" width="80" height="40" class="server-box" rx="5"/>
+    <text x="810" y="125" class="storage-title" text-anchor="middle">Server2</text>
+    
+    <rect x="700" y="180" width="100" height="40" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="5"/>
+    <text x="750" y="205" class="storage-title" text-anchor="middle">FC Switch</text>
+    
+    <rect x="700" y="260" width="100" height="50" class="san-box" rx="5"/>
+    <text x="750" y="290" class="storage-title" text-anchor="middle">SAN Storage</text>
+    
+    <line x1="690" y1="140" x2="730" y2="180" class="fc-connection"/>
+    <line x1="810" y1="140" x2="770" y2="180" class="fc-connection"/>
+    <line x1="750" y1="220" x2="750" y2="260" class="fc-connection"/>
+    
+    <rect x="650" y="330" width="200" height="80" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="3"/>
+    <text x="660" y="350" class="small-text">• ブロックレベルアクセス</text>
+    <text x="660" y="365" class="small-text">• FC/iSCSI/FCoE</text>
+    <text x="660" y="380" class="small-text">• 高性能・低レイテンシ</text>
+    <text x="660" y="395" class="small-text">• エンタープライズ向け</text>
+  </g>
+
+  <!-- Object Storage -->
+  <g id="object-storage">
+    <text x="250" y="450" class="feature-text" text-anchor="middle" font-weight="bold">オブジェクトストレージ</text>
+    
+    <rect x="150" y="470" width="200" height="60" class="object-box" rx="5"/>
+    <text x="250" y="505" class="storage-title" text-anchor="middle">Object Storage</text>
+    
+    <rect x="80" y="550" width="60" height="30" class="server-box" rx="3"/>
+    <text x="110" y="570" class="small-text" text-anchor="middle">App</text>
+    
+    <rect x="180" y="550" width="60" height="30" class="server-box" rx="3"/>
+    <text x="210" y="570" class="small-text" text-anchor="middle">Web</text>
+    
+    <rect x="280" y="550" width="60" height="30" class="server-box" rx="3"/>
+    <text x="310" y="570" class="small-text" text-anchor="middle">API</text>
+    
+    <line x1="110" y1="550" x2="200" y2="530" class="network-connection"/>
+    <line x1="210" y1="550" x2="250" y2="530" class="network-connection"/>
+    <line x1="310" y1="550" x2="300" y2="530" class="network-connection"/>
+    
+    <rect x="150" y="600" width="200" height="80" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="3"/>
+    <text x="160" y="620" class="small-text">• REST API アクセス</text>
+    <text x="160" y="635" class="small-text">• 大容量・非構造化データ</text>
+    <text x="160" y="650" class="small-text">• S3/Azure Blob/GCS</text>
+    <text x="160" y="665" class="small-text">• 高い拡張性</text>
+  </g>
+
+  <!-- Software-Defined Storage -->
+  <g id="sds">
+    <text x="650" y="450" class="feature-text" text-anchor="middle" font-weight="bold">Software-Defined Storage (SDS)</text>
+    
+    <rect x="550" y="470" width="200" height="60" class="sds-box" rx="5"/>
+    <text x="650" y="495" class="storage-title" text-anchor="middle">SDS Controller</text>
+    <text x="650" y="515" class="storage-title" text-anchor="middle" font-size="10">仮想化層</text>
+    
+    <rect x="520" y="550" width="60" height="30" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1" rx="3"/>
+    <text x="550" y="570" class="small-text" text-anchor="middle">HDD</text>
+    
+    <rect x="590" y="550" width="60" height="30" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1" rx="3"/>
+    <text x="620" y="570" class="small-text" text-anchor="middle">SSD</text>
+    
+    <rect x="660" y="550" width="60" height="30" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1" rx="3"/>
+    <text x="690" y="570" class="small-text" text-anchor="middle">NVMe</text>
+    
+    <rect x="730" y="550" width="60" height="30" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1" rx="3"/>
+    <text x="760" y="570" class="small-text" text-anchor="middle">Cloud</text>
+    
+    <line x1="550" y1="550" x2="600" y2="530" class="connection"/>
+    <line x1="620" y1="550" x2="640" y2="530" class="connection"/>
+    <line x1="690" y1="550" x2="660" y2="530" class="connection"/>
+    <line x1="760" y1="550" x2="700" y2="530" class="connection"/>
+    
+    <rect x="550" y="600" width="200" height="80" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="3"/>
+    <text x="560" y="620" class="small-text">• ハードウェア抽象化</text>
+    <text x="560" y="635" class="small-text">• ポリシーベース管理</text>
+    <text x="560" y="650" class="small-text">• Ceph/GlusterFS/vSAN</text>
+    <text x="560" y="665" class="small-text">• 柔軟な拡張</text>
+  </g>
+</svg>

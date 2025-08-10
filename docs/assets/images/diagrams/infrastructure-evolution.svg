@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: 'Noto Sans JP', sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; }
+      .era-title { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: bold; fill: #34495e; }
+      .feature-text { font-family: 'Noto Sans JP', sans-serif; font-size: 11px; fill: #2c3e50; }
+      .year-text { font-family: 'Noto Sans JP', sans-serif; font-size: 10px; fill: #7f8c8d; font-style: italic; }
+      .mainframe-era { fill: #95a5a6; stroke: #7f8c8d; stroke-width: 2; }
+      .client-server-era { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .virtualization-era { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .cloud-era { fill: #2ecc71; stroke: #27ae60; stroke-width: 2; }
+      .container-era { fill: #9b59b6; stroke: #8e44ad; stroke-width: 2; }
+      .timeline-line { stroke: #34495e; stroke-width: 2; fill: none; }
+      .arrow { marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#34495e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" class="title" text-anchor="middle">ITインフラストラクチャの進化</text>
+
+  <!-- Timeline -->
+  <line x1="50" y1="520" x2="850" y2="520" class="timeline-line arrow"/>
+  <text x="450" y="550" class="era-title" text-anchor="middle">時間軸</text>
+
+  <!-- Mainframe Era -->
+  <g id="mainframe">
+    <rect x="50" y="380" width="140" height="120" class="mainframe-era" rx="5"/>
+    <text x="120" y="405" class="era-title" text-anchor="middle">メインフレーム時代</text>
+    <text x="120" y="425" class="year-text" text-anchor="middle">1960s-1980s</text>
+    <text x="60" y="445" class="feature-text">• 集中処理</text>
+    <text x="60" y="460" class="feature-text">• 高信頼性</text>
+    <text x="60" y="475" class="feature-text">• 高コスト</text>
+    <text x="60" y="490" class="feature-text">• 専用端末</text>
+  </g>
+
+  <!-- Client-Server Era -->
+  <g id="client-server">
+    <rect x="210" y="320" width="140" height="120" class="client-server-era" rx="5"/>
+    <text x="280" y="345" class="era-title" text-anchor="middle">クライアント/サーバー</text>
+    <text x="280" y="365" class="year-text" text-anchor="middle">1980s-2000s</text>
+    <text x="220" y="385" class="feature-text">• 分散処理</text>
+    <text x="220" y="400" class="feature-text">• PC普及</text>
+    <text x="220" y="415" class="feature-text">• LAN/WAN</text>
+    <text x="220" y="430" class="feature-text">• 物理サーバー</text>
+  </g>
+
+  <!-- Virtualization Era -->
+  <g id="virtualization">
+    <rect x="370" y="260" width="140" height="120" class="virtualization-era" rx="5"/>
+    <text x="440" y="285" class="era-title" text-anchor="middle">仮想化時代</text>
+    <text x="440" y="305" class="year-text" text-anchor="middle">2000s-2010s</text>
+    <text x="380" y="325" class="feature-text">• サーバー統合</text>
+    <text x="380" y="340" class="feature-text">• リソース最適化</text>
+    <text x="380" y="355" class="feature-text">• VMware/Hyper-V</text>
+    <text x="380" y="370" class="feature-text">• 仮想マシン</text>
+  </g>
+
+  <!-- Cloud Era -->
+  <g id="cloud">
+    <rect x="530" y="200" width="140" height="120" class="cloud-era" rx="5"/>
+    <text x="600" y="225" class="era-title" text-anchor="middle">クラウド時代</text>
+    <text x="600" y="245" class="year-text" text-anchor="middle">2010s-現在</text>
+    <text x="540" y="265" class="feature-text">• オンデマンド</text>
+    <text x="540" y="280" class="feature-text">• 従量課金</text>
+    <text x="540" y="295" class="feature-text">• AWS/Azure/GCP</text>
+    <text x="540" y="310" class="feature-text">• IaaS/PaaS/SaaS</text>
+  </g>
+
+  <!-- Container/Kubernetes Era -->
+  <g id="container">
+    <rect x="690" y="140" width="140" height="120" class="container-era" rx="5"/>
+    <text x="760" y="165" class="era-title" text-anchor="middle">コンテナ/K8s時代</text>
+    <text x="760" y="185" class="year-text" text-anchor="middle">2015s-現在</text>
+    <text x="700" y="205" class="feature-text">• マイクロサービス</text>
+    <text x="700" y="220" class="feature-text">• DevOps/CI/CD</text>
+    <text x="700" y="235" class="feature-text">• Docker/K8s</text>
+    <text x="700" y="250" class="feature-text">• クラウドネイティブ</text>
+  </g>
+
+  <!-- Evolution Arrows -->
+  <path d="M 190 440 L 210 380" class="timeline-line arrow"/>
+  <path d="M 350 380 L 370 320" class="timeline-line arrow"/>
+  <path d="M 510 320 L 530 260" class="timeline-line arrow"/>
+  <path d="M 670 260 L 690 200" class="timeline-line arrow"/>
+
+  <!-- Key Characteristics -->
+  <g id="characteristics">
+    <rect x="50" y="60" width="800" height="60" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+    <text x="450" y="85" class="era-title" text-anchor="middle">主要な変化のトレンド</text>
+    <text x="100" y="105" class="feature-text">集中 → 分散</text>
+    <text x="250" y="105" class="feature-text">物理 → 仮想</text>
+    <text x="400" y="105" class="feature-text">所有 → 利用</text>
+    <text x="550" y="105" class="feature-text">モノリス → マイクロサービス</text>
+    <text x="750" y="105" class="feature-text">手動 → 自動化</text>
+  </g>
+</svg>

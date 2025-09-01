@@ -39,3 +39,13 @@ url: "https://itdojp.github.io"
 baseurl: "/IT-infra-book"
 repository: "itdojp/IT-infra-book"
 
+permalink: pretty
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+# Use custom book layout as default
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "book"

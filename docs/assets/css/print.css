@@ -151,7 +151,14 @@
   .navigation,
   .footer,
   .no-print,
-  .sidebar {
+  .sidebar,
+  .book-header,
+  .book-sidebar,
+  .book-sidebar-overlay,
+  .page-navigation,
+  .edit-page,
+  .search-container,
+  .theme-toggle {
     display: none !important;
   }
 

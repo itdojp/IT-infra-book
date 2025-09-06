@@ -1,42 +1,35 @@
-# Auto-generated navigation data
 introduction:
-  - title: "はじめに"
-    path: "/introduction/"
-
+- title: 序章
+  path: /introduction/
 chapters:
-  - title: "第1章：プロトコルスタックの設計思想"
-    path: "/chapters/chapter01/"
-  - title: "第2章：L2ネットワークの設計と実装"
-    path: "/chapters/chapter02/"
-  - title: "第3章：L3ネットワークの設計原理"
-    path: "/chapters/chapter03/"
-  - title: "第4章：名前解決とサービス発見"
-    path: "/chapters/chapter04/"
-  - title: "第5章：トランスポート層以上の実装技術"
-    path: "/chapters/chapter05/"
-  - title: "第6章：オペレーティングシステムの内部構造"
-    path: "/chapters/chapter06/"
-  - title: "第7章：ストレージアーキテクチャ"
-    path: "/chapters/chapter07/"
-  - title: "第8章：仮想化技術の実装原理"
-    path: "/chapters/chapter08/"
-  - title: "第9章：システム運用の自動化"
-    path: "/chapters/chapter09/"
-  - title: "第10章：セキュリティアーキテクチャ"
-    path: "/chapters/chapter10/"
-  - title: "第11章：高可用性システムの設計"
-    path: "/chapters/chapter11/"
-  - title: "第12章：エンドツーエンドシステム設計"
-    path: "/chapters/chapter12/"
-  - title: "第13章：技術選択のフレームワーク"
-    path: "/chapters/chapter13/"
-
+- title: 第1章：プロトコルスタックの設計思想
+  path: /chapters/chapter01/
+- title: 第2章：L2ネットワークの設計と実装
+  path: /chapters/chapter02/
+- title: 第3章：L3ネットワークの設計原理
+  path: /chapters/chapter03/
+- title: 第4章：名前解決とサービス発見
+  path: /chapters/chapter04/
+- title: 第5章：トランスポート層以上の実装技術
+  path: /chapters/chapter05/
+- title: 第6章：オペレーティングシステムの内部構造
+  path: /chapters/chapter06/
+- title: 第7章：ストレージアーキテクチャ
+  path: /chapters/chapter07/
+- title: 第8章：仮想化技術の実装原理
+  path: /chapters/chapter08/
+- title: 第9章：システム運用の自動化
+  path: /chapters/chapter09/
+- title: 第10章：セキュリティアーキテクチャ
+  path: /chapters/chapter10/
+- title: 第11章：高可用性システムの設計
+  path: /chapters/chapter11/
+- title: 第12章：エンドツーエンドシステム設計
+  path: /chapters/chapter12/
+- title: 第13章：技術選択のフレームワーク
+  path: /chapters/chapter13/
 appendices:
-  - title: "付録A: 用語集"
-    path: "/appendices/appendix01/"
-  - title: "付録B: トラブルシューティングガイド"
-    path: "/appendices/appendix02/"
-
-afterword:
-  - title: "あとがき"
-    path: "/afterword/"
+- title: '付録A: 用語集'
+  path: /appendices/appendix01/
+- title: '付録B: トラブルシューティングガイド'
+  path: /appendices/appendix02/

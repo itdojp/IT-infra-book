@@ -1376,7 +1376,7 @@ kubectl get pods -o wide
 kubectl get events --field-selector reason=FailedScheduling
 ```
 
-## 9.4 障害対応とトラブルシューティングの自動化
+## 9.6 障害対応とトラブルシューティングの自動化
 
 ### インシデント検出と初期対応の自動化
 

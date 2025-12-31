@@ -93,8 +93,8 @@
   
   <!-- Timing Information -->
   <text x="70" y="515" class="diagram-text" font-weight="bold">標準収束時間:</text>
-  <text x="70" y="535" class="diagram-text">• 初期収束: 30-50秒 (20秒 + 15秒 + 15秒)</text>
-  <text x="70" y="550" class="diagram-text">• RSTP収束: 1-2秒 (高速状態遷移)</text>
+  <text x="70" y="535" class="diagram-text">• 初期収束: 30〜50秒 (20秒 + 15秒 + 15秒)</text>
+  <text x="70" y="550" class="diagram-text">• RSTP収束: 1〜2秒 (高速状態遷移)</text>
   
   <text x="400" y="515" class="diagram-text" font-weight="bold">タイマー設定:</text>
   <text x="400" y="535" class="diagram-text">• Hello Timer: 2秒 (BPDU送信間隔)</text>

@@ -275,10 +275,10 @@
   <!-- Latency Table -->
   <text x="80" y="525" class="label-text" text-anchor="start">書込レイテンシ (ms):</text>
   <text x="90" y="545" class="annotation-text" text-anchor="start">ローカル: 1ms</text>
-  <text x="90" y="560" class="annotation-text" text-anchor="start">同一DC同期: 2-5ms</text>
-  <text x="90" y="575" class="annotation-text" text-anchor="start">異DC同期: 10-100ms</text>
-  <text x="90" y="590" class="annotation-text" text-anchor="start">非同期: 1-2ms</text>
-  <text x="90" y="605" class="annotation-text" text-anchor="start">準同期: 2-10ms</text>
+  <text x="90" y="560" class="annotation-text" text-anchor="start">同一DC同期: 2〜5ms</text>
+  <text x="90" y="575" class="annotation-text" text-anchor="start">異DC同期: 10〜100ms</text>
+  <text x="90" y="590" class="annotation-text" text-anchor="start">非同期: 1〜2ms</text>
+  <text x="90" y="605" class="annotation-text" text-anchor="start">準同期: 2〜10ms</text>
   
   <!-- Data Loss Risk -->
   <text x="300" y="525" class="label-text" text-anchor="start">データロスリスク:</text>

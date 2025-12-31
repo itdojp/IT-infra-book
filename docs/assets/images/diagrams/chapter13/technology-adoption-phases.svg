@@ -243,17 +243,17 @@
   
   <rect x="70" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
   <text x="130" y="360" class="label-text">PoC</text>
-  <text x="130" y="375" class="annotation-text">2-4週</text>
+  <text x="130" y="375" class="annotation-text">2〜4週</text>
   <text x="130" y="390" class="annotation-text">技術検証</text>
   
   <rect x="220" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
   <text x="280" y="360" class="label-text">パイロット</text>
-  <text x="280" y="375" class="annotation-text">2-3ヶ月</text>
+  <text x="280" y="375" class="annotation-text">2〜3ヶ月</text>
   <text x="280" y="390" class="annotation-text">実地検証</text>
   
   <rect x="370" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>
   <text x="430" y="360" class="label-text">展開</text>
-  <text x="430" y="375" class="annotation-text">3-6ヶ月</text>
+  <text x="430" y="375" class="annotation-text">3〜6ヶ月</text>
   <text x="430" y="390" class="annotation-text">段階移行</text>
   
   <rect x="520" y="340" width="120" height="60" rx="4" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="1"/>

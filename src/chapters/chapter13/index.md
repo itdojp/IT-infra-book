@@ -1635,7 +1635,7 @@ class TechnologyRoadmap:
             'immediate': (0, 6),  # 0-6ヶ月
             'short_term': (6, 18),  # 6-18ヶ月
             'medium_term': (18, 36),  # 18-36ヶ月
-            'long_term': (36, 60)  # 3-5年
+            'long_term': (36, 60)  # 3〜5年
         }
     
     def create_roadmap(self):

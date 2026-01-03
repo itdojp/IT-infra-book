@@ -11,13 +11,15 @@ Order resolution strategy (first match wins):
 
 {%- comment -%}
 Detect if current page is the top page (root). For project Pages, the
-root is "/<repo>/"; we normalize by stripping site.baseurl. If root,
-we suppress rendering of bottom navigation to unify top-page behavior.
+root is "/<repo>/"; we normalize by stripping site.baseurl. Depending on
+the environment, page.url can be exactly site.baseurl (without trailing
+slash), which becomes an empty string after normalization. If root, we
+suppress rendering of bottom navigation to unify top-page behavior.
 {%- endcomment -%}
 {%- assign _baseurl = site.baseurl | default: '' -%}
 {%- assign _page_url_n = page.url -%}
 {%- if _baseurl and _baseurl != '' -%}
-  {%- assign _page_url_n = _page_url_n | remove_first: _baseurl -%}
+  {%- assign _page_url_n = _page_url_n | replace: _baseurl, '' -%}
 {%- endif -%}
 {%- assign _is_root = false -%}
 {%- if _page_url_n == '/' or _page_url_n == '' -%}

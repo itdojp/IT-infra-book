@@ -4,12 +4,12 @@
   "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
   "main": "index.md",
   "scripts": {
-    "start": "jekyll serve --livereload",
-    "build": "jekyll build",
+    "start": "cd docs && bundle exec jekyll serve --livereload",
+    "build": "cd docs && bundle exec jekyll build",
     "test": "npm run lint && npm run check-links",
-    "lint": "markdownlint src/**/*.md",
-    "check-links": "markdown-link-check src/**/*.md",
-    "deploy": "gh-pages -d _site"
+    "lint": "markdownlint 'docs/**/*.md'",
+    "check-links": "markdown-link-check docs/**/*.md",
+    "deploy": "gh-pages -d docs/_site"
   },
   "keywords": [
     "book",

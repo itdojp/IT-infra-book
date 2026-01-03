@@ -33,3 +33,6 @@ appendices:
   path: /appendices/appendix01/
 - title: '付録B: トラブルシューティングガイド'
   path: /appendices/appendix02/
+afterword:
+- title: あとがき
+  path: /afterword/

@@ -27,7 +27,9 @@ title: "ITインフラストラクチャ技術ガイド"
 - [{{ appendix.title }}]({{ appendix.path | relative_url }})
 {% endfor %}
 
-- [あとがき]({{ '/afterword/' | relative_url }})
+{% for afterword in site.data.navigation.afterword %}
+- [{{ afterword.title }}]({{ afterword.path | relative_url }})
+{% endfor %}
 
 
 ## 📄 ライセンス

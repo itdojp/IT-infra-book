@@ -998,5 +998,5 @@ echo "$(date): CPU(usr:${CPU_USER}% sys:${CPU_SYS}% wait:${CPU_WAIT}%) MEM:${MEM
 
 ## 次に読む
 
-- [第7章 仮想化技術の内部メカニズム](../chapter07/)
+- [第7章：ストレージアーキテクチャ](../chapter07/)
 - [目次に戻る](../../)

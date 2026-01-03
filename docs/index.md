@@ -10,44 +10,26 @@ title: "ITインフラストラクチャ技術ガイド"
 
 ## 目次
 
-- [はじめに]({{ '/introduction/' | relative_url }})
+{% for item in site.data.navigation.introduction %}
+- [{{ item.title }}]({{ item.path | relative_url }})
+{% endfor %}
 
-- [第1章 プロトコルスタックの設計思想]({{ '/chapters/chapter01/' | relative_url }})
-
-- [第2章 L2ネットワークの実装詳細]({{ '/chapters/chapter02/' | relative_url }})
-
-- [第3章 L3ルーティングアーキテクチャ]({{ '/chapters/chapter03/' | relative_url }})
-
-- [第4章 トランスポート層の最適化]({{ '/chapters/chapter04/' | relative_url }})
-
-- [第5章 アプリケーション層プロトコルの実装]({{ '/chapters/chapter05/' | relative_url }})
-
-- [第6章 オペレーティングシステムの内部構造]({{ '/chapters/chapter06/' | relative_url }})
-
-- [第7章 仮想化技術の内部メカニズム]({{ '/chapters/chapter07/' | relative_url }})
-
-- [第8章 コンテナ技術の実装原理]({{ '/chapters/chapter08/' | relative_url }})
-
-- [第9章 システム運用の自動化]({{ '/chapters/chapter09/' | relative_url }})
-
-- [第10章 分散ストレージアーキテクチャ]({{ '/chapters/chapter10/' | relative_url }})
-
-- [第11章 高可用性システムの設計]({{ '/chapters/chapter11/' | relative_url }})
-
-- [第12章 クラウドネイティブアーキテクチャ]({{ '/chapters/chapter12/' | relative_url }})
-
-- [第13章 技術選択のフレームワーク]({{ '/chapters/chapter13/' | relative_url }})
+{% for chapter in site.data.navigation.chapters %}
+- [{{ chapter.title }}]({{ chapter.path | relative_url }})
+{% endfor %}
 
 
 
 
 ## 付録
 
-- [付録A: 用語集]({{ '/appendices/appendix01/' | relative_url }})
+{% for appendix in site.data.navigation.appendices %}
+- [{{ appendix.title }}]({{ appendix.path | relative_url }})
+{% endfor %}
 
-- [付録B: トラブルシューティングガイド]({{ '/appendices/appendix02/' | relative_url }})
-
-- [あとがき]({{ '/afterword/' | relative_url }})
+{% for afterword in site.data.navigation.afterword %}
+- [{{ afterword.title }}]({{ afterword.path | relative_url }})
+{% endfor %}
 
 
 ## 📄 ライセンス

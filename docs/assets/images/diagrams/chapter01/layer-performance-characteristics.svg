@@ -107,8 +107,8 @@
   
   <text x="400" y="375" class="diagram-text" font-weight="bold">スループット要因:</text>
   <text x="400" y="395" class="diagram-text">• プロトコル処理: CPU使用率</text>
-  <text x="400" y="410" class="diagram-text">• メモリ帯域: 10-100GB/s</text>
-  <text x="400" y="425" class="diagram-text">• PCIe帯域: 16-64GB/s</text>
+  <text x="400" y="410" class="diagram-text">• メモリ帯域: 10〜100GB/s</text>
+  <text x="400" y="425" class="diagram-text">• PCIe帯域: 16〜64GB/s</text>
   
   <text x="80" y="460" class="diagram-text" font-weight="bold">最適化手法:</text>
   <text x="80" y="480" class="diagram-text">• ゼロコピー: データコピー削減</text>

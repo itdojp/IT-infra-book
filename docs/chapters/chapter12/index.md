@@ -429,54 +429,7 @@ class NUMAOptimizer:
 
 可観測性を実現する三本柱の関係を[図12-2]に示す。
 
-[図12-2: 可観測性の三本柱]
-```mermaid
-graph TB
-    subgraph "データソース"
-        APP[アプリケーション]
-        SYS[システム]
-        NET[ネットワーク]
-    end
-    
-    subgraph "メトリクス"
-        M_COL[収集エージェント]
-        M_STORE[時系列DB<br/>Prometheus]
-        M_VIS[可視化<br/>Grafana]
-    end
-    
-    subgraph "ログ"
-        L_COL[ログ収集<br/>Fluentd]
-        L_STORE[ログストア<br/>Elasticsearch]
-        L_VIS[分析<br/>Kibana]
-    end
-    
-    subgraph "トレース"
-        T_COL[トレース収集<br/>Jaeger Agent]
-        T_STORE[トレースストア<br/>Jaeger Backend]
-        T_VIS[トレース分析<br/>Jaeger UI]
-    end
-    
-    APP --> M_COL
-    APP --> L_COL
-    APP --> T_COL
-    
-    M_COL --> M_STORE
-    M_STORE --> M_VIS
-    
-    L_COL --> L_STORE
-    L_STORE --> L_VIS
-    
-    T_COL --> T_STORE
-    T_STORE --> T_VIS
-    
-    subgraph "統合ダッシュボード"
-        DASH[統合ビュー]
-    end
-    
-    M_VIS --> DASH
-    L_VIS --> DASH
-    T_VIS --> DASH
-```
+![図12-2: 可観測性の三本柱]({{ '/assets/images/diagrams/chapter12/observability-pillars.svg' | relative_url }})
 
 #### メトリクス：システムの健康状態
 
@@ -954,33 +907,7 @@ class AutoScalingPolicy:
 
 インシデント対応の標準的なフローを[図12-3]に示す。
 
-[図12-3: インシデント対応フロー]
-```mermaid
-stateDiagram-v2
-    [*] --> 検知: アラート発生
-    
-    検知 --> 分類: インシデント作成
-    
-    分類 --> SEV1: 重大
-    分類 --> SEV2: 大
-    分類 --> SEV3: 中
-    分類 --> SEV4: 小
-    
-    SEV1 --> 初期対応: 5分以内
-    SEV2 --> 初期対応: 15分以内
-    SEV3 --> 初期対応: 1時間以内
-    SEV4 --> 初期対応: 翌営業日
-    
-    初期対応 --> 調査
-    調査 --> 暫定対処
-    暫定対処 --> 恒久対処
-    恒久対処 --> 検証
-    検証 --> クローズ
-    
-    クローズ --> ポストモーテム: SEV1/2の場合
-    ポストモーテム --> [*]
-    クローズ --> [*]: SEV3/4の場合
-```
+![図12-3: インシデント対応フロー]({{ '/assets/images/diagrams/chapter12/incident-response-flow.svg' | relative_url }})
 
 #### 障害の分類体系
 

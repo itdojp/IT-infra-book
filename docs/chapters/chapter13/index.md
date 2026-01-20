@@ -28,42 +28,7 @@ title: "第13章：技術選択のフレームワーク"
 
 包括的な技術評価のフレームワークを[図13-1]に示す。
 
-[図13-1: 技術評価マトリクス]
-```mermaid
-graph TB
-    subgraph "評価軸"
-        FUNC[機能要件<br/>充足度]
-        PERF[性能<br/>スケーラビリティ]
-        OPER[運用性<br/>保守性]
-        COST[コスト<br/>TCO]
-        RISK[リスク<br/>成熟度]
-        FIT[組織<br/>適合性]
-    end
-    
-    subgraph "評価対象技術"
-        TECH1[技術A]
-        TECH2[技術B]
-        TECH3[技術C]
-    end
-    
-    subgraph "総合評価"
-        SCORE[スコアリング<br/>重み付け集計]
-        DECISION[選択決定]
-    end
-    
-    FUNC --> SCORE
-    PERF --> SCORE
-    OPER --> SCORE
-    COST --> SCORE
-    RISK --> SCORE
-    FIT --> SCORE
-    
-    TECH1 --> SCORE
-    TECH2 --> SCORE
-    TECH3 --> SCORE
-    
-    SCORE --> DECISION
-```
+![図13-1: 技術評価マトリクス]({{ '/assets/images/diagrams/chapter13/technology-evaluation-matrix.svg' | relative_url }})
 
 #### 機能要件の充足度
 
@@ -268,7 +233,7 @@ class TCOCalculator:
 
 **バス係数の評価**：
 
-バス係数とは、プロジェクトが機能不全に陥るまでに失われる必要のある主要開発者の最小数である。
+バス係数とは、プロジェクトが機能不全に陥る前に失われると影響が大きい主要メンバーの最小人数である。
 
 ```python
 def calculate_bus_factor(project_contributions):
@@ -535,44 +500,7 @@ class LicenseComplianceManager:
 
 技術的負債の各カテゴリとその影響を[図13-2]に示す。
 
-[図13-2: 技術的負債の分類]
-```mermaid
-graph TB
-    subgraph "コード負債"
-        CODE1[複雑性]
-        CODE2[重複]
-        CODE3[テスト不足]
-        CODE4[古い依存関係]
-    end
-    
-    subgraph "アーキテクチャ負債"
-        ARCH1[モノリシック]
-        ARCH2[密結合]
-        ARCH3[スケーラビリティ制限]
-        ARCH4[技術的陳腐化]
-    end
-    
-    subgraph "インフラ負債"
-        INFRA1[手動運用]
-        INFRA2[監視不足]
-        INFRA3[文書化不足]
-        INFRA4[単一障害点]
-    end
-    
-    subgraph "負債の影響"
-        IMPACT1[開発速度低下]
-        IMPACT2[品質問題]
-        IMPACT3[運用コスト増]
-        IMPACT4[リスク増大]
-    end
-    
-    CODE1 --> IMPACT1
-    CODE2 --> IMPACT2
-    ARCH1 --> IMPACT1
-    ARCH2 --> IMPACT4
-    INFRA1 --> IMPACT3
-    INFRA4 --> IMPACT4
-```
+![図13-2: 技術的負債の分類]({{ '/assets/images/diagrams/chapter13/technical-debt-classification.svg' | relative_url }})
 
 #### コード負債
 
@@ -940,45 +868,7 @@ deploy:production:
 
 新技術の段階的な導入プロセスを[図13-3]に示す。
 
-[図13-3: 技術導入フェーズ]
-```mermaid
-graph LR
-    subgraph "フェーズ1: PoC"
-        POC1[技術調査]
-        POC2[プロトタイプ]
-        POC3[評価]
-    end
-    
-    subgraph "フェーズ2: パイロット"
-        PILOT1[限定導入]
-        PILOT2[効果測定]
-        PILOT3[課題抽出]
-    end
-    
-    subgraph "フェーズ3: 展開"
-        ROLL1[段階展開]
-        ROLL2[移行実施]
-        ROLL3[並行運用]
-    end
-    
-    subgraph "フェーズ4: 本番"
-        PROD1[全面移行]
-        PROD2[最適化]
-        PROD3[標準化]
-    end
-    
-    POC3 -->|Go| PILOT1
-    POC3 -->|No-Go| EXIT1[中止]
-    
-    PILOT3 -->|Go| ROLL1
-    PILOT3 -->|No-Go| EXIT2[撤退]
-    
-    ROLL3 --> PROD1
-    
-    subgraph "各フェーズの期間"
-        TIME[PoC: 2〜4週<br/>パイロット: 2〜3ヶ月<br/>展開: 3〜6ヶ月<br/>本番: 継続]
-    end
-```
+![図13-3: 技術導入フェーズ]({{ '/assets/images/diagrams/chapter13/technology-adoption-phases.svg' | relative_url }})
 
 #### 技術検証（PoC）フェーズ
 

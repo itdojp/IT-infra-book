@@ -1,11 +1,11 @@
 {
-  "title": "ITインフラストラクチャ技術ガイド",
-  "subtitle": "ネットワークとサーバーシステムの設計と実装",
-  "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
-  "author": "太田和彦（株式会社アイティードゥ）",
+  "title": "IT\u30a4\u30f3\u30d5\u30e9\u30b9\u30c8\u30e9\u30af\u30c1\u30e3\u6280\u8853\u30ac\u30a4\u30c9",
+  "subtitle": "\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u3068\u30b5\u30fc\u30d0\u30fc\u30b7\u30b9\u30c6\u30e0\u306e\u8a2d\u8a08\u3068\u5b9f\u88c5",
+  "description": "\u30d9\u30f3\u30c0\u30fc\u975e\u4f9d\u5b58\u306e\u89b3\u70b9\u304b\u3089\u30a4\u30f3\u30d5\u30e9\u30b9\u30c8\u30e9\u30af\u30c1\u30e3\u6280\u8853\u306e\u672c\u8cea\u7684\u306a\u8a2d\u8a08\u539f\u7406\u3068\u5b9f\u88c5\u624b\u6cd5\u3092\u4f53\u7cfb\u5316\u3057\u305f\u6280\u8853\u66f8",
+  "author": "\u592a\u7530\u548c\u5f66\uff08\u682a\u5f0f\u4f1a\u793e\u30a2\u30a4\u30c6\u30a3\u30fc\u30c9\u30a5\uff09",
   "version": "1.0.0",
   "language": "ja",
-  "license": "MIT",
+  "license": "CC BY-NC-SA 4.0",
   "repository": {
     "url": "https://github.com/itdojp/IT-infra-book.git",
     "branch": "main"
@@ -14,80 +14,80 @@
     "chapters": [
       {
         "id": "chapter01",
-        "title": "第1章：インフラストラクチャ設計の基本原理",
-        "description": "システム設計の根本原理と思考法"
+        "title": "\u7b2c1\u7ae0\uff1a\u30a4\u30f3\u30d5\u30e9\u30b9\u30c8\u30e9\u30af\u30c1\u30e3\u8a2d\u8a08\u306e\u57fa\u672c\u539f\u7406",
+        "description": "\u30b7\u30b9\u30c6\u30e0\u8a2d\u8a08\u306e\u6839\u672c\u539f\u7406\u3068\u601d\u8003\u6cd5"
       },
       {
         "id": "chapter02",
-        "title": "第2章：ネットワーク技術の実装原理",
-        "description": "TCP/IPから現代ネットワークまでの実装技術"
+        "title": "\u7b2c2\u7ae0\uff1a\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u6280\u8853\u306e\u5b9f\u88c5\u539f\u7406",
+        "description": "TCP/IP\u304b\u3089\u73fe\u4ee3\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u307e\u3067\u306e\u5b9f\u88c5\u6280\u8853"
       },
       {
         "id": "chapter03",
-        "title": "第3章：セキュリティアーキテクチャの設計",
-        "description": "多層防御とゼロトラスト設計"
+        "title": "\u7b2c3\u7ae0\uff1a\u30bb\u30ad\u30e5\u30ea\u30c6\u30a3\u30a2\u30fc\u30ad\u30c6\u30af\u30c1\u30e3\u306e\u8a2d\u8a08",
+        "description": "\u591a\u5c64\u9632\u5fa1\u3068\u30bc\u30ed\u30c8\u30e9\u30b9\u30c8\u8a2d\u8a08"
       },
       {
         "id": "chapter04",
-        "title": "第4章：プロトコル最適化と高可用性",
-        "description": "性能とレジリエンスの実装"
+        "title": "\u7b2c4\u7ae0\uff1a\u30d7\u30ed\u30c8\u30b3\u30eb\u6700\u9069\u5316\u3068\u9ad8\u53ef\u7528\u6027",
+        "description": "\u6027\u80fd\u3068\u30ec\u30b8\u30ea\u30a8\u30f3\u30b9\u306e\u5b9f\u88c5"
       },
       {
         "id": "chapter05",
-        "title": "第5章：現代的ネットワーク管理手法",
-        "description": "SDNとネットワーク自動化"
+        "title": "\u7b2c5\u7ae0\uff1a\u73fe\u4ee3\u7684\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u7ba1\u7406\u624b\u6cd5",
+        "description": "SDN\u3068\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u81ea\u52d5\u5316"
       },
       {
         "id": "chapter06",
-        "title": "第6章：サーバーシステム設計原理",
-        "description": "コンピューティングリソースの最適化"
+        "title": "\u7b2c6\u7ae0\uff1a\u30b5\u30fc\u30d0\u30fc\u30b7\u30b9\u30c6\u30e0\u8a2d\u8a08\u539f\u7406",
+        "description": "\u30b3\u30f3\u30d4\u30e5\u30fc\u30c6\u30a3\u30f3\u30b0\u30ea\u30bd\u30fc\u30b9\u306e\u6700\u9069\u5316"
       },
       {
         "id": "chapter07",
-        "title": "第7章：ストレージアーキテクチャ",
-        "description": "データ永続化とストレージ戦略"
+        "title": "\u7b2c7\u7ae0\uff1a\u30b9\u30c8\u30ec\u30fc\u30b8\u30a2\u30fc\u30ad\u30c6\u30af\u30c1\u30e3",
+        "description": "\u30c7\u30fc\u30bf\u6c38\u7d9a\u5316\u3068\u30b9\u30c8\u30ec\u30fc\u30b8\u6226\u7565"
       },
       {
         "id": "chapter08",
-        "title": "第8章：負荷分散とスケーリング",
-        "description": "システムの拡張性設計"
+        "title": "\u7b2c8\u7ae0\uff1a\u8ca0\u8377\u5206\u6563\u3068\u30b9\u30b1\u30fc\u30ea\u30f3\u30b0",
+        "description": "\u30b7\u30b9\u30c6\u30e0\u306e\u62e1\u5f35\u6027\u8a2d\u8a08"
       },
       {
         "id": "chapter09",
-        "title": "第9章：システム運用の自動化",
-        "description": "運用効率化とDevOps実践"
+        "title": "\u7b2c9\u7ae0\uff1a\u30b7\u30b9\u30c6\u30e0\u904b\u7528\u306e\u81ea\u52d5\u5316",
+        "description": "\u904b\u7528\u52b9\u7387\u5316\u3068DevOps\u5b9f\u8df5"
       },
       {
         "id": "chapter10",
-        "title": "第10章：セキュリティ実装の実際",
-        "description": "実践的セキュリティ対策"
+        "title": "\u7b2c10\u7ae0\uff1a\u30bb\u30ad\u30e5\u30ea\u30c6\u30a3\u5b9f\u88c5\u306e\u5b9f\u969b",
+        "description": "\u5b9f\u8df5\u7684\u30bb\u30ad\u30e5\u30ea\u30c6\u30a3\u5bfe\u7b56"
       },
       {
         "id": "chapter11",
-        "title": "第11章：高可用性システム設計",
-        "description": "災害対策と事業継続"
+        "title": "\u7b2c11\u7ae0\uff1a\u9ad8\u53ef\u7528\u6027\u30b7\u30b9\u30c6\u30e0\u8a2d\u8a08",
+        "description": "\u707d\u5bb3\u5bfe\u7b56\u3068\u4e8b\u696d\u7d99\u7d9a"
       },
       {
         "id": "chapter12",
-        "title": "第12章：性能管理と最適化",
-        "description": "システム性能の監視と改善"
+        "title": "\u7b2c12\u7ae0\uff1a\u6027\u80fd\u7ba1\u7406\u3068\u6700\u9069\u5316",
+        "description": "\u30b7\u30b9\u30c6\u30e0\u6027\u80fd\u306e\u76e3\u8996\u3068\u6539\u5584"
       },
       {
         "id": "chapter13",
-        "title": "第13章：技術選択のフレームワーク",
-        "description": "技術評価と意思決定の方法論"
+        "title": "\u7b2c13\u7ae0\uff1a\u6280\u8853\u9078\u629e\u306e\u30d5\u30ec\u30fc\u30e0\u30ef\u30fc\u30af",
+        "description": "\u6280\u8853\u8a55\u4fa1\u3068\u610f\u601d\u6c7a\u5b9a\u306e\u65b9\u6cd5\u8ad6"
       }
     ],
     "appendices": [
       {
         "id": "appendix-a",
-        "title": "付録A：設定例とベストプラクティス",
-        "description": "実際の設定例とチェックリスト"
+        "title": "\u4ed8\u9332A\uff1a\u8a2d\u5b9a\u4f8b\u3068\u30d9\u30b9\u30c8\u30d7\u30e9\u30af\u30c6\u30a3\u30b9",
+        "description": "\u5b9f\u969b\u306e\u8a2d\u5b9a\u4f8b\u3068\u30c1\u30a7\u30c3\u30af\u30ea\u30b9\u30c8"
       },
       {
         "id": "appendix-b",
-        "title": "付録B：トラブルシューティングガイド",
-        "description": "一般的な問題と解決方法"
+        "title": "\u4ed8\u9332B\uff1a\u30c8\u30e9\u30d6\u30eb\u30b7\u30e5\u30fc\u30c6\u30a3\u30f3\u30b0\u30ac\u30a4\u30c9",
+        "description": "\u4e00\u822c\u7684\u306a\u554f\u984c\u3068\u89e3\u6c7a\u65b9\u6cd5"
       }
     ]
   },

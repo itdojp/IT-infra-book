@@ -1,7 +1,7 @@
 {
-  "name": "it\u30a4\u30f3\u30d5\u30e9\u30b9\u30c8\u30e9\u30af\u30c1\u30e3\u6280\u8853\u30ac\u30a4\u30c9",
+  "name": "itインフラストラクチャ技術ガイド",
   "version": "1.0.0",
-  "description": "\u30d9\u30f3\u30c0\u30fc\u975e\u4f9d\u5b58\u306e\u89b3\u70b9\u304b\u3089\u30a4\u30f3\u30d5\u30e9\u30b9\u30c8\u30e9\u30af\u30c1\u30e3\u6280\u8853\u306e\u672c\u8cea\u7684\u306a\u8a2d\u8a08\u539f\u7406\u3068\u5b9f\u88c5\u624b\u6cd5\u3092\u4f53\u7cfb\u5316\u3057\u305f\u6280\u8853\u66f8",
+  "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
   "main": "index.md",
   "scripts": {
     "start": "cd docs && bundle exec jekyll serve --livereload",
@@ -16,7 +16,7 @@
     "documentation",
     "ja"
   ],
-  "author": "\u592a\u7530\u548c\u5f66\uff08\u682a\u5f0f\u4f1a\u793e\u30a2\u30a4\u30c6\u30a3\u30fc\u30c9\u30a5\uff09",
+  "author": "太田和彦（株式会社アイティードゥ）",
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
     "markdownlint-cli": "^0.37.0",

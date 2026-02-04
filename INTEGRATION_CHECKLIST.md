@@ -83,7 +83,7 @@ Follow the [Quick Start](QUICK-START.md) to begin writing.
 
 ## 📚 Documentation References
 
-- [Quick Start](QUICK-START.md) - Complete installation and configuration
+- [Quick Start](QUICK-START.md) - Quick local development and preview setup
 - [Book Template Guide](book-template-guide.md) - Project organization and structure
-- [Troubleshooting Guide](docs/appendices/appendix02/) - Common issues and mitigations
+- [Troubleshooting Guide](UPGRADE-GUIDE.md) - Common build/migration issues and mitigations
 - [Changelog](CHANGELOG.md) - Template updates and integration tracking

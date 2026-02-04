@@ -8,7 +8,7 @@
 
 ## 目次
 
-- [はじめに](introduction/)
+- [はじめに](../docs/introduction/)
 {% for chapter in chapters %}
 - [{{ chapter.title }}]({{ chapter.path }})
 {% endfor %}
@@ -21,7 +21,7 @@
 {% endfor %}
 {% endif %}
 {% if afterword %}
-- [あとがき](afterword/)
+- [あとがき](../docs/afterword/)
 {% endif %}
 
 ## 著者について

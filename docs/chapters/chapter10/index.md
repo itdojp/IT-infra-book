@@ -1635,7 +1635,7 @@ alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (
   content:"union"; nocase;
   content:"select"; nocase;
   distance:0; within:20;
-  pcre:"/union\\s+.*select/i";
+  pcre:"/union\s+.*select/i";
   classtype:web-application-attack;
   sid:1000001; rev:1;
 )
@@ -1645,7 +1645,7 @@ alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (
   msg:"Suspicious File Upload";
   content:"Content-Type|3a| multipart/form-data"; http_header;
   content:".php"; http_client_body;
-  pcre:"/\\.(php|jsp|asp|py)\\x22/i";
+  pcre:"/\.(php|jsp|asp|py)\x22/i";
   classtype:web-application-attack;
   sid:1000002; rev:1;
 )
@@ -1664,7 +1664,7 @@ alert dns $HOME_NET any -> any any (
   msg:"DNS Tunneling Attempt";
   dns_query;
   content:"|00|"; depth:50;
-  pcre:"/^[A-Za-z0-9+\\/]{50,}/";
+  pcre:"/^[A-Za-z0-9+\/]{50,}/";
   classtype:trojan-activity;
   sid:1000004; rev:1;
 )

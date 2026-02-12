@@ -10,7 +10,7 @@ This is a Japanese-language technical book project about "ITインフラスト�
 
 This project uses the **book-formatter** system (migrated from book-publishing-template2):
 
-```
+```text
 IT-infra-book/
 ├── docs/                    # Generated output (GitHub Pages)
 ├── src/                     # Source content

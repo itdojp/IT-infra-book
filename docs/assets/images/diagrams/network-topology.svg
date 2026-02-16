@@ -2,11 +2,11 @@
 <svg width="900" height="700" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .title { font-family: 'Noto Sans JP', sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; }
-      .topology-title { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: bold; fill: #34495e; }
-      .feature-text { font-family: 'Noto Sans JP', sans-serif; font-size: 10px; fill: #2c3e50; }
-      .advantage { font-family: 'Noto Sans JP', sans-serif; font-size: 9px; fill: #27ae60; }
-      .disadvantage { font-family: 'Noto Sans JP', sans-serif; font-size: 9px; fill: #e74c3c; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 20px; font-weight: bold; fill: #2c3e50; }
+      .topology-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 14px; font-weight: bold; fill: #34495e; }
+      .feature-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 10px; fill: #2c3e50; }
+      .advantage { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 9px; fill: #27ae60; }
+      .disadvantage { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 9px; fill: #e74c3c; }
       .node { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
       .center-node { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
       .connection { stroke: #34495e; stroke-width: 2; fill: none; }

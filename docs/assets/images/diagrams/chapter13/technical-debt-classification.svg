@@ -222,7 +222,7 @@
   <!-- Code Debt Details -->
   <text x="70" y="435" class="label-text" text-anchor="start">コード負債の典型例:</text>
   <text x="80" y="455" class="note-text">• 複雑性: ネストの深いコード、巨大な関数・クラス</text>
-  <text x="80" y="470" class="note-text">• 重複: コピー&ペーストコード、類似ロジックの散在</text>
+  <text x="80" y="470" class="note-text">• 重複: コピー&amp;ペーストコード、類似ロジックの散在</text>
   <text x="80" y="485" class="note-text">• テスト不足: カバレッジ低下、テストコードの劣化</text>
   <text x="80" y="500" class="note-text">• 古い依存関係: セキュリティリスク、互換性問題</text>
   

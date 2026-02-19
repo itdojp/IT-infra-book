@@ -112,7 +112,7 @@
   
   <text x="80" y="460" class="diagram-text" font-weight="bold">最適化手法:</text>
   <text x="80" y="480" class="diagram-text">• ゼロコピー: データコピー削減</text>
-  <text x="80" y="495" class="diagram-text">• カーネルバイパス: DPDK/io_uring</text>
+  <text x="80" y="495" class="diagram-text">• カーネルバイパス: DPDK/AF_XDP</text>
   <text x="80" y="510" class="diagram-text">• アフィニティ: CPU/NIC結合</text>
   
   <!-- Accessibility -->

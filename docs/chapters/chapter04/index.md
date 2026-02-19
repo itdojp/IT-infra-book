@@ -726,7 +726,7 @@ _http._tcp.local.     PTR  "Another Server._http._tcp.local."
 ```text
 ネットワーク規模：
 - マルチキャストトラフィックの増大
-- ルータ越え不可（リンクローカル・マルチキャストのスコープ。TTL/ホップリミットは 255 が推奨/要求）
+- ルータ越え不可（リンクローカル・マルチキャストのスコープ。TTL/ホップリミットは 255 が推奨/要求。RFC 6762 はセキュリティのため TTL/ホップリミット=255 を義務付け、受信側もこの値を検証する）
 - 大規模環境での性能問題
 
 セキュリティ：
@@ -740,7 +740,7 @@ _http._tcp.local.     PTR  "Another Server._http._tcp.local."
 
 最小実験（Linux例。avahi-utils が必要）：
 ```bash
-avahi-browse -art
+avahi-browse -art  # -a: すべてのサービス, -r: 名前解決も行う, -t: 一覧表示後に終了
 avahi-resolve -n myserver.local
 ```
 

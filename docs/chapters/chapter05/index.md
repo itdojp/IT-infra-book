@@ -176,7 +176,7 @@ QUIC（Quick UDP Internet Connections）は、TCPとUDPの課題を解決する�
 **実装状況と課題**
 
 ```text
-対応状況（基準日: 2026-02。対応状況は変動するため、採用時は公式ドキュメントで確認）：
+対応状況（基準日: 2026年2月時点。対応状況は変動するため、採用時は公式ドキュメントで確認）：
 - クライアント（ブラウザ）：主要ブラウザは概ね対応（HTTP/3 = QUIC）。ただし企業環境ではプロキシ/ポリシーで無効化される場合がある
 - サーバー/プロキシ：ソフトウェアにより成熟度が異なる（例: Nginx の HTTP/3 は experimental 扱いで、ビルド条件・運用上の注意がある）
 - CDN：エッジで HTTP/3 終端するサービスが多いが、エッジ〜オリジン間は HTTP/1.1/HTTP/2 のままの場合もある
@@ -192,7 +192,9 @@ QUIC（Quick UDP Internet Connections）は、TCPとUDPの課題を解決する�
 最小実験（HTTP/3 の利用確認例）：
 ```bash
 # curl が HTTP/3 対応でビルドされている必要がある
-curl -I --http3 https://example.com/
+# Check: curl --version | grep -i http3
+# HTTP/3 対応サイトを指定すること
+curl -I --http3 https://cloudflare.com/
 ```
 
 参考（一次情報）：

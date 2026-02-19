@@ -74,7 +74,7 @@ Email: [knowledge@itdo.jp](mailto:knowledge@itdo.jp)
 ---
 
 **著者:** 株式会社アイティードゥ  
-**バージョン:** 1.0.0  
-**最終更新:** 2025-07-16
+**バージョン:** 1.0.1  
+**最終更新:** 2026-02-20
 
 {% include page-navigation.html %}

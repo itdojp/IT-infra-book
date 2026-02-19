@@ -3,7 +3,7 @@
   "subtitle": "ネットワークとサーバーシステムの設計と実装",
   "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
   "author": "太田和彦（株式会社アイティードゥ）",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "language": "ja",
   "license": "CC-BY-NC-SA-4.0",
   "repository": {

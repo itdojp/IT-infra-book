@@ -176,11 +176,11 @@ QUIC（Quick UDP Internet Connections）は、TCPとUDPの課題を解決する�
 **実装状況と課題**
 
 ```text
-対応状況（2024年）：
-- Chrome、Firefox、Safari：対応済み
-- Apache、Nginx：対応済み  
-- CDN（Cloudflare、AWS等）：対応済み
-- 企業内システム：限定的
+対応状況（基準日: 2026-02。対応状況は変動するため、採用時は公式ドキュメントで確認）：
+- クライアント（ブラウザ）：主要ブラウザは概ね対応（HTTP/3 = QUIC）。ただし企業環境ではプロキシ/ポリシーで無効化される場合がある
+- サーバー/プロキシ：ソフトウェアにより成熟度が異なる（例: Nginx の HTTP/3 は experimental 扱いで、ビルド条件・運用上の注意がある）
+- CDN：エッジで HTTP/3 終端するサービスが多いが、エッジ〜オリジン間は HTTP/1.1/HTTP/2 のままの場合もある
+- 企業内システム：ネットワーク機器や運用要件の制約により限定的になりやすい
 
 課題：
 - UDP ポートのファイアウォール制約
@@ -188,6 +188,16 @@ QUIC（Quick UDP Internet Connections）は、TCPとUDPの課題を解決する�
 - デバッグツールの不足
 - レガシーシステムとの互換性
 ```
+
+最小実験（HTTP/3 の利用確認例）：
+```bash
+# curl が HTTP/3 対応でビルドされている必要がある
+curl -I --http3 https://example.com/
+```
+
+参考（一次情報）：
+- Nginx HTTP/3 module（experimental）: https://nginx.org/en/docs/http/ngx_http_v3_module.html
+- Cloudflare HTTP/3: https://developers.cloudflare.com/speed/optimization/protocol/http3/
 
 **導入判断の基準**
 

@@ -726,13 +726,22 @@ _http._tcp.local.     PTR  "Another Server._http._tcp.local."
 ```text
 ネットワーク規模：
 - マルチキャストトラフィックの増大
-- ルーター越えでの制限（TTL=1）
+- ルータ越え不可（リンクローカル・マルチキャストのスコープ。TTL/ホップリミットは 255 が推奨/要求）
 - 大規模環境での性能問題
 
 セキュリティ：
 - 暗号化機能なし
 - アクセス制御機能なし
 - 情報漏洩の可能性
+```
+
+参考：
+- RFC 6762: Multicast DNS（mDNS） https://www.rfc-editor.org/rfc/rfc6762.html
+
+最小実験（Linux例。avahi-utils が必要）：
+```bash
+avahi-browse -art
+avahi-resolve -n myserver.local
 ```
 
 ### サービスメッシュとの統合

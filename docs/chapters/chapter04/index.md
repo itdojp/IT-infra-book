@@ -154,7 +154,8 @@ OS DNS リゾルバ
    - TTL 期限切れ後はキャッシュを無効として扱い、再問い合わせが必要
    ```
 
-参考: RFC 8767: Serving Stale Data to Improve DNS Resiliency https://www.rfc-editor.org/rfc/rfc8767.html
+参考：
+- RFC 8767: Serving Stale Data to Improve DNS Resilience https://www.rfc-editor.org/rfc/rfc8767.html
 
 ## 4.2 DNS実装のセキュリティ課題
 

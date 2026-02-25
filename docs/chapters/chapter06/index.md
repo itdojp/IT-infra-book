@@ -184,6 +184,8 @@ SYSCALL_DEFINE3(write, unsigned int, fd, const char __user *, buf, size_t, count
 ### セキュアブートとカーネル完全性の検証
 
 現代のシステムでは、起動時からカーネルの完全性を保証することが重要である。
+セキュアブート（Secure Boot）は UEFI の機能で、起動時にブートローダーや OS カーネルなどの署名を検証し、信頼できるソフトウェアのみを実行する仕組みである。
+これにより、ブートキット等による起動プロセスの改ざんリスクを低減できる。
 
 ```bash
 # Secure Bootの設定確認

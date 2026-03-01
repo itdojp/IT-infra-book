@@ -157,6 +157,9 @@ npm run build
 git status
 # 例: コミット対象のファイル/ディレクトリだけを明示的に追加
 git add docs/ book-config.json package.json
+# .gitignore や easy-setup.js によって変更された設定ファイルなど、
+# git status に表示される他の必要なファイルも忘れずに明示的に追加する
+# （変更を確認しながら追加したい場合は git add -p の利用も推奨）
 # 必要に応じて src/ や .github/ なども明示的に追加
 git commit -m "Initial commit"
 

@@ -390,6 +390,8 @@ cat /proc/sys/net/netfilter/nf_conntrack_max
 #!/bin/bash
 
 # テスト用ルール設定
+# [注意] 既存のiptablesルールを変更/削除するため、検証環境でのみ実行すること
+# （必要なら）事前に保存: iptables-save > /tmp/iptables.rules.v4
 iptables -F
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT

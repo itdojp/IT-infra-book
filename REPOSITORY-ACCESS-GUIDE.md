@@ -153,8 +153,14 @@ node easy-setup.js
 # 3. ビルド実行
 npm run build
 
-# 4. Gitにコミット
-git add -A
+# 4. Gitにコミット（無差別にステージしない）
+git status
+# 例: コミット対象のファイル/ディレクトリだけを明示的に追加
+git add docs/ book-config.json package.json
+# .gitignore や easy-setup.js によって変更された設定ファイルなど、
+# git status に表示される他の必要なファイルも忘れずに明示的に追加する
+# （変更を確認しながら追加したい場合は git add -p の利用も推奨）
+# 必要に応じて src/ や .github/ なども明示的に追加
 git commit -m "Initial commit"
 
 # 5. GitHubにリポジトリ作成してプッシュ

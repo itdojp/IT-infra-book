@@ -1508,22 +1508,22 @@ CRITICAL_ISSUES=0
 
 # クリティカルな問題の検出
 if ! ping -c 1 8.8.8.8 &>/dev/null; then
-    echo "⚠️  外部ネットワーク接続不可"
+    echo "[CRITICAL] 外部ネットワーク接続不可"
     ((CRITICAL_ISSUES++))
 fi
 
 if [ $(df -h / | awk 'NR==2 {print int($5)}') -gt 90 ]; then
-    echo "⚠️  ルートファイルシステム使用率90%超過"
+    echo "[CRITICAL] ルートファイルシステム使用率90%超過"
     ((CRITICAL_ISSUES++))
 fi
 
 if [ $(free | awk '/^Mem:/ {print int($3/$2 * 100)}') -gt 90 ]; then
-    echo "⚠️  メモリ使用率90%超過"
+    echo "[CRITICAL] メモリ使用率90%超過"
     ((CRITICAL_ISSUES++))
 fi
 
 if systemctl list-units --failed | grep -q failed; then
-    echo "⚠️  失敗したsystemdサービスあり"
+    echo "[CRITICAL] 失敗したsystemdサービスあり"
     ((CRITICAL_ISSUES++))
 fi
 
@@ -1536,7 +1536,7 @@ if [ ${CRITICAL_ISSUES} -gt 0 ]; then
     if [ -n "${SLACK_WEBHOOK_URL}" ]; then
         curl -X POST ${SLACK_WEBHOOK_URL} \
             -H 'Content-Type: application/json' \
-            -d "{\"text\":\"⚠️ システム診断: ${CRITICAL_ISSUES}件のクリティカルな問題を検出\\nホスト: $(hostname)\\n詳細: ${REPORT_DIR}\"}"
+            -d "{\"text\":\"[CRITICAL] システム診断: ${CRITICAL_ISSUES}件のクリティカルな問題を検出\\nホスト: $(hostname)\\n詳細: ${REPORT_DIR}\"}"
     fi
 fi
 ```

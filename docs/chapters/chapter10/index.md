@@ -390,7 +390,7 @@ cat /proc/sys/net/netfilter/nf_conntrack_max
 #!/bin/bash
 
 # テスト用ルール設定
-# [注意] 既存のiptablesルールを変更/削除するため、検証環境でのみ実行すること
+# [注意] 既存のiptablesルールを変更/削除するため、検証環境でのみ実行すること（SSH等の管理通信も遮断され得る）
 # （必要なら）事前に保存: iptables-save > /tmp/iptables.rules.v4
 iptables -F
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
@@ -429,6 +429,8 @@ echo "Conntrack memory: $(cat /proc/slabinfo | grep nf_conntrack)"
 2. **ハッシュテーブルサイズの調整**
    ```bash
    # conntrack ハッシュテーブルサイズ増加
+   # [注意] 例では /etc/sysctl.conf へ追記しているが、実運用では /etc/sysctl.d/ 配下の専用ファイルで管理することを推奨（要件により要確認）
+   # 一時適用で検証する場合は sysctl -w を用い、影響とロールバック手順を確認する
    echo 'net.netfilter.nf_conntrack_buckets = 32768' >> /etc/sysctl.conf
    echo 'net.netfilter.nf_conntrack_max = 131072' >> /etc/sysctl.conf
    
@@ -466,6 +468,8 @@ echo "Conntrack memory: $(cat /proc/slabinfo | grep nf_conntrack)"
 #!/bin/bash
 
 # 測定用のルールセット作成
+# [注意] INPUTチェーンをflushするため、検証環境/ローカルでのみ実行すること
+# （必要なら）事前に保存: iptables-save > /tmp/iptables.rules.v4
 iptables -F INPUT
 
 # 頻繁にマッチするルールを下位に配置（悪い例）

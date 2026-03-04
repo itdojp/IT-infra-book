@@ -418,9 +418,12 @@ mpstat -P ALL 1
 - すべての通信を検証
 - 最小権限の原則
 - 継続的な監視
+```
 
-実装例：
-# マイクロセグメンテーション
+実装例（概念）：
+
+```bash
+# マイクロセグメンテーション（概念例）
 iptables -N MICROSEG_WEB
 iptables -N MICROSEG_APP
 iptables -N MICROSEG_DB

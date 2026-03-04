@@ -296,8 +296,11 @@ class AccessPatternIdentifier:
 アプリケーションの通信パターンに応じたネットワーク設定の調整。
 
 ```bash
+# [注意] /proc/sys の変更はシステム全体に影響するため、検証環境でのみ実施し、変更前の値を控えてロールバック可能にする
+# 永続化する場合は /etc/sysctl.d/ 配下の専用ファイルで管理する（要件により要確認）
+
 # 大量の小さなパケットを扱うアプリケーション（チャットなど）
-echo 1 > /proc/sys/net/ipv4/tcp_nodelay  # Nagleアルゴリズムの無効化
+# Nagleアルゴリズムの無効化はソケットオプション（TCP_NODELAY）で行う（OSのsysctlでは一律設定しない。要確認）
 echo 0 > /proc/sys/net/ipv4/tcp_slow_start_after_idle  # アイドル後のスロースタート無効化
 
 # 大容量データ転送アプリケーション（ファイル共有など）

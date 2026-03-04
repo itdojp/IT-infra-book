@@ -481,6 +481,8 @@ LOG_DIR="/var/log/archive"
 COMPRESS_DAYS=1
 DELETE_DAYS=90
 
+# [注意] 圧縮/移動/削除対象のパスは環境に合わせて調整すること（誤るとログやデータを消去し得る）
+
 # 1日経過したログを圧縮
 find /var/log -name "*.log" -mtime +${COMPRESS_DAYS} \
   -not -path "/var/log/archive/*" \
@@ -1575,6 +1577,7 @@ check_disk_space() {
         
         # Dockerの不要なイメージとコンテナを削除
         if command -v docker &>/dev/null; then
+            # [注意] 未使用ボリュームも削除するため、データ消失の可能性がある（適用範囲は要確認）
             docker system prune -af --volumes
         fi
         
@@ -1595,6 +1598,7 @@ check_memory() {
         log "メモリ使用率 ${usage}% - メモリ解放開始"
         
         # ページキャッシュのクリア
+        # [注意] ページキャッシュを破棄するため性能に影響し得る。常用せず、適用条件を要確認
         sync && echo 1 > /proc/sys/vm/drop_caches
         
         # 高メモリ使用プロセスの特定

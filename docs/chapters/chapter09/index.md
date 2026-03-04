@@ -928,13 +928,13 @@ inhibit_rules:
        dest: "{{ web_config_path }}"
      notify: restart web server
    
-   - name: Ensure web server is running
-     service:
-       name: "{{ web_service_name }}"
-     state: started
-     enabled: yes
-   ```
-   {% endraw %}
+	   - name: Ensure web server is running
+	     service:
+	       name: "{{ web_service_name }}"
+	       state: started
+	       enabled: yes
+	   ```
+	   {% endraw %}
 
 3. **パフォーマンス最適化**
    ```yaml

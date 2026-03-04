@@ -19,7 +19,7 @@ title: "第9章：システム運用の自動化"
 
 > **注意（実運用）**: 本章の設定例やコマンド例（systemd、journald、Prometheus、Ansible など）は理解のための例です。実運用へ適用する前に、必ず検証環境で動作確認し、組織の運用ポリシー・SLO・セキュリティ要件に合わせて調整してください。
 
-本章を読み終えた時点で、読者は以下のことができるようになる：
+本章を読み終えた時点で、読者は以下のことができるようになる。
 - systemdを中心としたサービス管理の設計思想と、運用上の利点/注意点を説明できる
 - ログとメトリクスの設計観点（収集、保管、参照）を整理できる
 - 設定管理とオーケストレーションによる自動化の適用範囲を判断できる
@@ -767,6 +767,7 @@ rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) * 1
    ```
 
 2. **Alertmanager による通知制御**
+   {% raw %}
    ```yaml
    # alertmanager.yml
    global:
@@ -815,6 +816,7 @@ rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) * 1
      - to: 'team@example.com'
        subject: '[WARNING] {{ .GroupLabels.alertname }}'
    ```
+   {% endraw %}
 
 **アラート疲れの防止**
 
@@ -909,6 +911,7 @@ inhibit_rules:
    ```
 
 2. **ロール指向設計**
+   {% raw %}
    ```yaml
    # roles/webserver/tasks/main.yml
    - name: Include OS-specific variables
@@ -928,9 +931,10 @@ inhibit_rules:
    - name: Ensure web server is running
      service:
        name: "{{ web_service_name }}"
-       state: started
-       enabled: yes
+     state: started
+     enabled: yes
    ```
+   {% endraw %}
 
 3. **パフォーマンス最適化**
    ```yaml
@@ -1688,6 +1692,7 @@ main
 
 ### 予防的監視とアラート
 
+{% raw %}
 ```yaml
 # Prometheus アラートルール
 groups:
@@ -1738,6 +1743,7 @@ groups:
           summary: "サービス劣化検出"
           description: "{{ $labels.job }}のエラー率が5%を超えています"
 ```
+{% endraw %}
 
 ## まとめ
 

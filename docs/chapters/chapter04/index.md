@@ -14,7 +14,7 @@ IPアドレスという数字の羅列を、人間が理解できる名前に変
 
 本章では、DNSを分散データベースとして捉え、階層構造の設計原理からセキュリティ、内部/外部DNSの分離、動的な更新、サービス発見までを段階的に整理する。
 
-本章を読み終えた時点で、読者は以下のことができるようになる：
+本章を読み終えた時点で、読者は以下のことができるようになる。
 - DNS階層構造が必要となった理由と、設計上の利点・課題を説明できる
 - DNS実装に固有のセキュリティ課題と、対策の考え方を整理できる
 - 内部DNSと外部DNSを分離する設計の狙いと、運用上の注意点を説明できる
@@ -155,7 +155,7 @@ OS DNS リゾルバ
    ```
 
 参考：
-- RFC 8767: Serving Stale Data to Improve DNS Resilience https://www.rfc-editor.org/rfc/rfc8767.html
+- [RFC 8767: Serving Stale Data to Improve DNS Resilience](https://www.rfc-editor.org/rfc/rfc8767.html)
 
 ## 4.2 DNS実装のセキュリティ課題
 
@@ -743,7 +743,7 @@ _http._tcp.local.     PTR  "Another Server._http._tcp.local."
 ```
 
 参考：
-- RFC 6762: Multicast DNS（mDNS） https://www.rfc-editor.org/rfc/rfc6762.html
+- [RFC 6762: Multicast DNS（mDNS）](https://www.rfc-editor.org/rfc/rfc6762.html)
 
 最小実験（Linux例。avahi-utils が必要）：
 ```bash

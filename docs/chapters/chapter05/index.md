@@ -14,7 +14,7 @@ title: "第5章：トランスポート層以上の実装技術"
 
 本章では、トランスポート層（TCP/UDP）の実務的な選択基準から、TCP実装のチューニング、ロードバランサー/プロキシの設計、TLS実装の論点までを整理する。
 
-本章を読み終えた時点で、読者は以下のことができるようになる：
+本章を読み終えた時点で、読者は以下のことができるようになる。
 - アプリケーション要件からTCP/UDPの選択を判断できる
 - TCP実装の主要パラメータと、チューニングの評価観点を整理できる
 - ロードバランサーとプロキシの役割を区別し、代表的な配置パターンを説明できる
@@ -198,8 +198,8 @@ curl -I --http3 https://cloudflare.com/
 ```
 
 参考（一次情報）：
-- Nginx HTTP/3 module（experimental）: https://nginx.org/en/docs/http/ngx_http_v3_module.html
-- Cloudflare HTTP/3: https://developers.cloudflare.com/speed/optimization/protocol/http3/
+- [Nginx HTTP/3 module（experimental）](https://nginx.org/en/docs/http/ngx_http_v3_module.html)
+- [Cloudflare HTTP/3](https://developers.cloudflare.com/speed/optimization/protocol/http3/)
 
 **導入判断の基準**
 

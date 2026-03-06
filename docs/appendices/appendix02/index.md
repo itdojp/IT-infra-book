@@ -6,6 +6,8 @@ title: "付録B: トラブルシューティングガイド"
 
 # 付録B: トラブルシューティングガイド
 
+**注意**: コマンド例はディストリビューションや設定により差分が出ます（ログパス、systemdユニット名等）。実行前に環境に合わせて読み替えてください。
+
 ## B.1 ネットワーク関連のトラブルシューティング
 
 ### B.1.1 接続性の問題
@@ -100,7 +102,7 @@ swapon -s
 
 # OOMキラーのログ確認
 dmesg | grep -i "killed process"
-journalctl -u kernel | grep -i oom
+journalctl -k | grep -i oom
 ```
 
 ## B.3 ストレージ関連のトラブルシューティング
@@ -415,6 +417,7 @@ done
 ```bash
 #!/bin/bash
 # auto_maintenance.sh
+# [注意] 削除対象と保持期間は監査/障害解析の要件に合わせて調整し、まず検証環境で確認する
 
 # ログクリーンアップ
 find /var/log -name "*.log.*" -mtime +30 -delete
@@ -423,7 +426,13 @@ find /var/log -name "*.log.*" -mtime +30 -delete
 find /tmp -type f -mtime +7 -delete
 
 # パッケージキャッシュクリーンアップ
-apt clean
+if command -v apt >/dev/null 2>&1; then
+  apt clean
+elif command -v dnf >/dev/null 2>&1; then
+  dnf clean all
+elif command -v yum >/dev/null 2>&1; then
+  yum clean all
+fi
 
 # システム再起動が必要かチェック
 if [ -f /var/run/reboot-required ]; then

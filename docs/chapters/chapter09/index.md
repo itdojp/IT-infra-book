@@ -481,6 +481,8 @@ LOG_DIR="/var/log/archive"
 COMPRESS_DAYS=1
 DELETE_DAYS=90
 
+# [注意] 圧縮/移動/削除対象のパスは環境に合わせて調整すること（誤るとログやデータを消去し得る）
+
 # 1日経過したログを圧縮
 find /var/log -name "*.log" -mtime +${COMPRESS_DAYS} \
   -not -path "/var/log/archive/*" \
@@ -1550,6 +1552,7 @@ fi
 ```bash
 #!/bin/bash
 # auto_remediation.sh - 一般的な問題の自動修復
+# [注意] 自動削除/自動修復は証跡やデータを失う可能性があるため、対象パス・保持期間・通知条件を環境に合わせて調整し、まず検証環境で確認する
 
 LOG_FILE="/var/log/auto_remediation.log"
 exec >> "${LOG_FILE}" 2>&1
@@ -1567,6 +1570,7 @@ check_disk_space() {
         log "ディスク使用率 ${usage}% - クリーンアップ開始"
         
         # 古いログファイルの削除
+        # [注意] 監査/障害解析に必要な保持期間を満たすか確認してから削除する
         find /var/log -type f -name "*.log" -mtime +30 -delete
         find /var/log -type f -name "*.gz" -mtime +7 -delete
         
@@ -1579,6 +1583,7 @@ check_disk_space() {
         
         # Dockerの不要なイメージとコンテナを削除
         if command -v docker &>/dev/null; then
+            # [注意] 未使用ボリュームも削除するため、データ消失の可能性がある（適用範囲は要確認）
             docker system prune -af --volumes
         fi
         
@@ -1599,6 +1604,7 @@ check_memory() {
         log "メモリ使用率 ${usage}% - メモリ解放開始"
         
         # ページキャッシュのクリア
+        # [注意] ページキャッシュを破棄するため性能に影響し得る。常用せず、適用条件を要確認
         sync && echo 1 > /proc/sys/vm/drop_caches
         
         # 高メモリ使用プロセスの特定

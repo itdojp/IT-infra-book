@@ -431,14 +431,15 @@ echo "Conntrack memory: $(cat /proc/slabinfo | grep nf_conntrack)"
    # conntrack ハッシュテーブルサイズ増加
    # [注意] 例では /etc/sysctl.conf へ追記しているが、実運用では /etc/sysctl.d/ 配下の専用ファイルで管理することを推奨（要件により要確認）
    # 一時適用で検証する場合は sysctl -w を用い、影響とロールバック手順を確認する
-   echo 'net.netfilter.nf_conntrack_buckets = 32768' >> /etc/sysctl.conf
-   echo 'net.netfilter.nf_conntrack_max = 131072' >> /etc/sysctl.conf
-   
-   # タイムアウト値の調整
-   echo 'net.netfilter.nf_conntrack_tcp_timeout_established = 1800' >> /etc/sysctl.conf
-   echo 'net.netfilter.nf_conntrack_tcp_timeout_time_wait = 30' >> /etc/sysctl.conf
-   
-   sysctl -p
+   cat > /etc/sysctl.d/90-conntrack-tuning.conf <<'EOF'
+   net.netfilter.nf_conntrack_buckets = 32768
+   net.netfilter.nf_conntrack_max = 131072
+   net.netfilter.nf_conntrack_tcp_timeout_established = 1800
+   net.netfilter.nf_conntrack_tcp_timeout_time_wait = 30
+   EOF
+
+   # ロールバック時は上記ファイルを退避/削除したうえで再読み込みする
+   sysctl --system
    ```
 
 3. **専用ハードウェアの活用**

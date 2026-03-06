@@ -1548,6 +1548,7 @@ fi
 ```bash
 #!/bin/bash
 # auto_remediation.sh - 一般的な問題の自動修復
+# [注意] 自動削除/自動修復は証跡やデータを失う可能性があるため、対象パス・保持期間・通知条件を環境に合わせて調整し、まず検証環境で確認する
 
 LOG_FILE="/var/log/auto_remediation.log"
 exec >> "${LOG_FILE}" 2>&1
@@ -1565,6 +1566,7 @@ check_disk_space() {
         log "ディスク使用率 ${usage}% - クリーンアップ開始"
         
         # 古いログファイルの削除
+        # [注意] 監査/障害解析に必要な保持期間を満たすか確認してから削除する
         find /var/log -type f -name "*.log" -mtime +30 -delete
         find /var/log -type f -name "*.gz" -mtime +7 -delete
         

@@ -87,7 +87,7 @@ assets/images/github-[action]-[detail].png
 
 Examples:
 - `github-use-template.png`
-- `github-create-repo.png` 
+- `github-create-repo.png`
 - `github-pages-settings.png`
 - `github-actions-setup.png`
 

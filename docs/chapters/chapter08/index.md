@@ -14,7 +14,7 @@ title: "第8章：仮想化技術の実装原理"
 
 本章では、仮想化技術をCPU/メモリ/I/Oという資源別の実装原理から整理し、ハイパーバイザーとコンテナの使い分けを説明できる状態を目指す。
 
-本章を読み終えた時点で、読者は以下のことができるようになる：
+本章を読み終えた時点で、読者は以下のことができるようになる。
 - CPU/メモリ/I/Oそれぞれの仮想化が何を抽象化しているかを説明できる
 - ハイパーバイザー方式の差異とトレードオフを整理できる
 - コンテナ技術の実装要素（名前空間、cgroup等）を理解できる
@@ -502,15 +502,15 @@ qemu-system-x86_64 \
 ethtool -l eth0
 # Channel parameters for eth0:
 # Pre-set maximums:
-# RX:		0
-# TX:		0
-# Other:		1
-# Combined:	4
+# RX:        0
+# TX:        0
+# Other:     1
+# Combined:  4
 # Current hardware settings:
-# RX:		0
-# TX:		0
-# Other:		1
-# Combined:	4
+# RX:        0
+# TX:        0
+# Other:     1
+# Combined:  4
 
 # キューごとの統計
 cat /proc/interrupts | grep virtio
@@ -942,6 +942,7 @@ cat /proc/self/cgroup
 
 **namespace の実装原理**
 
+{% raw %}
 ```bash
 # namespace 作成のシステムコール
 # clone() システムコールにフラグを指定
@@ -970,6 +971,7 @@ docker_pid=$(docker inspect -f '{{.State.Pid}}' test-container)
 readlink /proc/$docker_pid/ns/pid
 # 独立したPID namespace を確認
 ```
+{% endraw %}
 
 **namespace による分離効果**
 
@@ -1015,6 +1017,7 @@ Control Groups（cgroup）は、プロセスグループのリソース使用量
 
 **cgroup v1 vs cgroup v2**
 
+{% raw %}
 ```bash
 # cgroup バージョンの確認
 mount | grep cgroup
@@ -1044,6 +1047,7 @@ cat /sys/fs/cgroup/cpu/docker/$(docker inspect -f '{{.Id}}' resource-test)/cpu.c
 # 100000
 # 150000/100000 = 1.5 CPU cores
 ```
+{% endraw %}
 
 **リソース制御の詳細設定**
 
@@ -1198,6 +1202,7 @@ docker inspect test-nginx | grep -A 10 '"GraphDriver"'
 
 **Copy-on-Write の効果測定**
 
+{% raw %}
 ```bash
 # 同一イメージから複数コンテナ起動
 for i in {1..5}; do
@@ -1233,9 +1238,11 @@ find $upper_dir -name "nginx.conf" -type f
 docker exec nginx-2 cat /etc/nginx/nginx.conf
 # 元の設定ファイル内容（変更されていない）
 ```
+{% endraw %}
 
 **イメージ最適化のベストプラクティス**
 
+{% raw %}
 ```bash
 # レイヤー数を最小化するDockerfile例
 
@@ -1277,6 +1284,7 @@ docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}"
 # app-multi     latest    10.2MB   ← マルチステージビルド
 # app-single    latest    350MB    ← 単一ステージビルド
 ```
+{% endraw %}
 
 ## まとめ
 

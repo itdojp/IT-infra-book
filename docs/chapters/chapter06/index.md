@@ -14,7 +14,7 @@ title: "第6章：オペレーティングシステムの内部構造"
 
 本章では、OSの内部構造を「なぜその仕組みが必要か」という設計意図から整理し、性能や可用性に影響する要素を把握できる状態を目指す。
 
-本章を読み終えた時点で、読者は以下のことができるようになる：
+本章を読み終えた時点で、読者は以下のことができるようになる。
 - カーネル空間/ユーザー空間の分離目的と、主要なオーバーヘッドを説明できる
 - プロセススケジューリングの基本動作と、性能に与える影響を整理できる
 - メモリ管理とI/Oサブシステムの観点から、ボトルネック切り分けの視点を持てる
@@ -108,12 +108,12 @@ Linuxカーネルでは、システムコール番号と実装関数の対応表
 
 ```c
 // arch/x86/entry/syscalls/syscall_64.tbl の抜粋
-0	common	read			sys_read
-1	common	write			sys_write  
-2	common	open			sys_open
-3	common	close			sys_close
-4	common	stat			sys_newstat
-5	common	fstat			sys_newfstat
+0  common  read   sys_read
+1  common  write  sys_write
+2  common  open   sys_open
+3  common  close  sys_close
+4  common  stat   sys_newstat
+5  common  fstat  sys_newfstat
 ```
 
 **システムコール実行の詳細フロー**
@@ -247,10 +247,10 @@ CFSは赤黒木（Red-Black Tree）データ構造を使用してプロセスを
 
 ```c
 struct sched_entity {
-    struct rb_node		run_node;       // 赤黒木のノード
-    u64			vruntime;       // 仮想ランタイム
-    u64			exec_start;     // 実行開始時刻
-    u64			sum_exec_runtime;   // 累積実行時間
+    struct rb_node run_node;          // 赤黒木のノード
+    u64 vruntime;                     // 仮想ランタイム
+    u64 exec_start;                   // 実行開始時刻
+    u64 sum_exec_runtime;             // 累積実行時間
     // その他のスケジューリング情報
 };
 

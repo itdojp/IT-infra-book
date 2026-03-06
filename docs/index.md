@@ -46,9 +46,6 @@ title: "ITインフラストラクチャ技術ガイド"
 - [{{ chapter.title }}]({{ chapter.path | relative_url }})
 {% endfor %}
 
-
-
-
 ## 付録
 
 {% for appendix in site.data.navigation.appendices %}
@@ -58,7 +55,6 @@ title: "ITインフラストラクチャ技術ガイド"
 {% for afterword in site.data.navigation.afterword %}
 - [{{ afterword.title }}]({{ afterword.path | relative_url }})
 {% endfor %}
-
 
 ## ライセンス
 

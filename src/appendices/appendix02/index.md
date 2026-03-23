@@ -160,8 +160,8 @@ smartctl -a /dev/sda
 **診断手順**:
 ```bash
 # 認証ログ確認
-journalctl -u ssh.service -f
-journalctl -u sshd.service -f
+systemctl list-units 'ssh*.service'
+journalctl -u ssh.service -f 2>/dev/null || journalctl -u sshd.service -f
 
 # 失敗したログイン試行確認
 journalctl --since "-1h" | grep "Failed password" | tail -20
@@ -377,8 +377,8 @@ for service in sshd nginx mysql; do
     fi
 done
 
-# journald を使う環境では追加で確認
-journalctl -p err -n 100 --no-pager
+# journald を使う環境では、ssh.service / sshd.service のいずれかを確認してから追加で確認
+journalctl -u ssh.service -p err -n 100 --no-pager 2>/dev/null || journalctl -u sshd.service -p err -n 100 --no-pager
 ```
 
 ### B.8.2 ログ監視の自動化
@@ -392,7 +392,7 @@ journalctl -p err -n 100 --no-pager
 ERROR_KEYWORDS="error|fail|exception|critical|alert"
 
 # 監視対象ログファイル
-LOG_FILES="/var/log/syslog /var/log/secure /var/log/nginx/error.log"
+LOG_FILES="/var/log/syslog /var/log/auth.log /var/log/secure /var/log/nginx/error.log"
 
 for log_file in $LOG_FILES; do
     if [ -f "$log_file" ]; then

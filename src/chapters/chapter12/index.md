@@ -328,7 +328,7 @@ class AccessPatternIdentifier:
 
 ```bash
 # 大量の小さなパケットを扱うアプリケーション（チャットなど）
-echo 1 > /proc/sys/net/ipv4/tcp_nodelay  # Nagleアルゴリズムの無効化
+# Nagleアルゴリズムの無効化はソケットオプション（TCP_NODELAY）で行う（OSのsysctlでは一律設定しない。要確認）
 echo 0 > /proc/sys/net/ipv4/tcp_slow_start_after_idle  # アイドル後のスロースタート無効化
 
 # 大容量データ転送アプリケーション（ファイル共有など）

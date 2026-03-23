@@ -29,9 +29,12 @@ ping -c 4 example.com
 traceroute example.com
 
 # 4. ポート確認
-telnet example.com 80
+nc -vz example.com 80
+curl -I https://example.com
 nmap -p 22,80,443 example.com
 ```
+
+`telnet` が入っている環境では疎通確認にも使えるが、現行運用では `nc` や `curl` を主手順にすると、TCP 接続確認と HTTP 応答確認を分けて扱いやすい。
 
 **対処法**:
 - IPアドレス、サブネットマスク、ゲートウェイの確認
@@ -52,7 +55,7 @@ iperf3 -c server_ip
 ping -c 100 gateway_ip | grep loss
 
 # ネットワーク利用状況確認
-netstat -i
+ip -s link
 ss -tuln
 
 # トラフィック監視
@@ -161,17 +164,19 @@ smartctl -a /dev/sda
 **診断手順**:
 ```bash
 # 認証ログ確認
-tail -f /var/log/auth.log
-journalctl -u ssh -f
+journalctl -u ssh.service -f
+journalctl -u sshd.service -f
 
 # 失敗したログイン試行確認
-grep "Failed password" /var/log/auth.log | tail -20
+journalctl --since "-1h" | grep "Failed password" | tail -20
 
 # 接続中のセッション確認
 who
 w
 ss -tuln | grep :22
 ```
+
+Debian / Ubuntu 系では `/var/log/auth.log` が残る場合もあるが、systemd 環境では `journalctl` を主手順にすると、サービス単位・時間範囲単位で追跡しやすい。
 
 **対処法**:
 - 強力なパスワードポリシーの実装
@@ -375,6 +380,9 @@ for service in sshd nginx mysql; do
         echo "$service: 停止中"
     fi
 done
+
+# journald を使う環境では追加で確認
+journalctl -p err -n 100 --no-pager
 ```
 
 ### B.8.2 ログ監視の自動化
@@ -388,7 +396,7 @@ done
 ERROR_KEYWORDS="error|fail|exception|critical|alert"
 
 # 監視対象ログファイル
-LOG_FILES="/var/log/syslog /var/log/auth.log /var/log/nginx/error.log"
+LOG_FILES="/var/log/syslog /var/log/secure /var/log/nginx/error.log"
 
 for log_file in $LOG_FILES; do
     if [ -f "$log_file" ]; then

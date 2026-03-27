@@ -70,6 +70,12 @@ title: "ITインフラストラクチャ技術ガイド"
 
 [詳細なライセンス条件](https://github.com/itdojp/it-engineer-knowledge-architecture/blob/main/LICENSE.md)
 
+## 利用と更新情報
+
+- リポジトリ: [itdojp/IT-infra-book](https://github.com/itdojp/IT-infra-book)
+- 更新差分を追う場合は、GitHub のコミット履歴と Pull Request を参照してください。
+- 章中の実装例や設計例を実運用へ適用する前に、対象環境の要件、製品仕様、組織の運用基準を確認してください。
+
 **お問い合わせ**  
 株式会社アイティードゥ（ITDO Inc.）  
 Email: [knowledge@itdo.jp](mailto:knowledge@itdo.jp)

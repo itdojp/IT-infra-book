@@ -65,25 +65,25 @@ title: "ITインフラストラクチャ技術ガイド"
 
 ## ライセンス
 
-本書は **Creative Commons BY-NC-SA 4.0** ライセンスで公開されています。  
+本書は **Creative Commons BY-NC-SA 4.0** ライセンスで公開されています。
 教育・研究・個人学習での利用は可能ですが、商用利用には事前許諾が必要です。
 
-[詳細なライセンス条件](https://github.com/itdojp/it-engineer-knowledge-architecture/blob/main/LICENSE.md)
+[詳細なライセンス条件](https://github.com/itdojp/IT-infra-book/blob/main/LICENSE.md)
 
 ## 利用と更新情報
 
 - リポジトリ: [itdojp/IT-infra-book](https://github.com/itdojp/IT-infra-book)
-- 更新差分を追う場合は、GitHub のコミット履歴と Pull Request を参照してください。
+- 更新差分を追う場合は、GitHub の [コミット履歴](https://github.com/itdojp/IT-infra-book/commits/main/) と [PR 一覧](https://github.com/itdojp/IT-infra-book/pulls) を参照してください。
 - 章中の実装例や設計例を実運用へ適用する前に、対象環境の要件、製品仕様、組織の運用基準を確認してください。
 
-**お問い合わせ**  
-株式会社アイティードゥ（ITDO Inc.）  
+**お問い合わせ**
+株式会社アイティードゥ（ITDO Inc.）
 Email: [knowledge@itdo.jp](mailto:knowledge@itdo.jp)
 
 ---
 
-**著者:** 株式会社アイティードゥ  
-**バージョン:** 1.0.1  
+**著者:** 株式会社アイティードゥ
+**バージョン:** 1.0.1
 **最終更新:** 2026-02-20
 
 {% include page-navigation.html %}

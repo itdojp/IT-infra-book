@@ -3,7 +3,7 @@
 本書籍のライセンス条件は、株式会社アイティードゥの統一ライセンスに準拠します。
 
 📋 **詳細なライセンス条件：**  
-https://github.com/itdojp/it-engineer-knowledge-architecture/blob/main/LICENSE.md
+https://github.com/itdojp/IT-infra-book/blob/main/LICENSE.md
 
 ## 簡易説明
 

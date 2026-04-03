@@ -2,7 +2,7 @@
 
 ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書です。
 
-- オンライン版: https://itdojp.github.io/IT-infra-book/
+- オンライン版: [ITインフラストラクチャ技術ガイド](https://itdojp.github.io/IT-infra-book/)
 - 書籍の入口: `docs/index.md` / `docs/introduction/index.md`
 
 ## この本でできるようになること
@@ -21,8 +21,8 @@
 
 ## フィードバック
 
-- Issue: https://github.com/itdojp/IT-infra-book/issues
-- 改善提案は Issue または Pull Request で受け付けます。
+- Issue: [itdojp/IT-infra-book の Issues](https://github.com/itdojp/IT-infra-book/issues)
+- 改善提案は Issue または PR で受け付けます。
 
 ## ライセンス
 

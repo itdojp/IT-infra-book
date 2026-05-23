@@ -89,6 +89,8 @@ pids/
 
 # Documentation build
 docs/_build/
+docs/_site/
+docs/Gemfile.lock
 docs/.vuepress/dist/
 
 # Misc

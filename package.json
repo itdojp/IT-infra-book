@@ -1,15 +1,16 @@
 {
-  "name": "itインフラストラクチャ技術ガイド",
+  "name": "it-infra-book",
   "version": "1.0.1",
   "description": "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書",
   "main": "index.md",
   "scripts": {
     "start": "cd docs && bundle exec jekyll serve --livereload",
     "build": "cd docs && bundle exec jekyll build",
-    "test": "npm run lint && npm run check-links",
+    "test": "npm run check:metadata && npm run lint && npm run check-links",
     "lint": "markdownlint 'docs/**/*.md'",
     "check-links": "markdown-link-check docs/**/*.md",
-    "deploy": "gh-pages -d docs/_site"
+    "deploy": "gh-pages -d docs/_site",
+    "check:metadata": "node scripts/check-metadata-consistency.js"
   },
   "keywords": [
     "book",
@@ -25,6 +26,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/itdojp/IT-infra-book.git"
-  }
+    "url": "git+https://github.com/itdojp/IT-infra-book.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itdojp/IT-infra-book/issues"
+  },
+  "homepage": "https://itdojp.github.io/IT-infra-book/"
 }

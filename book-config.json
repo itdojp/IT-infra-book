@@ -7,87 +7,102 @@
   "language": "ja",
   "license": "CC-BY-NC-SA-4.0",
   "repository": {
-    "url": "https://github.com/itdojp/IT-infra-book.git",
+    "url": "https://github.com/itdojp/IT-infra-book",
     "branch": "main"
   },
   "structure": {
     "chapters": [
       {
         "id": "chapter01",
-        "title": "第1章：インフラストラクチャ設計の基本原理",
+        "title": "第1章：プロトコルスタックの設計思想",
+        "path": "/chapters/chapter01/",
         "description": "システム設計の根本原理と思考法"
       },
       {
         "id": "chapter02",
-        "title": "第2章：ネットワーク技術の実装原理",
+        "title": "第2章：L2ネットワークの設計と実装",
+        "path": "/chapters/chapter02/",
         "description": "TCP/IPから現代ネットワークまでの実装技術"
       },
       {
         "id": "chapter03",
-        "title": "第3章：セキュリティアーキテクチャの設計",
+        "title": "第3章：L3ネットワークの設計原理",
+        "path": "/chapters/chapter03/",
         "description": "多層防御とゼロトラスト設計"
       },
       {
         "id": "chapter04",
-        "title": "第4章：プロトコル最適化と高可用性",
+        "title": "第4章：名前解決とサービス発見",
+        "path": "/chapters/chapter04/",
         "description": "性能とレジリエンスの実装"
       },
       {
         "id": "chapter05",
-        "title": "第5章：現代的ネットワーク管理手法",
+        "title": "第5章：トランスポート層以上の実装技術",
+        "path": "/chapters/chapter05/",
         "description": "SDNとネットワーク自動化"
       },
       {
         "id": "chapter06",
-        "title": "第6章：サーバーシステム設計原理",
+        "title": "第6章：オペレーティングシステムの内部構造",
+        "path": "/chapters/chapter06/",
         "description": "コンピューティングリソースの最適化"
       },
       {
         "id": "chapter07",
         "title": "第7章：ストレージアーキテクチャ",
+        "path": "/chapters/chapter07/",
         "description": "データ永続化とストレージ戦略"
       },
       {
         "id": "chapter08",
-        "title": "第8章：負荷分散とスケーリング",
+        "title": "第8章：仮想化技術の実装原理",
+        "path": "/chapters/chapter08/",
         "description": "システムの拡張性設計"
       },
       {
         "id": "chapter09",
         "title": "第9章：システム運用の自動化",
+        "path": "/chapters/chapter09/",
         "description": "運用効率化とDevOps実践"
       },
       {
         "id": "chapter10",
-        "title": "第10章：セキュリティ実装の実際",
+        "title": "第10章：セキュリティアーキテクチャ",
+        "path": "/chapters/chapter10/",
         "description": "実践的セキュリティ対策"
       },
       {
         "id": "chapter11",
-        "title": "第11章：高可用性システム設計",
+        "title": "第11章：高可用性システムの設計",
+        "path": "/chapters/chapter11/",
         "description": "災害対策と事業継続"
       },
       {
         "id": "chapter12",
-        "title": "第12章：性能管理と最適化",
+        "title": "第12章：エンドツーエンドシステム設計",
+        "path": "/chapters/chapter12/",
         "description": "システム性能の監視と改善"
       },
       {
         "id": "chapter13",
         "title": "第13章：技術選択のフレームワーク",
+        "path": "/chapters/chapter13/",
         "description": "技術評価と意思決定の方法論"
       }
     ],
     "appendices": [
       {
-        "id": "appendix-a",
-        "title": "付録A：設定例とベストプラクティス",
-        "description": "実際の設定例とチェックリスト"
+        "id": "appendix01",
+        "title": "付録A: 用語集",
+        "path": "/appendices/appendix01/",
+        "description": "本書で使用する主要な技術用語"
       },
       {
-        "id": "appendix-b",
-        "title": "付録B：トラブルシューティングガイド",
-        "description": "一般的な問題と解決方法"
+        "id": "appendix02",
+        "title": "付録B: トラブルシューティングガイド",
+        "path": "/appendices/appendix02/",
+        "description": "一般的な問題と診断・解決手順"
       }
     ]
   },
@@ -114,5 +129,6 @@
   "shared": {
     "version": "3.2.2",
     "lastSync": "2026-02-04T23:00:45.014Z"
-  }
+  },
+  "homepage": "https://itdojp.github.io/IT-infra-book/"
 }

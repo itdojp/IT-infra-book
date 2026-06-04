@@ -1,7 +1,8 @@
 title: "ITインフラストラクチャ技術ガイド"
 description: "ベンダー非依存の観点からインフラストラクチャ技術の本質的な設計原理と実装手法を体系化した技術書"
-author: "株式会社アイティードゥ"
+author: "太田和彦（株式会社アイティードゥ）"
 version: "1.0.1"
+license: "CC-BY-NC-SA-4.0"
 lang: "ja"
 
 # Jekyll設定
@@ -39,7 +40,9 @@ kramdown:
 # GitHub Pages設定
 url: "https://itdojp.github.io"
 baseurl: "/IT-infra-book"
+homepage: "https://itdojp.github.io/IT-infra-book/"
 repository: "itdojp/IT-infra-book"
+repository_url: "https://github.com/itdojp/IT-infra-book"
 
 permalink: pretty
 # Use custom book layout as default

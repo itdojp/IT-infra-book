@@ -186,6 +186,7 @@ function checkBookConfig(bookConfig) {
   for (const [index, item] of [...chapters, ...appendices].entries()) {
     if (!item.id || !item.title || !item.path) fail(`book-config.json.structure item ${index + 1} must include id/title/path`);
     const route = normalizePath(item.path);
+    if (!route) fail(`book-config.json.structure item ${item.id}.path must be a local route: ${JSON.stringify(item.path)}`);
     assertSafePath(route, `book-config.json.structure item ${item.id}.path`);
   }
 }

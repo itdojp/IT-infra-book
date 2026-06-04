@@ -24,6 +24,19 @@
 - Issue: [itdojp/IT-infra-book の Issues](https://github.com/itdojp/IT-infra-book/issues)
 - 改善提案は Issue または PR で受け付けます。
 
+## 品質ゲート（ローカル）
+
+```bash
+npm run check:metadata
+npm test
+```
+
+実行内容:
+
+- メタデータ / ナビゲーション / published route / public asset 整合性検証
+- Markdown lint
+- `docs/` に対するリンク検証
+
 ## ライセンス
 
 本書は **Creative Commons BY-NC-SA 4.0** ライセンスで公開されています。詳細は `LICENSE.md` を参照してください。

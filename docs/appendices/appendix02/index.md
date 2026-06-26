@@ -20,7 +20,7 @@ title: "付録B: トラブルシューティングガイド"
 ip addr show
 ip route show
 
-# 2. DNS解決確認
+# 2. DNS 解決確認
 nslookup example.com
 dig example.com
 
@@ -37,7 +37,7 @@ nmap -p 22,80,443 example.com
 `telnet` が入っている環境では疎通確認にも使えるが、現行運用では `nc` や `curl` を主手順にすると、TCP 接続確認と HTTP 応答確認を分けて扱いやすい。
 
 **対処法**:
-- IPアドレス、サブネットマスク、ゲートウェイの確認
+- IP アドレス、サブネットマスク、ゲートウェイの確認
 - DNSサーバー設定の確認
 - ファイアウォール設定の確認
 - ネットワーク機器の状態確認

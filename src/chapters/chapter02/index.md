@@ -424,7 +424,7 @@ class LinkAggregation:
             # MACアドレスベース
             hash_input = packet.src_mac + packet.dst_mac
         elif self.hash_algorithm == 'L3':
-            # IPアドレスベース
+            # IP アドレスベース
             hash_input = packet.src_ip + packet.dst_ip
         elif self.hash_algorithm == 'L3_L4':
             # IP + ポート番号

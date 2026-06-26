@@ -237,7 +237,7 @@ awk '$1 == "0" {print NR, $0}' < <(iptables -L -n -v --line-numbers)
        ports:
        - protocol: TCP
          port: 9090
-     # DNS解決のみ許可
+     # DNS 解決のみ許可
      - to: []
        ports:
        - protocol: UDP
@@ -1811,7 +1811,7 @@ class IDSTuningAnalyzer:
         return recommendations
     
     def _is_internal_ip(self, ip):
-        """内部IPアドレスかどうか判定"""
+        """内部IP アドレスかどうか判定"""
         import ipaddress
         private_ranges = [
             ipaddress.ip_network('192.168.0.0/16'),

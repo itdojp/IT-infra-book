@@ -238,7 +238,7 @@ ReadWritePaths=/var/log/myapp  # 書き込み許可パス
 
 # ネットワーク分離
 PrivateNetwork=true       # 専用ネットワーク名前空間
-IPAddressAllow=192.168.1.0/24  # 許可IPアドレス
+IPAddressAllow=192.168.1.0/24  # 許可IP アドレス
 
 # ユーザー分離
 User=webapp               # 実行ユーザー
@@ -1438,9 +1438,9 @@ echo -e "\n=== ネットワーク診断 ==="
     echo -e "\n## ネットワーク統計"
     netstat -s | grep -E 'retransmit|error|failed|timeout'
     
-    echo -e "\n## DNS解決テスト"
+    echo -e "\n## DNS 解決テスト"
     for domain in google.com $(hostname -f); do
-        dig +short $domain || echo "DNS解決失敗: $domain"
+        dig +short $domain || echo "DNS 解決失敗: $domain"
     done
 } > "${REPORT_DIR}/network_diagnostics.log"
 

@@ -29,13 +29,24 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22'
           cache: npm
-          cache-dependency-path: book-formatter/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            book-formatter/package-lock.json
+
+      - name: Install dependencies (book)
+        run: npm ci
+
+      - name: Audit book dependencies
+        run: npm audit
 
       - name: Install dependencies (book-formatter)
         working-directory: book-formatter
         run: npm ci
+
+      - name: Test book npm tooling
+        run: npm test
 
       - name: Determine scan directory
         id: scan

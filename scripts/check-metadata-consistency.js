@@ -300,6 +300,11 @@ const navigation = readNavigation(path.join(docs, '_data', 'navigation.yml'));
 checkMetadata(bookConfig, packageJson, packageLock);
 const counts = checkNavigation(bookConfig, navigation);
 checkAssets();
-const figureCounts = validateFigureIndex(root);
+let figureCounts;
+try {
+  figureCounts = validateFigureIndex(root);
+} catch (error) {
+  fail(error && error.message ? error.message : String(error));
+}
 console.log(`OK: metadata and navigation coverage are consistent (${counts.navCount} navigation entries, ${counts.pageCount} docs pages)`);
 console.log(`OK: figure-index coverage is consistent (${figureCounts.figureCount} bidirectional figure mappings)`);

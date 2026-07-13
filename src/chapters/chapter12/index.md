@@ -24,6 +24,8 @@
 
 システムの成長に応じたスケーラビリティの段階を[図12-1]に示す。
 
+<span id="figure-12-1" class="figure-anchor"></span>
+
 [図12-1: スケーラビリティの段階]
 ```mermaid
 graph TB
@@ -459,6 +461,8 @@ class NUMAOptimizer:
 可観測性（Observability）は、システムの内部状態を外部から理解する能力である。これは、メトリクス、ログ、トレースの三本柱によって実現される。
 
 可観測性を実現する三本柱の関係を[図12-2]に示す。
+
+<span id="figure-12-2" class="figure-anchor"></span>
 
 [図12-2: 可観測性の三本柱]
 ```mermaid
@@ -984,6 +988,8 @@ class AutoScalingPolicy:
 インシデントを適切に分類し、影響度に応じた対応を行う。
 
 インシデント対応の標準的なフローを[図12-3]に示す。
+
+<span id="figure-12-3" class="figure-anchor"></span>
 
 [図12-3: インシデント対応フロー]
 ```mermaid

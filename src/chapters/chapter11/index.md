@@ -22,6 +22,8 @@
 
 主要な冗長化パターンを[図11-1]に示す。
 
+<span id="figure-11-1" class="figure-anchor"></span>
+
 [図11-1: 冗長化パターン]
 ```mermaid
 graph TB
@@ -249,6 +251,8 @@ class HeartbeatMonitor:
 スプリットブレインは、ネットワーク分断により複数のノードが自身をマスターと認識する状態である。これはデータの不整合を引き起こす重大な問題である。
 
 スプリットブレインの発生と対策を[図11-2]に示す。
+
+<span id="figure-11-2" class="figure-anchor"></span>
 
 [図11-2: スプリットブレイン対策]
 ```mermaid
@@ -577,6 +581,8 @@ class TwoPhaseCommit:
 レプリケーションの同期性は、データの一貫性とパフォーマンスのトレードオフを決定する重要な要素である。
 
 各レプリケーション方式の特性を[図11-3]に示す。
+
+<span id="figure-11-3" class="figure-anchor"></span>
 
 [図11-3: レプリケーション方式]
 ```mermaid

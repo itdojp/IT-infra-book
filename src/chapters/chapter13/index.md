@@ -40,6 +40,8 @@
 
 包括的な技術評価のフレームワークを[図13-1]に示す。
 
+<span id="figure-13-1" class="figure-anchor"></span>
+
 [図13-1: 技術評価マトリクス]
 ```mermaid
 graph TB
@@ -547,6 +549,8 @@ class LicenseComplianceManager:
 
 技術的負債の各カテゴリとその影響を[図13-2]に示す。
 
+<span id="figure-13-2" class="figure-anchor"></span>
+
 [図13-2: 技術的負債の分類]
 ```mermaid
 graph TB
@@ -951,6 +955,8 @@ deploy:production:
 新技術の導入は、段階的かつ計画的に行うことで、リスクを最小化できる。
 
 新技術の段階的な導入プロセスを[図13-3]に示す。
+
+<span id="figure-13-3" class="figure-anchor"></span>
 
 [図13-3: 技術導入フェーズ]
 ```mermaid

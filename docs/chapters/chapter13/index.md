@@ -46,7 +46,9 @@ title: "第13章：技術選択のフレームワーク"
 
 包括的な技術評価のフレームワークを[図13-1]に示す。
 
-![図13-1: 技術評価マトリクス]({{ '/assets/images/diagrams/chapter13/technology-evaluation-matrix.svg' | relative_url }})
+![図13-1: 機能、非機能、コスト、リスクの評価軸から総合判定へ至る技術評価マトリクス]({{ '/assets/images/diagrams/chapter13/technology-evaluation-matrix.svg' | relative_url }})\
+*図13-1: 技術評価マトリクス*
+{: #figure-13-1}
 
 #### 機能要件の充足度
 
@@ -518,7 +520,9 @@ class LicenseComplianceManager:
 
 技術的負債の各カテゴリとその影響を[図13-2]に示す。
 
-![図13-2: 技術的負債の分類]({{ '/assets/images/diagrams/chapter13/technical-debt-classification.svg' | relative_url }})
+![図13-2: コード、アーキテクチャ、インフラの技術的負債と品質・速度・コストへの影響]({{ '/assets/images/diagrams/chapter13/technical-debt-classification.svg' | relative_url }})\
+*図13-2: 技術的負債の分類*
+{: #figure-13-2}
 
 #### コード負債
 
@@ -886,7 +890,9 @@ deploy:production:
 
 新技術の段階的な導入プロセスを[図13-3]に示す。
 
-![図13-3: 技術導入フェーズ]({{ '/assets/images/diagrams/chapter13/technology-adoption-phases.svg' | relative_url }})
+![図13-3: PoC、パイロット、展開、本番運用へ段階的に進む技術導入プロセス]({{ '/assets/images/diagrams/chapter13/technology-adoption-phases.svg' | relative_url }})\
+*図13-3: 技術導入フェーズ*
+{: #figure-13-3}
 
 #### 技術検証（PoC）フェーズ
 

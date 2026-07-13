@@ -406,6 +406,27 @@ a:hover {
     background: var(--bg-secondary);
 }
 
+/* Numbered figures and deep-link targets */
+p[id^="figure-"] {
+    margin: 1.5rem auto 2rem;
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+    break-inside: avoid;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+p[id^="figure-"] img {
+    display: block;
+    margin: 0 auto 0.75rem;
+}
+
+p[id^="figure-"]:target {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 0.5rem;
+}
+
 /* Search */
 .search-container {
     position: relative;
@@ -596,5 +617,14 @@ a:hover {
     .page-content {
         box-shadow: none;
         padding: 0;
+    }
+
+    p[id^="figure-"],
+    p[id^="figure-"]:target {
+        color: #000;
+        font-size: 9pt;
+        margin: 9pt auto 12pt;
+        outline: none;
+        page-break-inside: avoid;
     }
 }

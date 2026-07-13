@@ -84,7 +84,9 @@ Ethernetは時代の要求に応じて進化を続けた。
 
 スイッチング動作を理解するには、まずEthernetフレームの構造を知る必要がある。[図2-1]にフレーム構造を示す。
 
-![図2-1: Ethernetフレーム構造]({{ '/assets/images/diagrams/chapter02/ethernet-frame-structure.svg' | relative_url }})
+![図2-1: IEEE 802.3 Ethernetフレームのフィールド構成と各フィールド長]({{ '/assets/images/diagrams/chapter02/ethernet-frame-structure.svg' | relative_url }})\
+*図2-1: Ethernetフレーム構造*
+{: #figure-2-1}
 
 ### CAMテーブルの実装とメモリ制約
 
@@ -195,7 +197,9 @@ class SecurePort:
 
 実際のネットワークでは、目的に応じたVLAN設計が重要である。[図2-2]に典型的なVLAN設計パターンを示す。
 
-![図2-2: VLAN設計パターン]({{ '/assets/images/diagrams/chapter02/vlan-design-pattern.svg' | relative_url }})
+![図2-2: 3層ネットワークにおけるVLAN境界、アクセス接続、トランク接続の設計例]({{ '/assets/images/diagrams/chapter02/vlan-design-pattern.svg' | relative_url }})\
+*図2-2: VLAN設計パターン*
+{: #figure-2-2}
 
 **設計パターンの分類**
 
@@ -287,7 +291,9 @@ L2ネットワークでループが発生すると、ブロードキャストス
 
 STPは冗長性を保ちながらループを防ぐ。[図2-3]に状態遷移を示す。
 
-![図2-3: スパニングツリー収束プロセス]({{ '/assets/images/diagrams/chapter02/spanning-tree-convergence.svg' | relative_url }})
+![図2-3: STPポートのBlockingからForwardingまでの状態遷移とタイマー]({{ '/assets/images/diagrams/chapter02/spanning-tree-convergence.svg' | relative_url }})\
+*図2-3: スパニングツリー収束プロセス*
+{: #figure-2-3}
 
 ### 収束時間とネットワーク規模の関係
 

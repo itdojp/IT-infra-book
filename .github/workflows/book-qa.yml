@@ -61,6 +61,9 @@ jobs:
       - name: Book metadata/navigation consistency
         run: npm run check:metadata
 
+      - name: Figure index negative regression cases
+        run: node --test scripts/check-figure-index.test.js
+
       - name: Unicode check (fail on warnings)
         run: node book-formatter/scripts/check-unicode.js "${{ steps.scan.outputs.dir }}" --allowlist .book-formatter/unicode-allowlist.json --fail-on warn
 
@@ -253,3 +256,6 @@ jobs:
 
           print(f"OK: built site smoke check passed ({len(paths)} paths, {len(required_assets)} assets)")
           PY
+
+      - name: Figure index deep links, assets, and previous/next navigation
+        run: node scripts/check-built-figure-index.js _site

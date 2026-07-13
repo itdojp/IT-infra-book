@@ -1,5 +1,6 @@
 ---
 layout: book
+order: 18
 title: "あとがき"
 ---
 

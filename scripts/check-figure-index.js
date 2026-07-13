@@ -107,7 +107,9 @@ function parseNavigationItems(text, section) {
 
 function parseAttributes(tag) {
   const attributes = {};
-  for (const match of tag.matchAll(/([:\w-]+)\s*=\s*"([^"]*)"/g)) attributes[match[1]] = match[2];
+  for (const match of tag.matchAll(/([:\w-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+    attributes[match[1]] = match[2] ?? match[3];
+  }
   return attributes;
 }
 

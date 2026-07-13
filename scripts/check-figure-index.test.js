@@ -152,6 +152,25 @@ test('extra numbered public SVG is rejected', (t) => {
   assert.throws(() => validateFigureIndex(fixture), /public numbered SVG count: expected 15, got 16/);
 });
 
+test('single-quoted extra numbered public SVG is rejected', (t) => {
+  const fixture = makeFixture(t);
+  copy('docs/assets/images/diagrams/chapter01/osi-tcp-ip-comparison.svg', fixture);
+  const filePath = path.join(fixture, 'docs/index.md');
+  fs.appendFileSync(filePath, [
+    '',
+    "<figure id='figure-99-1' class='book-figure'>",
+    '  <img',
+    "    src='{{ \"/assets/images/diagrams/chapter01/osi-tcp-ip-comparison.svg\" | relative_url }}'",
+    "    alt='図99-1: 本文の正規図版ではない旧候補SVG'",
+    "    loading='lazy'",
+    "    decoding='async'>",
+    '  <figcaption>図99-1: 余分な図版</figcaption>',
+    '</figure>',
+    '',
+  ].join('\n'));
+  assert.throws(() => validateFigureIndex(fixture), /public numbered SVG count: expected 15, got 16/);
+});
+
 test('index link to an unreferenced asset is rejected', (t) => {
   const fixture = makeFixture(t);
   copy('docs/assets/images/diagrams/chapter01/osi-tcp-ip-comparison.svg', fixture);

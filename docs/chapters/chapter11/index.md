@@ -32,7 +32,7 @@ title: "第11章：高可用性システムの設計"
 
 ![図11-1: アクティブ／スタンバイ、アクティブ／アクティブ、N+M冗長構成の比較]({{ '/assets/images/diagrams/chapter11/redundancy-patterns.svg' | relative_url }})\
 *図11-1: 冗長化パターン*
-{: #figure-11-1 .book-figure}
+{: #figure-11-1}
 
 ### アクティブ/スタンバイ構成の実装詳細
 
@@ -228,7 +228,7 @@ class HeartbeatMonitor:
 
 ![図11-2: ネットワーク分断による二重マスター化とクォーラムによる防止策]({{ '/assets/images/diagrams/chapter11/split-brain-prevention.svg' | relative_url }})\
 *図11-2: スプリットブレイン対策*
-{: #figure-11-2 .book-figure}
+{: #figure-11-2}
 
 #### クォーラムベースの解決
 
@@ -527,7 +527,7 @@ class TwoPhaseCommit:
 
 ![図11-3: 同期、非同期、準同期レプリケーションの書き込みと応答タイミングの比較]({{ '/assets/images/diagrams/chapter11/replication-methods.svg' | relative_url }})\
 *図11-3: レプリケーション方式*
-{: #figure-11-3 .book-figure}
+{: #figure-11-3}
 
 #### 同期レプリケーション
 

@@ -127,7 +127,7 @@ function extractSourceFigures(text, file) {
 
 function extractPublicFigures(text, file) {
   const records = [];
-  const markdownPattern = /!\[(図\d+-\d+): ([^\]\n]+)\]\(([^)\n]+\.svg[^)\n]*)\)\\\n\*(図\d+-\d+): ([^*\n]+)\*\s*\n\{:\s+#(figure-\d+-\d+)\s+\.book-figure\s*\}/g;
+  const markdownPattern = /!\[(図\d+-\d+): ([^\]\n]+)\]\(([^)\n]+\.svg[^)\n]*)\)\\\n\*(図\d+-\d+): ([^*\n]+)\*\s*\n\{:\s+#(figure-\d+-\d+)\s*\}/g;
   for (const match of text.matchAll(markdownPattern)) {
     records.push({
       id: match[6],
@@ -293,7 +293,7 @@ function validateConfiguration(repoRoot, manifest, issues) {
   if (countMatches(layoutText, /{%\s*include\s+page-navigation\.html\s*%}/g) !== 1) issues.push('book layout must include page-navigation.html exactly once');
 
   const cssText = readText(path.join(repoRoot, 'docs/assets/css/main.css'), issues, 'docs/assets/css/main.css');
-  for (const requiredCss of ['.book-figure', 'scroll-margin-top', '.book-figure:target', '*:focus-visible', '@media print', 'page-break-inside']) {
+  for (const requiredCss of ['p[id^="figure-"]', 'scroll-margin-top', 'p[id^="figure-"]:target', '*:focus-visible', '@media print', 'page-break-inside']) {
     if (!cssText.includes(requiredCss)) issues.push(`main.css is missing figure accessibility/print rule: ${requiredCss}`);
   }
 

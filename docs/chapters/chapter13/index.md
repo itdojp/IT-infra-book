@@ -48,7 +48,7 @@ title: "第13章：技術選択のフレームワーク"
 
 ![図13-1: 機能、非機能、コスト、リスクの評価軸から総合判定へ至る技術評価マトリクス]({{ '/assets/images/diagrams/chapter13/technology-evaluation-matrix.svg' | relative_url }})\
 *図13-1: 技術評価マトリクス*
-{: #figure-13-1 .book-figure}
+{: #figure-13-1}
 
 #### 機能要件の充足度
 
@@ -522,7 +522,7 @@ class LicenseComplianceManager:
 
 ![図13-2: コード、アーキテクチャ、インフラの技術的負債と品質・速度・コストへの影響]({{ '/assets/images/diagrams/chapter13/technical-debt-classification.svg' | relative_url }})\
 *図13-2: 技術的負債の分類*
-{: #figure-13-2 .book-figure}
+{: #figure-13-2}
 
 #### コード負債
 
@@ -892,7 +892,7 @@ deploy:production:
 
 ![図13-3: PoC、パイロット、展開、本番運用へ段階的に進む技術導入プロセス]({{ '/assets/images/diagrams/chapter13/technology-adoption-phases.svg' | relative_url }})\
 *図13-3: 技術導入フェーズ*
-{: #figure-13-3 .book-figure}
+{: #figure-13-3}
 
 #### 技術検証（PoC）フェーズ
 

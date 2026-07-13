@@ -32,7 +32,7 @@ title: "第12章：エンドツーエンドシステム設計"
 
 ![図12-1: システム成長に応じた単一構成、垂直分割、水平分割への3段階の発展]({{ '/assets/images/diagrams/chapter12/scalability-stages.svg' | relative_url }})\
 *図12-1: スケーラビリティの段階*
-{: #figure-12-1 .book-figure}
+{: #figure-12-1}
 
 ### 垂直スケーリングから水平スケーリングへ
 
@@ -436,7 +436,7 @@ class NUMAOptimizer:
 
 ![図12-2: メトリクス、ログ、トレースを相関させる可観測性アーキテクチャ]({{ '/assets/images/diagrams/chapter12/observability-pillars.svg' | relative_url }})\
 *図12-2: 可観測性の三本柱*
-{: #figure-12-2 .book-figure}
+{: #figure-12-2}
 
 #### メトリクス：システムの健康状態
 
@@ -916,7 +916,7 @@ class AutoScalingPolicy:
 
 ![図12-3: 障害検知、重要度分類、対応、復旧、事後レビューまでのインシデント対応フロー]({{ '/assets/images/diagrams/chapter12/incident-response-flow.svg' | relative_url }})\
 *図12-3: インシデント対応フロー*
-{: #figure-12-3 .book-figure}
+{: #figure-12-3}
 
 #### 障害の分類体系
 

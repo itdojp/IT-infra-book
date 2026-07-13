@@ -407,7 +407,7 @@ a:hover {
 }
 
 /* Numbered figures and deep-link targets */
-.book-figure {
+p[id^="figure-"] {
     margin: 1.5rem auto 2rem;
     scroll-margin-top: calc(var(--header-height) + 1rem);
     break-inside: avoid;
@@ -417,12 +417,12 @@ a:hover {
     text-align: center;
 }
 
-.book-figure img {
+p[id^="figure-"] img {
     display: block;
     margin: 0 auto 0.75rem;
 }
 
-.book-figure:target {
+p[id^="figure-"]:target {
     outline: 3px solid var(--primary-color);
     outline-offset: 0.5rem;
 }
@@ -619,8 +619,8 @@ a:hover {
         padding: 0;
     }
 
-    .book-figure,
-    .book-figure:target {
+    p[id^="figure-"],
+    p[id^="figure-"]:target {
         color: #000;
         font-size: 9pt;
         margin: 9pt auto 12pt;

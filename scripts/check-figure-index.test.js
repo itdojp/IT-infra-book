@@ -103,6 +103,17 @@ test('residual public Mermaid is rejected', (t) => {
   assert.throws(() => validateFigureIndex(fixture), /public chapter Mermaid count: expected 0, got 1/);
 });
 
+test('missing public stable anchor is rejected', (t) => {
+  const fixture = makeFixture(t);
+  replaceInFile(
+    fixture,
+    'docs/chapters/chapter01/index.md',
+    '{: #figure-1-1}\n',
+    '',
+  );
+  assert.throws(() => validateFigureIndex(fixture), /public SVG figures count: expected 15, got 14/);
+});
+
 test('missing public asset is rejected', (t) => {
   const fixture = makeFixture(t);
   fs.rmSync(path.join(fixture, 'docs/assets/images/diagrams/chapter11/split-brain-prevention.svg'));

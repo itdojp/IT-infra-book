@@ -77,6 +77,8 @@ Ethernetは時代の要求に応じて進化を続けた：
 
 スイッチング動作を理解するには、まずEthernetフレームの構造を知る必要がある。[図2-1]にフレーム構造を示す。
 
+<span id="figure-2-1" class="figure-anchor"></span>
+
 [図2-1: Ethernetフレーム構造]
 ```mermaid
 graph TB
@@ -205,6 +207,8 @@ class SecurePort:
 
 実際のネットワークでは、目的に応じたVLAN設計が重要である。[図2-2]に典型的なVLAN設計パターンを示す。
 
+<span id="figure-2-2" class="figure-anchor"></span>
+
 [図2-2: VLAN設計パターン]
 ```mermaid
 graph TB
@@ -330,6 +334,8 @@ L2ネットワークでループが発生すると、ブロードキャストス
 ### スパニングツリープロトコル（STP）の動作
 
 STPは冗長性を保ちながらループを防ぐ。[図2-3]に状態遷移を示す。
+
+<span id="figure-2-3" class="figure-anchor"></span>
 
 [図2-3: スパニングツリー収束プロセス]
 ```mermaid

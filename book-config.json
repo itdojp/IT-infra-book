@@ -103,6 +103,12 @@
         "title": "付録B: トラブルシューティングガイド",
         "path": "/appendices/appendix02/",
         "description": "一般的な問題と診断・解決手順"
+      },
+      {
+        "id": "figure-index",
+        "title": "図表索引",
+        "path": "/appendices/figure-index/",
+        "description": "本文15図の目的と確認観点"
       }
     ]
   },
@@ -121,7 +127,7 @@
       "checklistPack": true,
       "troubleshootingFlow": true,
       "conceptMap": false,
-      "figureIndex": false,
+      "figureIndex": true,
       "legalNotice": false,
       "glossary": true
     }

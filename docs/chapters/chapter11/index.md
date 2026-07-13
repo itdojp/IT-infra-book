@@ -30,7 +30,9 @@ title: "第11章：高可用性システムの設計"
 
 主要な冗長化パターンを[図11-1]に示す。
 
-![図11-1: 冗長化パターン]({{ '/assets/images/diagrams/chapter11/redundancy-patterns.svg' | relative_url }})
+![図11-1: アクティブ／スタンバイ、アクティブ／アクティブ、N+M冗長構成の比較]({{ '/assets/images/diagrams/chapter11/redundancy-patterns.svg' | relative_url }})\
+*図11-1: 冗長化パターン*
+{: #figure-11-1 .book-figure}
 
 ### アクティブ/スタンバイ構成の実装詳細
 
@@ -224,38 +226,9 @@ class HeartbeatMonitor:
 
 スプリットブレインの発生と対策を[図11-2]に示す。
 
-[図11-2: スプリットブレイン対策]
-```mermaid
-graph TB
-    subgraph "正常時"
-        N1[ノード1<br/>Master]
-        N2[ノード2<br/>Slave]
-        N3[ノード3<br/>Slave]
-        
-        N1 <--> N2
-        N2 <--> N3
-        N1 <--> N3
-    end
-    
-    subgraph "ネットワーク分断"
-        subgraph "パーティション1"
-            P1_N1[ノード1]
-            P1_N2[ノード2]
-        end
-        
-        subgraph "パーティション2"
-            P2_N3[ノード3]
-        end
-        
-        P1_N1 <--> P1_N2
-        P1_N1 <-.->|分断| P2_N3
-        P1_N2 <-.->|分断| P2_N3
-    end
-    
-    subgraph "クォーラムによる解決"
-        Q_NOTE[パーティション1: 2ノード（過半数） → サービス継続<br/>パーティション2: 1ノード（少数） → サービス停止]
-    end
-```
+![図11-2: ネットワーク分断による二重マスター化とクォーラムによる防止策]({{ '/assets/images/diagrams/chapter11/split-brain-prevention.svg' | relative_url }})\
+*図11-2: スプリットブレイン対策*
+{: #figure-11-2 .book-figure}
 
 #### クォーラムベースの解決
 
@@ -552,42 +525,9 @@ class TwoPhaseCommit:
 
 各レプリケーション方式の特性を[図11-3]に示す。
 
-[図11-3: レプリケーション方式]
-```mermaid
-graph LR
-    subgraph "同期レプリケーション"
-        SYNC_M[マスター]
-        SYNC_S1[スレーブ1]
-        SYNC_S2[スレーブ2]
-        
-        SYNC_M -->|1. 書込| SYNC_S1
-        SYNC_M -->|1. 書込| SYNC_S2
-        SYNC_S1 -->|2. ACK| SYNC_M
-        SYNC_S2 -->|2. ACK| SYNC_M
-        SYNC_M -->|3. コミット| SYNC_M
-    end
-    
-    subgraph "非同期レプリケーション"
-        ASYNC_M[マスター]
-        ASYNC_S1[スレーブ1]
-        ASYNC_S2[スレーブ2]
-        
-        ASYNC_M -->|1. コミット| ASYNC_M
-        ASYNC_M -.->|2. 伝播| ASYNC_S1
-        ASYNC_M -.->|2. 伝播| ASYNC_S2
-    end
-    
-    subgraph "準同期レプリケーション"
-        SEMI_M[マスター]
-        SEMI_S1[スレーブ1]
-        SEMI_S2[スレーブ2]
-        
-        SEMI_M -->|1. 書込| SEMI_S1
-        SEMI_M -.->|1. 書込| SEMI_S2
-        SEMI_S1 -->|2. ACK| SEMI_M
-        SEMI_M -->|3. コミット<br/>（1台のACKで）| SEMI_M
-    end
-```
+![図11-3: 同期、非同期、準同期レプリケーションの書き込みと応答タイミングの比較]({{ '/assets/images/diagrams/chapter11/replication-methods.svg' | relative_url }})\
+*図11-3: レプリケーション方式*
+{: #figure-11-3 .book-figure}
 
 #### 同期レプリケーション
 

@@ -104,5 +104,3 @@ Email: [knowledge@itdo.jp](mailto:knowledge@itdo.jp)
 **著者:** 株式会社アイティードゥ
 **バージョン:** 1.0.1
 **最終更新:** 2026-05-23
-
-{% include page-navigation.html %}

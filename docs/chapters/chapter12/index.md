@@ -30,7 +30,9 @@ title: "第12章：エンドツーエンドシステム設計"
 
 システムの成長に応じたスケーラビリティの段階を[図12-1]に示す。
 
-![図12-1: スケーラビリティの段階]({{ '/assets/images/diagrams/chapter12/scalability-stages.svg' | relative_url }})
+![図12-1: システム成長に応じた単一構成、垂直分割、水平分割への3段階の発展]({{ '/assets/images/diagrams/chapter12/scalability-stages.svg' | relative_url }})\
+*図12-1: スケーラビリティの段階*
+{: #figure-12-1 .book-figure}
 
 ### 垂直スケーリングから水平スケーリングへ
 
@@ -432,7 +434,9 @@ class NUMAOptimizer:
 
 可観測性を実現する三本柱の関係を[図12-2]に示す。
 
-![図12-2: 可観測性の三本柱]({{ '/assets/images/diagrams/chapter12/observability-pillars.svg' | relative_url }})
+![図12-2: メトリクス、ログ、トレースを相関させる可観測性アーキテクチャ]({{ '/assets/images/diagrams/chapter12/observability-pillars.svg' | relative_url }})\
+*図12-2: 可観測性の三本柱*
+{: #figure-12-2 .book-figure}
 
 #### メトリクス：システムの健康状態
 
@@ -910,7 +914,9 @@ class AutoScalingPolicy:
 
 インシデント対応の標準的なフローを[図12-3]に示す。
 
-![図12-3: インシデント対応フロー]({{ '/assets/images/diagrams/chapter12/incident-response-flow.svg' | relative_url }})
+![図12-3: 障害検知、重要度分類、対応、復旧、事後レビューまでのインシデント対応フロー]({{ '/assets/images/diagrams/chapter12/incident-response-flow.svg' | relative_url }})\
+*図12-3: インシデント対応フロー*
+{: #figure-12-3 .book-figure}
 
 #### 障害の分類体系
 

@@ -74,6 +74,29 @@ const chapterContracts = [
   },
 ];
 
+function readRequired(filePath, label) {
+  try {
+    return fs.readFileSync(filePath, 'utf8');
+  } catch (error) {
+    if (error && error.code === 'ENOENT') {
+      throw new ChapterDescriptionContractError(`required file is missing: ${label}`);
+    }
+    throw new ChapterDescriptionContractError(
+      `failed to read ${label}: ${error && error.message ? error.message : String(error)}`,
+    );
+  }
+}
+
+function parseJsonRequired(text, label) {
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    throw new ChapterDescriptionContractError(
+      `invalid JSON in ${label}: ${error && error.message ? error.message : String(error)}`,
+    );
+  }
+}
+
 function extractPurpose(markdown, id) {
   const startHeading = '## 本章の目的と到達点';
   const start = markdown.indexOf(startHeading);
@@ -132,10 +155,13 @@ function validateChapterDescriptionContracts(bookConfig, publishedChapters) {
 
 function validateChapterDescriptions(root = path.resolve(__dirname, '..')) {
   const configPath = path.join(root, 'book-config.json');
-  const bookConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  const bookConfig = parseJsonRequired(readRequired(configPath, 'book-config.json'), 'book-config.json');
   const publishedChapters = Object.fromEntries(chapterContracts.map(({ id }) => [
     id,
-    fs.readFileSync(path.join(root, 'docs', 'chapters', id, 'index.md'), 'utf8'),
+    readRequired(
+      path.join(root, 'docs', 'chapters', id, 'index.md'),
+      `docs/chapters/${id}/index.md`,
+    ),
   ]));
   return validateChapterDescriptionContracts(bookConfig, publishedChapters);
 }
@@ -154,6 +180,8 @@ module.exports = {
   ChapterDescriptionContractError,
   chapterContracts,
   extractPurpose,
+  parseJsonRequired,
+  readRequired,
   validateChapterDescriptionContracts,
   validateChapterDescriptions,
 };

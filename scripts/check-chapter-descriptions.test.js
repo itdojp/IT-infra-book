@@ -7,7 +7,9 @@ const test = require('node:test');
 
 const {
   chapterContracts,
+  parseJsonRequired,
   validateChapterDescriptionContracts,
+  validateChapterDescriptions,
 } = require('./check-chapter-descriptions');
 
 const repoRoot = path.resolve(__dirname, '..');
@@ -53,5 +55,19 @@ test('rejects chapter order drift', () => {
   assert.throws(
     () => validateChapterDescriptionContracts(bookConfig, publishedChapters),
     /chapter order mismatch at 3/,
+  );
+});
+
+test('reports a missing contract input with a stable domain error', () => {
+  assert.throws(
+    () => validateChapterDescriptions(path.join(repoRoot, '.codex-local', 'missing-chapter-description-root')),
+    /required file is missing: book-config\.json/,
+  );
+});
+
+test('reports malformed book metadata with a stable domain error', () => {
+  assert.throws(
+    () => parseJsonRequired('{', 'book-config.json'),
+    /invalid JSON in book-config\.json/,
   );
 });

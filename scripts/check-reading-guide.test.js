@@ -3,13 +3,20 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const test = require('node:test');
+const { after, test } = require('node:test');
 
 const { validateReadingGuide } = require('./check-reading-guide');
 
 const repoRoot = path.resolve(__dirname, '..');
-const scratchRoot = path.join(repoRoot, '.codex-local', 'tmp');
+const scratchRoot = path.join(repoRoot, '.codex-local', 'tmp', 'reading-guide-tests');
 const indexPath = 'docs/index.md';
+
+after(() => {
+  fs.rmSync(scratchRoot, { recursive: true, force: true });
+  for (const candidate of [path.dirname(scratchRoot), path.dirname(path.dirname(scratchRoot))]) {
+    if (fs.existsSync(candidate) && fs.readdirSync(candidate).length === 0) fs.rmdirSync(candidate);
+  }
+});
 
 function copy(relativePath, fixture) {
   const destination = path.join(fixture, relativePath);
@@ -79,4 +86,16 @@ test('a local chapter link without a published target is rejected', (t) => {
   const fixture = makeFixture(t);
   fs.rmSync(path.join(fixture, 'docs/chapters/chapter08/index.md'));
   assert.throws(() => validateReadingGuide(fixture), /link has no published target: chapters\/chapter08\//);
+});
+
+test('an absolute local link is rejected before filesystem lookup', (t) => {
+  const fixture = makeFixture(t);
+  replaceRequired(fixture, '\n## 実務適用前', '\n- [unsafe absolute path](/etc/passwd)\n\n## 実務適用前');
+  assert.throws(() => validateReadingGuide(fixture), /link is not a safe docs-relative path: \/etc\/passwd/);
+});
+
+test('a traversal link is rejected before it can escape docs', (t) => {
+  const fixture = makeFixture(t);
+  replaceRequired(fixture, '\n## 実務適用前', '\n- [unsafe traversal](../package.json)\n\n## 実務適用前');
+  assert.throws(() => validateReadingGuide(fixture), /link is not a safe docs-relative path: \.\.\/package\.json/);
 });

@@ -56,11 +56,30 @@ function overviewPath(guide) {
 }
 
 function validateLocalTargets(root, links) {
+  const docsRoot = path.resolve(root, 'docs');
   for (const href of links) {
     if (/^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith('#')) continue;
     const clean = href.split('#', 1)[0].split('?', 1)[0];
-    const relativeTarget = clean.endsWith('/') ? `${clean}index.md` : clean;
-    const target = path.join(root, 'docs', relativeTarget);
+    let decoded;
+    try {
+      decoded = decodeURIComponent(clean);
+    } catch {
+      throw new ReadingGuideContractError(`reading-guide link has invalid percent encoding: ${href}`);
+    }
+    const relativeTarget = decoded.endsWith('/') ? `${decoded}index.md` : decoded;
+    const segments = relativeTarget.split('/');
+    if (
+      path.isAbsolute(relativeTarget)
+      || relativeTarget.includes('\\')
+      || segments.some((segment) => segment === '.' || segment === '..')
+    ) {
+      throw new ReadingGuideContractError(`reading-guide link is not a safe docs-relative path: ${href}`);
+    }
+    const target = path.resolve(docsRoot, relativeTarget);
+    const relative = path.relative(docsRoot, target);
+    if (relative.startsWith(`..${path.sep}`) || relative === '..' || path.isAbsolute(relative)) {
+      throw new ReadingGuideContractError(`reading-guide link escapes the published docs tree: ${href}`);
+    }
     if (!fs.existsSync(target) || !fs.statSync(target).isFile()) {
       throw new ReadingGuideContractError(`reading-guide link has no published target: ${href}`);
     }

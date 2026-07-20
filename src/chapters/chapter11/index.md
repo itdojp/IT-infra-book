@@ -78,15 +78,42 @@ graph TB
 - データ同期の遅延
 - 定期的な動作確認が必要
 
-**実装例（PostgreSQLのコールドスタンバイ）**：
-```bash
-# アクティブノードでのベースバックアップ
-pg_basebackup -h active-server -D /var/lib/postgresql/standby -U replication -v -P -W
+**実装例（PostgreSQL 12以降のコールドスタンバイ）**：
 
-# スタンバイノードの起動時設定
-echo "standby_mode = 'on'" >> /var/lib/postgresql/standby/recovery.conf
-echo "primary_conninfo = 'host=active-server port=5432 user=replication'" >> /var/lib/postgresql/standby/recovery.conf
+この手順の設定方式はPostgreSQL 12以降を対象とする。2026年7月21日時点でサポート中のPostgreSQL 14〜18を本番運用の対象とし、各メジャー版の最新のマイナー版を使用する。WALの互換性を保つため、プライマリとスタンバイは同じメジャー版および可能な限り同じマイナー版にそろえる。
+
+プライマリでは、専用アカウントへ`LOGIN`と`REPLICATION`だけを付与し、スタンバイの送信元だけを`pg_hba.conf`で`replication`データベースへ許可する。`max_wal_senders`には、ベースバックアップ用とWALストリーミング用の接続枠を確保する。パスワードはコマンドラインへ記載せず、実行OSアカウントだけが読める権限`0600`の`.pgpass`などで渡す。
+
+スタンバイノードではPostgreSQLサービスを停止し、`PGDATA`が存在しないか空であることを確認してから、同じメジャー版の`pg_basebackup`を実行する。
+
+```bash
+# スタンバイノードで、PostgreSQLサービスの停止を確認してから実行する
+export PGDATA=/var/lib/postgresql/standby
+test ! -e "$PGDATA" || test -z "$(find "$PGDATA" -mindepth 1 -print -quit)"
+
+pg_basebackup \
+  --host=active-server \
+  --pgdata="$PGDATA" \
+  --username=replication \
+  --wal-method=stream \
+  --write-recovery-conf \
+  --progress
+
+# -R/--write-recovery-confが作成した現行設定を確認する
+test -f "$PGDATA/standby.signal"
+grep -Fq 'primary_conninfo' "$PGDATA/postgresql.auto.conf"
 ```
+
+`--write-recovery-conf`は`standby.signal`を作成し、接続設定`primary_conninfo`を`postgresql.auto.conf`へ追記する。PostgreSQL 12で`recovery.conf`は廃止され、ファイルが残っているとサーバーは起動しない。`standby_mode`設定も削除済みであり、現行手順では使用しない。
+
+コールドスタンバイとして保持する間はサービスを起動しない。長期間停止する場合でも必要なWALを取得できるよう、WALアーカイブまたは物理レプリケーションスロットの保持量と監視を別途設計する。起動時は、障害側プライマリを隔離して二重書き込みを防ぎ、WALの適用完了を確認してから昇格する。ベースバックアップの再取得と起動・昇格訓練も定期的に行う。
+
+**公式一次情報（2026年7月21日確認）**：
+
+- [PostgreSQL 12リリースノート（recovery設定の変更）](https://www.postgresql.org/docs/release/12.0/)
+- [PostgreSQL 18 pg_basebackup（`--write-recovery-conf`）](https://www.postgresql.org/docs/18/app-pgbasebackup.html)
+- [PostgreSQL 18 ログシッピング・スタンバイ](https://www.postgresql.org/docs/18/warm-standby.html)
+- [PostgreSQLのバージョンサポート方針](https://www.postgresql.org/support/versioning/)
 
 #### ウォームスタンバイ
 

@@ -6,13 +6,15 @@
   "scripts": {
     "start": "cd docs && bundle exec jekyll serve --livereload",
     "build": "cd docs && bundle exec jekyll build",
-    "test": "npm run check:metadata && npm run test:figure-index && npm run lint && npm run check-links",
+    "test": "npm run check:metadata && npm run test:figure-index && npm run check:postgresql-standby && npm run test:postgresql-standby && npm run lint && npm run check-links",
     "lint": "markdownlint 'docs/**/*.md'",
     "check-links": "markdown-link-check docs/**/*.md",
     "deploy": "gh-pages -d docs/_site",
     "check:metadata": "node scripts/check-metadata-consistency.js",
+    "check:postgresql-standby": "node scripts/check-postgresql-standby.js",
     "check:figures": "node scripts/check-figure-index.js",
     "test:figure-index": "node --test scripts/check-figure-index.test.js",
+    "test:postgresql-standby": "node --test scripts/check-postgresql-standby.test.js",
     "check:built-figures": "node scripts/check-built-figure-index.js docs/_site"
   },
   "keywords": [

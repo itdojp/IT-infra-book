@@ -16,79 +16,79 @@
         "id": "chapter01",
         "title": "第1章：プロトコルスタックの設計思想",
         "path": "/chapters/chapter01/",
-        "description": "システム設計の根本原理と思考法"
+        "description": "プロトコルの階層化、層間相互作用、性能・セキュリティの設計原則"
       },
       {
         "id": "chapter02",
         "title": "第2章：L2ネットワークの設計と実装",
         "path": "/chapters/chapter02/",
-        "description": "TCP/IPから現代ネットワークまでの実装技術"
+        "description": "Ethernet、VLAN、ループ対策、リンクアグリゲーションによるL2設計"
       },
       {
         "id": "chapter03",
         "title": "第3章：L3ネットワークの設計原理",
         "path": "/chapters/chapter03/",
-        "description": "多層防御とゼロトラスト設計"
+        "description": "IPアドレス、CIDR/VLSM、ルーティング、NATの設計とトレードオフ"
       },
       {
         "id": "chapter04",
         "title": "第4章：名前解決とサービス発見",
         "path": "/chapters/chapter04/",
-        "description": "性能とレジリエンスの実装"
+        "description": "DNS階層、内部/外部DNS、動的更新、サービス発見の設計"
       },
       {
         "id": "chapter05",
         "title": "第5章：トランスポート層以上の実装技術",
         "path": "/chapters/chapter05/",
-        "description": "SDNとネットワーク自動化"
+        "description": "TCP/UDP選択、TCPチューニング、ロードバランサー、プロキシ、TLSの実装"
       },
       {
         "id": "chapter06",
         "title": "第6章：オペレーティングシステムの内部構造",
         "path": "/chapters/chapter06/",
-        "description": "コンピューティングリソースの最適化"
+        "description": "カーネル/ユーザー空間、スケジューリング、メモリ、I/Oの内部構造とチューニング"
       },
       {
         "id": "chapter07",
         "title": "第7章：ストレージアーキテクチャ",
         "path": "/chapters/chapter07/",
-        "description": "データ永続化とストレージ戦略"
+        "description": "ブロックデバイス、RAID、ファイルシステム、性能、バックアップの設計"
       },
       {
         "id": "chapter08",
         "title": "第8章：仮想化技術の実装原理",
         "path": "/chapters/chapter08/",
-        "description": "システムの拡張性設計"
+        "description": "CPU・メモリ・I/O仮想化とハイパーバイザー/コンテナの選択"
       },
       {
         "id": "chapter09",
         "title": "第9章：システム運用の自動化",
         "path": "/chapters/chapter09/",
-        "description": "運用効率化とDevOps実践"
+        "description": "systemd、ログ/メトリクス、設定管理、オーケストレーション、障害対応の自動化"
       },
       {
         "id": "chapter10",
         "title": "第10章：セキュリティアーキテクチャ",
         "path": "/chapters/chapter10/",
-        "description": "実践的セキュリティ対策"
+        "description": "セグメンテーション、ファイアウォール、認証/認可、暗号化、監視の設計"
       },
       {
         "id": "chapter11",
         "title": "第11章：高可用性システムの設計",
         "path": "/chapters/chapter11/",
-        "description": "災害対策と事業継続"
+        "description": "冗長化、フェイルオーバー、分散一貫性、RPO/RTOに基づく高可用性設計"
       },
       {
         "id": "chapter12",
         "title": "第12章：エンドツーエンドシステム設計",
         "path": "/chapters/chapter12/",
-        "description": "システム性能の監視と改善"
+        "description": "スケーリング、クロスレイヤー最適化、可観測性、キャパシティプランニング"
       },
       {
         "id": "chapter13",
         "title": "第13章：技術選択のフレームワーク",
         "path": "/chapters/chapter13/",
-        "description": "技術評価と意思決定の方法論"
+        "description": "多面的な技術評価、OSSの持続可能性、技術的負債、段階導入の意思決定"
       }
     ],
     "appendices": [

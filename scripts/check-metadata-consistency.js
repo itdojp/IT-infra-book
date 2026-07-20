@@ -11,6 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const { isDeepStrictEqual } = require('util');
+const { validateChapterDescriptions } = require('./check-chapter-descriptions');
 const { validateFigureIndex } = require('./check-figure-index');
 
 const root = path.resolve(__dirname, '..');
@@ -300,6 +301,12 @@ const navigation = readNavigation(path.join(docs, '_data', 'navigation.yml'));
 checkMetadata(bookConfig, packageJson, packageLock);
 const counts = checkNavigation(bookConfig, navigation);
 checkAssets();
+let chapterDescriptionCount;
+try {
+  chapterDescriptionCount = validateChapterDescriptions(root).chapterCount;
+} catch (error) {
+  fail(error && error.message ? error.message : String(error));
+}
 let figureCounts;
 try {
   figureCounts = validateFigureIndex(root);
@@ -307,4 +314,5 @@ try {
   fail(error && error.message ? error.message : String(error));
 }
 console.log(`OK: metadata and navigation coverage are consistent (${counts.navCount} navigation entries, ${counts.pageCount} docs pages)`);
+console.log(`OK: chapter descriptions match published chapter purposes (${chapterDescriptionCount} chapters)`);
 console.log(`OK: figure-index coverage is consistent (${figureCounts.figureCount} bidirectional figure mappings)`);
